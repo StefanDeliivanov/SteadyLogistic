@@ -4,6 +4,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - SteadyLogistic</title>
+    <link runat="server" rel="shortcut icon" href="~/images/favicon.ico" type="image/x-icon"/>
+    <link runat="server" rel="icon" href="~/images/favicon.ico" type="image/ico"/>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
@@ -11,45 +13,52 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-primary border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"> <img class="logo horizontal-logo" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/horizontal-logo.svg" alt="forecastr logo"></a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"> <img class="logo horizontal-logo" src="~/images/steadyLogo3.jpg" alt="SteadyLogistics Logo"></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav ml-auto">
+                    <ul class="navbar-nav flex-grow-1">
                         @*<ul class="navbar-nav flex-grow-1">*@
-
-                        <li class="nav-item">
-                            <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Link</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link text-white dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Home
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
+                                <a class="dropdown-item" asp-area="" asp-controller="Home" asp-action="News">News</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="Home" asp-action="Contacts">Contacts</a>
+                            </div>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Dropdown
+                            <a class="nav-link text-white dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Freight Exchange
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Something else here</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="FreightExchange" asp-action="AllFreights">All Freights</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="FreightExchange" asp-action="MyOffers">My Offers</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="FreightExchange" asp-action="CompanyOffers">Company Offers</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="FreightExchange" asp-action="SearchFreight">Search for a Freight</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="FreightExchange" asp-action="AddFreight">Add Freight</a>
                             </div>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Dropdown
+                            <a class="nav-link text-white dropdown-toggle" href="#" id="navbarDropdown3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Transport Exchange
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown3">
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Something else here</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="TransportExchange" asp-action="AllTransport">All Transports</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="TransportExchange" asp-action="MyTransports">My Transports</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="TransportExchange" asp-action="CompanyTransports">Company Transports</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="TransportExchange" asp-action="SearchTransport">Search for a Transport</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="TransportExchange" asp-action="AddTransport">Add Transport</a>
                             </div>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Link</a>
+                            <a class="nav-link text-white" asp-area="" asp-controller="Catalogue" asp-action="All">Catalogue</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-area="" asp-controller="Documentation" asp-action="All">Documentation</a>
                         </li>
                     </ul>
                     <ul class="navbar-nav flex-grow-1">
