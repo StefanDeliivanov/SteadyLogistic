@@ -8,7 +8,7 @@ namespace SteadyLogistic
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
-   
+    using SteadyLogistic.Data.Models;
 
     public class Startup
     {
@@ -26,7 +26,7 @@ namespace SteadyLogistic
             services.AddDatabaseDeveloperPageExceptionFilter();
 
             services
-            .AddDefaultIdentity<IdentityUser>(options =>
+            .AddDefaultIdentity<SLogisticsUser>(options =>
              {
                  options.Password.RequireDigit = false;
                  options.Password.RequireLowercase = false;

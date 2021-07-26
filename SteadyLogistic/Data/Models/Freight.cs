@@ -1,11 +1,14 @@
 ﻿namespace SteadyLogistic.Data.Models
 {
     using System;
+    using System.Collections.Generic;
 
     public class Freight
     {
-    
-        // Cargo Properties
+        public Freight()
+        {
+            this.Viewers = new List<SLogisticsUser>();
+        }
 
         public int Id { get; init; }
 
@@ -23,34 +26,18 @@
 
         public DateTime PublishedOn { get; init; }
 
-        // Loading Properties
+        public LoadUnloadInfo Loading { get; set; }
 
-        public Country LoadingCountry { get; set; }
+        public int LoadingId { get; set; }
 
-        public int LoadingCountryId { get; set; }
+        public LoadUnloadInfo Unloading { get; set; }
 
-        public City LoadingCity { get; set; }
+        public int UnloadingId { get; set; }
 
-        public int LoadingCityId { get; set; }
-
-        public DateTime LoadingDate { get; set; }
-
-        // Unloading Properties
-
-        public Country UnloadingCountry { get; set; }
-
-        public int UnloadingCountryId { get; set; }
-
-        public City UnloadingCity { get; set; }
-
-        public int UnloadingCityId { get; set; }
-
-        public DateTime UnloadingDate { get; set; }
-
-        //public User User { get; set; }
+        public SLogisticsUser User { get; set; }
         
-        //public int UserId { get; set; }
+        public string UserId { get; set; }
 
-        //public ICollection<User> Viewers { get; set; } => Need to Implelment Logic
+        public ICollection<SLogisticsUser> Viewers { get; set; }
     }
 }

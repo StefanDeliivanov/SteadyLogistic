@@ -12,5 +12,9 @@
         public string  Model { get; set; }
 
         public int Weight { get; set; }
+
+        public Company Company { get; set; }
+
+        public int CompanyId { get; set; }
     }
 }

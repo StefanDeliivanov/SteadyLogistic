@@ -1,7 +1,7 @@
 ﻿namespace SteadyLogistic.Data
 {
 
-    public class DataConstants
+    public static class DataConstants
     {
     }
 }

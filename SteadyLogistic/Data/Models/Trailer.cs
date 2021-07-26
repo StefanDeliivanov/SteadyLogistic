@@ -19,5 +19,9 @@
         public int Capacity { get; set; }
 
         public int Height { get; set; }
+
+        public Company Company { get; set; }
+
+        public int CompanyId { get; set; }
     }
 }
