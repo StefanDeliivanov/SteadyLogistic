@@ -1,6 +1,9 @@
 ﻿namespace SteadyLogistic.Data.Models
 {
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+
+    using static DataConstants.Country;
 
     public class Country
     {
@@ -10,8 +13,12 @@
             this.Companies = new List<Company>();
         }
 
+        [Required]
+        [Key]
         public int  Id { get; set; }
 
+        [Required]
+        [MaxLength(countryNameMaxLenght)]
         public string Name { get; set; }
 
         public ICollection<City> Cities { get; set; }

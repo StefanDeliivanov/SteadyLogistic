@@ -3,11 +3,9 @@
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore;
     using SteadyLogistic.Data.Models;
-    using SteadyLogistic.Data.Models.Interfaces;
 
     public class SteadyLogisticDbContext : IdentityDbContext<SLogisticsUser>
     {
-        private object deleteBehavior;
 
         public SteadyLogisticDbContext(DbContextOptions<SteadyLogisticDbContext> options)
             : base(options)
@@ -30,6 +28,8 @@
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
             modelBuilder
                 .Entity<Company>()
                 .HasOne(m => m.Manager)
@@ -37,9 +37,9 @@
                 .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder
-                .Entity<IVehicle>()
-                .HasOne(v => v.Company)
-                .WithMany(f => f.Fleet)
+                .Entity<Freight>()
+                .HasOne(u => u.User)
+                .WithMany(f => f.Freights)
                 .OnDelete(DeleteBehavior.Restrict);
         }
     }
