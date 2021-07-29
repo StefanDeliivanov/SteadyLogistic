@@ -11,18 +11,19 @@
         {
             this.Cities = new List<City>();
             this.Companies = new List<Company>();
+            this.LoadUnloadings = new List<LoadUnloadInfo>();
         }
 
-        [Required]
-        [Key]
-        public int  Id { get; set; }
+        public int Id { get; set; }
 
         [Required]
         [MaxLength(countryNameMaxLenght)]
         public string Name { get; set; }
 
-        public ICollection<City> Cities { get; set; }
+        public virtual ICollection<City> Cities { get; set; }
 
-        public ICollection<Company> Companies { get; set; }
+        public virtual ICollection<Company> Companies { get; set; }
+
+        public virtual ICollection<LoadUnloadInfo> LoadUnloadings { get; set; }
     }
 }

@@ -1,15 +1,13 @@
 ﻿namespace SteadyLogistic.Data.Models
 {
+    using System.ComponentModel.DataAnnotations;
     using SteadyLogistic.Data.Models.Interfaces;
 
     using static DataConstants.Vehicle;
-    using static DataConstants.Trailer;
-    using System.ComponentModel.DataAnnotations;
 
     public class Trailer : IVehicle
     {
-        [Required]
-        [Key]
+
         public int Id { get; set; }
 
         [Required]
@@ -38,7 +36,7 @@
         public int Height { get; set; }
 
         [Required]
-        public Company Company { get; set; }
+        public virtual Company Company { get; set; }
 
         public int CompanyId { get; set; }
     }

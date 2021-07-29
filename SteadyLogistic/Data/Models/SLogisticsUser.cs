@@ -4,18 +4,23 @@
     using System.ComponentModel.DataAnnotations;
     using Microsoft.AspNetCore.Identity;
 
+    using static DataConstants.SLogisticsUser;
+
     public class SLogisticsUser : IdentityUser
     {
-        [ProtectedPersonalData]
+
+        [Required]
+        [MaxLength(usernameMaxLenght)]
         public override string UserName { get; set; }
 
-        [ProtectedPersonalData]
+        [Required]
         public override string Email { get; set; }
 
-        [ProtectedPersonalData]
+        [Required]
         public override string PhoneNumber { get; set; }
 
-        public Company Company { get; set; }
+        [Required]
+        public virtual Company Company { get; set; }
 
         public int CompanyId { get; set; }
 

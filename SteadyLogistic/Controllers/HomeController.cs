@@ -3,7 +3,6 @@
     using System.Diagnostics;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
-    using SteadyLogistic.Data.Models;
     using SteadyLogistic.Models;
     
 
@@ -15,14 +14,6 @@
         {
             _logger = logger;
         }
-        public IActionResult Random()
-        {
-            var stoti = new SLogisticsUser();
-            //stoti.
-
-            return View();
-        }
-
 
         public IActionResult Index()
         {

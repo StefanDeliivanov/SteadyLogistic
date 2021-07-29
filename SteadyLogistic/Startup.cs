@@ -12,7 +12,7 @@ namespace SteadyLogistic
 
     public class Startup
     {
-        public Startup(IConfiguration configuration) 
+        public Startup(IConfiguration configuration)
             => Configuration = configuration;
 
         public IConfiguration Configuration { get; }
@@ -27,12 +27,12 @@ namespace SteadyLogistic
 
             services
             .AddDefaultIdentity<SLogisticsUser>(options =>
-             {
-                 options.Password.RequireDigit = false;
-                 options.Password.RequireLowercase = false;
-                 options.Password.RequireNonAlphanumeric = false;
-                 options.Password.RequireUppercase = false;
-             })
+            {
+                options.Password.RequireDigit = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = false;
+            })
                 .AddEntityFrameworkStores<SteadyLogisticDbContext>();
 
             services.AddControllersWithViews();
