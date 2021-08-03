@@ -7,6 +7,8 @@
         {
             public const int cityNameMinLenght = 3;
             public const int cityNameMaxLenght = 25;
+            public const int cityPostCodeMinLenght = 3;
+            public const int cityPostCodeMaxLenght = 10;
         }
 
         public static class Company
@@ -15,8 +17,8 @@
             public const int companyNameMaxLenght = 40;
             public const int vatNumberMinLenght = 4;
             public const int vatNumberMaxLenght = 15;
-            public const int headquatersMinLenght = 3;
-            public const int headquatersMaxLenght = 50;
+            public const int addressMinLenght = 3;
+            public const int addressMaxLenght = 50;
             public const int phoneMinLenght = 5;
             public const int phoneMaxLenght = 15;
             public const int emailMaxLenght = 70;
@@ -26,6 +28,7 @@
         {
             public const int countryNameMinLenght = 4;
             public const int countryNameMaxLenght = 60;
+            public const int countryCodeLenght = 3;
         }
 
         public static class Freight
@@ -33,6 +36,18 @@
             public const int decriptionMaxLenght = 150;
             public const int dimensionsMaxLenght = 6;
         }
+
+        public static class TransportType
+        {
+            public const int tranportTypeMinLenght = 8;
+            public const int tranportTypeMaxLenght = 9;
+        }
+
+        public static class CargoSizeName
+        {
+            public const int cargoSizeNameMaxLenght = 15;
+        }
+
 
         public static class SLogisticsUser
         {

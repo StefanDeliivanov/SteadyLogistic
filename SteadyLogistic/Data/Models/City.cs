@@ -9,8 +9,8 @@
     {
         public City()
         {
-            this.Companies = new List<Company>();
-            this.LoadUnloadings = new List<LoadUnloadInfo>();
+            Companies = new List<Company>();
+            LoadUnloadings = new List<LoadUnloadInfo>();
         }
 
         [Required]
@@ -19,6 +19,10 @@
         [Required]
         [MaxLength(cityNameMaxLenght)]
         public string Name { get; set; }
+
+        [Required]
+        [MaxLength(cityPostCodeMaxLenght)]
+        public string PostCode { get; set; }
 
         [Required]
         public virtual Country Country { get; set; }

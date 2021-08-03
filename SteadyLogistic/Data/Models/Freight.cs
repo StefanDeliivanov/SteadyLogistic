@@ -23,7 +23,9 @@
         public int Weight { get; set; }
 
         [Required]
-        public string TransportType { get; set; }
+        public TranportType TransportType { get; set; }
+
+        public int TransportTypeId { get; set; }
 
         [Required]
         public decimal Price { get; set; }

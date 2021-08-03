@@ -9,9 +9,9 @@
     {
         public Country()
         {
-            this.Cities = new List<City>();
-            this.Companies = new List<Company>();
-            this.LoadUnloadings = new List<LoadUnloadInfo>();
+            Cities = new List<City>();
+            Companies = new List<Company>();
+            LoadUnloadings = new List<LoadUnloadInfo>();
         }
 
         public int Id { get; set; }
@@ -19,6 +19,10 @@
         [Required]
         [MaxLength(countryNameMaxLenght)]
         public string Name { get; set; }
+
+        [Required]
+        [MaxLength(countryCodeLenght)]
+        public string Code { get; set; }
 
         public virtual ICollection<City> Cities { get; set; }
 

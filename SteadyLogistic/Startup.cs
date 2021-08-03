@@ -26,12 +26,15 @@ namespace SteadyLogistic
             services.AddDatabaseDeveloperPageExceptionFilter();
 
             services
-            .AddDefaultIdentity<SLogisticsUser>(options =>
+            .AddDefaultIdentity<User>(options =>
             {
                 options.Password.RequireDigit = false;
                 options.Password.RequireLowercase = false;
                 options.Password.RequireNonAlphanumeric = false;
                 options.Password.RequireUppercase = false;
+                options.SignIn.RequireConfirmedAccount = false;
+                options.SignIn.RequireConfirmedEmail = false;
+                options.SignIn.RequireConfirmedPhoneNumber = false;
             })
                 .AddEntityFrameworkStores<SteadyLogisticDbContext>();
 

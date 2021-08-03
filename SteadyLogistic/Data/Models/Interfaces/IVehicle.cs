@@ -16,5 +16,9 @@
         public Company Company { get; set; }
 
         public int CompanyId { get; set; }
+
+        public Fleet Fleet { get; set; }
+
+        public int FleetId { get; set; }
     }
 }

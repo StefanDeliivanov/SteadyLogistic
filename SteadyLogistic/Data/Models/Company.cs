@@ -9,14 +9,10 @@
     {
         public Company()
         {
-            this.TruckFleet = new List<Truck>();
-            this.TrailerFleet = new List<Trailer>();
-            this.Employees = new List<SLogisticsUser>();
+            Employees = new List<SLogisticsUser>();
         }
 
         public int Id { get; set; }
-
-        public string Logo { get; set; }
 
         [Required]
         [MaxLength(companyNameMaxLenght)]
@@ -27,8 +23,8 @@
         public string VatNumber { get; set; }
 
         [Required]
-        [MaxLength(headquatersMaxLenght)]
-        public string HeadquartersAdress { get; set; }
+        [MaxLength(addressMaxLenght)]
+        public string Address { get; set; }
 
         [Required]
         [MaxLength(phoneMaxLenght)]
@@ -37,11 +33,10 @@
         [Required]
         [MaxLength(emailMaxLenght)]
         public string Email { get; set; }
+      
+        public virtual Manager Manager { get; set; }
 
-        //[Required]
-        //public virtual SLogisticsUser Manager { get; set; }
-
-        //public string ManagerId { get; set; }
+        public int ManagerId { get; set; }
 
         [Required]
         public virtual Country Country { get; set; }
@@ -52,12 +47,11 @@
         public virtual City City { get; set; }
 
         public int CityId { get; set; }
+        
+        [Required]
+        public Fleet Fleet { get; set; }
 
-        public int FleetCount { get; set; }
-
-        public virtual ICollection<Truck> TruckFleet { get; set; }
-
-        public virtual ICollection<Trailer> TrailerFleet { get; set; }
+        public int FleetId { get; set; }
 
         public virtual ICollection<SLogisticsUser> Employees { get; set; }
     }
