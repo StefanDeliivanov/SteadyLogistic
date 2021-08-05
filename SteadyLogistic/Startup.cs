@@ -9,6 +9,7 @@ namespace SteadyLogistic
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
     using SteadyLogistic.Data.Models;
+    using SteadyLogistic.Infrastructure;
 
     public class Startup
     {
@@ -36,6 +37,7 @@ namespace SteadyLogistic
                 options.SignIn.RequireConfirmedEmail = false;
                 options.SignIn.RequireConfirmedPhoneNumber = false;
             })
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<SteadyLogisticDbContext>();
 
             services.AddControllersWithViews();
@@ -43,6 +45,8 @@ namespace SteadyLogistic
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.PrepareDatabase();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

@@ -17,7 +17,7 @@
             builder
                 .HasOne<User>()
                 .WithOne()
-                .HasForeignKey<User>(b => b.Id)
+                .HasForeignKey<SLogisticsUser>(b => b.Id)
                 .OnDelete(DeleteBehavior.Restrict);
 
             builder
@@ -27,10 +27,6 @@
             builder
                 .HasIndex(a => a.PhoneNumber)
                 .IsUnique();
-
-            //builder
-            //    .Property(a => a.Manager)
-            //    .IsRequired(false);
         }
     }
 }

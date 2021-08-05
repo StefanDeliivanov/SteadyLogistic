@@ -56,7 +56,7 @@
         public static class TrailerType
         {
             public const int trailerTypeNameMinLenght = 3;
-            public const int trailerTypeNameMaxLenght = 13;
+            public const int trailerTypeNameMaxLenght = 12;
         }
 
         public static class Vehicle
