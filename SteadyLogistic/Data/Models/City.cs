@@ -14,7 +14,7 @@
         }
 
         [Required]
-        public int Id { get; init; }
+        public int Id { get; set; }
 
         [Required]
         [MaxLength(cityNameMaxLenght)]
@@ -32,6 +32,5 @@
         public virtual ICollection<Company> Companies { get; set; }
 
         public virtual ICollection<LoadUnloadInfo> LoadUnloadings { get; set; }
-
     }
 }

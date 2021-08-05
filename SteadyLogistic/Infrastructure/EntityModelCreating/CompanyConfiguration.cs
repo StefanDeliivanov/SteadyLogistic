@@ -29,6 +29,7 @@
             builder
                 .HasOne(a => a.Fleet)
                 .WithOne(b => b.Company)
+                .HasForeignKey<Fleet>(c => c.CompanyId)
                 .OnDelete(DeleteBehavior.Restrict);
 
             builder

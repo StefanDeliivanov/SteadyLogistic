@@ -23,25 +23,20 @@
         public string Model { get; set; }
 
         [Required]
-        [MaxLength(vehicleMaxWeight)]
-        public int Weight { get; set; }
+        public double Weight { get; set; }
 
         [Required]
-        public string Type { get; set; }
+        public virtual Dimension Dimension { get; set; }
+
+        public int DimensionId {get;set;}
 
         [Required]
-        public int Capacity { get; set; }
+        public virtual TrailerType Type { get; set; }
+
+        public int TypeId { get; set; }
 
         [Required]
-        public int Height { get; set; }
-
-        [Required]
-        public virtual Company Company { get; set; }
-
-        public int CompanyId { get; set; }
-
-        [Required]
-        public Fleet Fleet { get; set; }
+        public virtual  Fleet Fleet { get; set; }
 
         public int FleetId { get; set; }
     }

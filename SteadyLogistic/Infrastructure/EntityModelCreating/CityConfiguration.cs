@@ -13,6 +13,10 @@
                 .WithMany(b => b.Cities)
                 .HasForeignKey(c => c.CountryId)
                 .OnDelete(DeleteBehavior.Restrict);
+
+            builder
+                .HasIndex(a => new { a.PostCode, a.CountryId })
+                .IsUnique();
         }
     }
 }

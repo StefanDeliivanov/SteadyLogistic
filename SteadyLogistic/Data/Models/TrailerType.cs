@@ -3,23 +3,24 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
-    public class Fleet
+    using static DataConstants.TrailerType;
+
+    public class TrailerType
     {
-        public Fleet()
+        public TrailerType()
         {
-            Trucks = new List<Truck>();
             Trailers = new List<Trailer>();
+            Freights = new List<Freight>();
         }
 
         public int Id { get; set; }
 
         [Required]
-        public virtual Company Company { get; set; }
-
-        public int CompanyId { get; set; }
-
-        public virtual ICollection<Truck> Trucks { get; set; }
+        [MaxLength(trailerTypeNameMaxLenght)]
+        public string Name { get; set; }
 
         public virtual ICollection<Trailer> Trailers { get; set; }
+
+        public virtual ICollection<Freight> Freights { get; set; }
     }
 }

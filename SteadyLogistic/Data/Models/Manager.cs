@@ -4,6 +4,7 @@
 
     public class Manager
     {
+        public int Id { get; set; }
 
         [Required]
         public virtual SLogisticsUser User { get; set; }

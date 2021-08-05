@@ -4,6 +4,7 @@
     using System.ComponentModel.DataAnnotations;
 
     using static DataConstants.Company;
+    using static DataConstants.Global;
 
     public class Company
     {
@@ -27,7 +28,7 @@
         public string Address { get; set; }
 
         [Required]
-        [MaxLength(phoneMaxLenght)]
+        [MaxLength(phoneNumberMaxLenght)]
         public string PhoneNumber { get; set; }
 
         [Required]
@@ -48,8 +49,7 @@
 
         public int CityId { get; set; }
         
-        [Required]
-        public Fleet Fleet { get; set; }
+        public virtual Fleet Fleet { get; set; }
 
         public int FleetId { get; set; }
 

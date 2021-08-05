@@ -3,23 +3,27 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
-    public class Fleet
+    public class Dimension
     {
-        public Fleet()
+        public Dimension()
         {
-            Trucks = new List<Truck>();
+            Freights = new List<Freight>();
             Trailers = new List<Trailer>();
         }
 
         public int Id { get; set; }
 
         [Required]
-        public virtual Company Company { get; set; }
+        public double Length { get; set; }
 
-        public int CompanyId { get; set; }
+        [Required]
+        public double Width { get; set; }
 
-        public virtual ICollection<Truck> Trucks { get; set; }
+        [Required]
+        public double Height { get; set; }
 
         public virtual ICollection<Trailer> Trailers { get; set; }
+
+        public virtual ICollection<Freight> Freights { get; set; }
     }
 }

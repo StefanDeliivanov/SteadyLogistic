@@ -1,8 +1,7 @@
-﻿using Microsoft.AspNetCore.Identity;
-
-namespace SteadyLogistic.Data.Models
+﻿namespace SteadyLogistic.Data.Models
 {
-    
+    using Microsoft.AspNetCore.Identity;
+
     public class User : IdentityUser
     {
 

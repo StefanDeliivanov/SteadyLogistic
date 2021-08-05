@@ -9,7 +9,8 @@
         public void Configure(EntityTypeBuilder<Manager> builder)
         {
             builder
-                .HasKey(a => new { a.CompanyId, a.UserId });
+                .HasIndex(a => new { a.CompanyId, a.UserId })
+                .IsUnique();
         }
     }
 }

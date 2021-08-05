@@ -15,12 +15,22 @@
                 .OnDelete(DeleteBehavior.Restrict);
 
             builder
+                .HasOne<User>()
+                .WithOne()
+                .HasForeignKey<User>(b => b.Id)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder
                 .HasIndex(a => a.Email)
                 .IsUnique();
 
             builder
                 .HasIndex(a => a.PhoneNumber)
                 .IsUnique();
+
+            //builder
+            //    .Property(a => a.Manager)
+            //    .IsRequired(false);
         }
     }
 }

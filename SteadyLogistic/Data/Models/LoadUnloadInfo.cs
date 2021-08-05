@@ -7,6 +7,11 @@
 
     public class LoadUnloadInfo
     {
+        public LoadUnloadInfo()
+        {
+            Loadings = new List<Freight>();
+            Unloadings = new List<Freight>();
+        }
 
         public int Id { get; set; }
 
@@ -27,6 +32,5 @@
 
         [InverseProperty("Unloading")]
         public virtual ICollection<Freight> Unloadings { get; set; }
-
     }
 }
