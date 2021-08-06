@@ -11,18 +11,18 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-primary border-bottom box-shadow mb-3">
+        <nav class="navbar p-0 navbar-expand-sm navbar-toggleable-sm navbar-dark bg-primary border-bottom box-shadow mb-3">
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"> <img class="logo horizontal-logo" src="~/images/steadyLogo3.jpg" alt="SteadyLogistics Logo"></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-start">
                     <ul class="navbar-nav flex-grow-1">
                         @*<ul class="navbar-nav flex-grow-1">*@
                         <li class="nav-item dropdown">
-                            <a class="nav-link text-white dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link text-white dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                                 Home
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
@@ -31,7 +31,7 @@
                             </div>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link text-white dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link text-white dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                                 Freight Exchange
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
@@ -40,18 +40,6 @@
                                 <a class="dropdown-item" asp-area="" asp-controller="FreightExchange" asp-action="CompanyOffers">Company Offers</a>
                                 <a class="dropdown-item" asp-area="" asp-controller="FreightExchange" asp-action="SearchFreight">Search for a Freight</a>
                                 <a class="dropdown-item" asp-area="" asp-controller="FreightExchange" asp-action="AddFreight">Add Freight</a>
-                            </div>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link text-white dropdown-toggle" href="#" id="navbarDropdown3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Transport Exchange
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown3">
-                                <a class="dropdown-item" asp-area="" asp-controller="TransportExchange" asp-action="AllTransport">All Transports</a>
-                                <a class="dropdown-item" asp-area="" asp-controller="TransportExchange" asp-action="MyTransports">My Transports</a>
-                                <a class="dropdown-item" asp-area="" asp-controller="TransportExchange" asp-action="CompanyTransports">Company Transports</a>
-                                <a class="dropdown-item" asp-area="" asp-controller="TransportExchange" asp-action="SearchTransport">Search for a Transport</a>
-                                <a class="dropdown-item" asp-area="" asp-controller="TransportExchange" asp-action="AddTransport">Add Transport</a>
                             </div>
                         </li>
                         <li class="nav-item">

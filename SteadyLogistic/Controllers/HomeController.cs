@@ -3,8 +3,9 @@
     using System.Diagnostics;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.Extensions.Logging;
     using SteadyLogistic.Models;
+
+    using static Areas.AreaGlobalConstants.Roles;
 
     public class HomeController : Controller
     {
@@ -16,6 +17,12 @@
         }
 
         public IActionResult Index()
+        {
+            return View();
+        }
+
+        [Authorize(Roles = "AdministratorRoleName, PremiumRoleName, ManagerRoleName")]
+        public IActionResult News()
         {
             return View();
         }

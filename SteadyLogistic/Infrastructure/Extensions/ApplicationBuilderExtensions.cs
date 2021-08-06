@@ -25,9 +25,10 @@
 
             SeedCargoSizes(services);
             SeedTrailerTypes(services);
-            SeedAdministrator(services);
+            SeedAdministrator(services, AdministratorRoleName);
             SeedRole(services, MemberRoleName);
             SeedRole(services, ManagerRoleName);
+            SeedRole(services, PremiumRoleName);
 
             return app;
         }
@@ -80,7 +81,7 @@
             data.SaveChanges();
         }
 
-        private static void SeedAdministrator(IServiceProvider services)
+        private static void SeedAdministrator(IServiceProvider services, string roleName)
         {
             var userManager = services.GetRequiredService<UserManager<User>>();
             var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
@@ -88,6 +89,11 @@
             Task
                 .Run(async () =>
                 {
+                    if (await roleManager.RoleExistsAsync(roleName))
+                    {
+                        return;
+                    }
+
                     SeedRole(services, AdministratorRoleName);
 
                     var user = new User

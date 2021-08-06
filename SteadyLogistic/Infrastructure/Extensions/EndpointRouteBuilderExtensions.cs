@@ -8,6 +8,6 @@
         public static void MapDefaultAreaRoute(this IEndpointRouteBuilder endpoints)
             => endpoints.MapControllerRoute(
                 name: "Areas",
-                pattern: "{area:exists}/{controller=Member}/{action=Index}/{id?}");
+                pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
     }
 }

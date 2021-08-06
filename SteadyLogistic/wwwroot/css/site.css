@@ -9,7 +9,7 @@ a {
 }
 
 .navbar .nav-item:not(:last-child) {
-    margin-right: 35px;
+    margin-right: 0px;
 }
 
 .dropdown-toggle::after {

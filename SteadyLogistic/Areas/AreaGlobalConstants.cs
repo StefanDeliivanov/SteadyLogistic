@@ -14,6 +14,7 @@
             public const string AdministratorRoleName = "Administrator";
             public const string MemberRoleName = "Member";
             public const string ManagerRoleName = "Manager";
+            public const string PremiumRoleName = "Premium";
         }
     }
 }
