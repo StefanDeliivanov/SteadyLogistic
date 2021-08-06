@@ -1,5 +1,4 @@
-﻿
-a.navbar-brand {
+﻿a.navbar-brand {
     white-space: normal;
     text-align: center;
     word-break: break-all;
@@ -24,7 +23,6 @@ a {
 .dropdown-menu {
     margin-top: 0;
 }
-
 
 .btn-primary {
     color: #fff;
@@ -64,7 +62,6 @@ button.accept-policy {
     font-size: 1rem;
     line-height: inherit;
 }
-
 
 html {
     position: relative;

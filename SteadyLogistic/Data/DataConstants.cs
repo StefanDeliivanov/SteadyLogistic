@@ -43,6 +43,8 @@
         {
             public const int emailMinLenght = 6;
             public const int emailMaxLenght = 50;
+            public const int passwordMinLenght = 6;
+            public const int passwordMaxLenght = 30;
             public const int phoneNumberMinLenght = 5;
             public const int phoneNumberMaxLenght = 15;
         }
@@ -69,6 +71,6 @@
             public const int plateNumbersMaxLenght = 15;
             public const int vehicleMinWeight = 1000;
             public const int vehicleMaxWeight = 17000;
-        }      
+        }
     }
 }

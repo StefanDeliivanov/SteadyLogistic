@@ -1,15 +1,15 @@
 ﻿namespace SteadyLogistic.Controllers
 {
     using System.Diagnostics;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
     using SteadyLogistic.Models;
-    
 
     public class HomeController : Controller
     {
         
-
+        
         public HomeController()
         {
             

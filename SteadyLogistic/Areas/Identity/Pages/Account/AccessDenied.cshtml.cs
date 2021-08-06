@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-
-namespace SteadyLogistic.Areas.Identity.Pages.Account
+﻿namespace SteadyLogistic.Areas.Identity.Pages.Account
 {
+    using Microsoft.AspNetCore.Mvc.RazorPages;
+
     public class AccessDeniedModel : PageModel
     {
         public void OnGet()
@@ -14,4 +10,3 @@ namespace SteadyLogistic.Areas.Identity.Pages.Account
         }
     }
 }
-

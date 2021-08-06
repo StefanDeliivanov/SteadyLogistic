@@ -9,7 +9,7 @@ namespace SteadyLogistic
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
     using SteadyLogistic.Data.Models;
-    using SteadyLogistic.Infrastructure;
+    using SteadyLogistic.Infrastructure.Extensions;
 
     public class Startup
     {
@@ -66,6 +66,7 @@ namespace SteadyLogistic
                 .UseAuthorization()
                 .UseEndpoints(endpoints =>
                 {
+                    endpoints.MapDefaultAreaRoute();
                     endpoints.MapDefaultControllerRoute();
                     endpoints.MapRazorPages();
                 });
