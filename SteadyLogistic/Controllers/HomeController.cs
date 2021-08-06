@@ -7,6 +7,7 @@
 
     using static Areas.AreaGlobalConstants.Roles;
 
+    [Authorize]
     public class HomeController : Controller
     {
         

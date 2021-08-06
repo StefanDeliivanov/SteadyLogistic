@@ -38,7 +38,7 @@
             public string Email { get; set; }
 
             [Required]
-            [StringLength(passwordMaxLenght, MinimumLength = passwordMinLenght)]
+            [StringLength(passwordMaxLenght, MinimumLength = passwordMinLenght, ErrorMessage ="The password length must be between {2} and {1} characters")]
             [DataType(DataType.Password)]
             public string Password { get; set; }
 
