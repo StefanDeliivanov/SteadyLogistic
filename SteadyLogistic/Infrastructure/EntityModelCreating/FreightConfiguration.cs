@@ -41,6 +41,10 @@
             builder
                 .HasMany(a => a.TrailerTypes)
                 .WithMany(b => b.Freights);
+
+            builder
+                .Property(a => a.Price)
+                .HasColumnType("decimal(18,2)");
         }
     }
 }

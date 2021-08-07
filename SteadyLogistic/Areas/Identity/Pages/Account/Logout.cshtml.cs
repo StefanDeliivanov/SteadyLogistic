@@ -25,7 +25,7 @@
         {
             await signInManager.SignOutAsync();
  
-            return RedirectToAction("Index", "Home");
+            return RedirectToPage("Login");
         }
     }
 }
