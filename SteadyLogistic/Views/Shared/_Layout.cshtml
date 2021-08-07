@@ -4,8 +4,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - SteadyLogistic</title>
-    <link runat="server" rel="shortcut icon" href="~/images/favicon.ico" type="image/x-icon"/>
-    <link runat="server" rel="icon" href="~/images/favicon.ico" type="image/ico"/>
+    <link runat="server" rel="shortcut icon" href="~/images/favicon.ico" type="image/x-icon" />
+    <link runat="server" rel="icon" href="~/images/favicon.ico" type="image/ico" />
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
@@ -20,9 +20,8 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-start">
                     <ul class="navbar-nav flex-grow-1">
-                        @*<ul class="navbar-nav flex-grow-1">*@
                         <li class="nav-item dropdown">
-                            <a class="nav-link text-white dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            <a class="nav-link text-warning dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                                 Home
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
@@ -30,26 +29,30 @@
                                 <a class="dropdown-item" asp-area="" asp-controller="Home" asp-action="Contacts">Contacts</a>
                             </div>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link text-white dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                Freight Exchange
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
-                                <a class="dropdown-item" asp-area="" asp-controller="FreightExchange" asp-action="AllFreights">All Freights</a>
-                                <a class="dropdown-item" asp-area="" asp-controller="FreightExchange" asp-action="MyOffers">My Offers</a>
-                                <a class="dropdown-item" asp-area="" asp-controller="FreightExchange" asp-action="CompanyOffers">Company Offers</a>
-                                <a class="dropdown-item" asp-area="" asp-controller="FreightExchange" asp-action="SearchFreight">Search for a Freight</a>
-                                <a class="dropdown-item" asp-area="" asp-controller="FreightExchange" asp-action="AddFreight">Add Freight</a>
-                            </div>
-                        </li>
+                        @{
+                            if (!User.IsMember())
+                            {
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link text-warning dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                        Freight Exchange
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
+                                        <a class="dropdown-item" asp-area="" asp-controller="FreightExchange" asp-action="AllFreights">All Freights</a>
+                                        <a class="dropdown-item" asp-area="" asp-controller="FreightExchange" asp-action="MyOffers">My Offers</a>
+                                        <a class="dropdown-item" asp-area="" asp-controller="FreightExchange" asp-action="CompanyOffers">Company Offers</a>
+                                        <a class="dropdown-item" asp-area="" asp-controller="FreightExchange" asp-action="SearchFreight">Search for a Freight</a>
+                                        <a class="dropdown-item" asp-area="" asp-controller="FreightExchange" asp-action="AddFreight">Add Freight</a>
+                                    </div>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-warning" asp-area="" asp-controller="Catalogue" asp-action="All">Catalogue</a>
+                                </li>
+                            }
+                        }
+
                         <li class="nav-item">
-                            <a class="nav-link text-white" asp-area="" asp-controller="Catalogue" asp-action="All">Catalogue</a>
+                            <a class="nav-link text-warning" asp-area="" asp-controller="Documentation" asp-action="All">Documentation</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" asp-area="" asp-controller="Documentation" asp-action="All">Documentation</a>
-                        </li>
-                    </ul>
-                    <ul class="navbar-nav flex-grow-1">
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>
@@ -61,8 +64,10 @@
             @RenderBody()
         </main>
     </div>
-
-    <footer class="border-top footer text-muted">
+    <footer class="border-top footer text-muted bg-primary box-shadow">
+        <div class="container float-left" style="color: goldenrod">
+            &copy; @DateTime.UtcNow.Year - SteadyLogistics<span class="float-right">Stefan Deliivanov &rarr; admin@steadylogistics.com </span>
+        </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

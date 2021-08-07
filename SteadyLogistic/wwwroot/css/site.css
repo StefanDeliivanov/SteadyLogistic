@@ -70,7 +70,7 @@ html {
 
 body {
     margin-bottom: 60px;
-    background: #ffffff;
+    background-color: #FFE4E1;
 }
 
 .footer {
@@ -78,5 +78,5 @@ body {
     bottom: 0;
     width: 100%;
     white-space: nowrap;
-    line-height: 60px; /* Vertically center the text there */
+    line-height: 30px;
 }

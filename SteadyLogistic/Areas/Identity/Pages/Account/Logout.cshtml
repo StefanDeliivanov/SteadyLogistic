@@ -25,8 +25,12 @@
                 <div class="card-header">
                     <h4 style="color: goldenrod; text-align: center; vertical-align: central">You have successfully logged out!</h4>
                 </div>
-                <div class="card-body">
-                    <button style="margin-left: 80px; margin-right:80px; background-color: #FFC312; color: black; width: 200px"><a asp-page="Login">Return to Login Page</a> </button>
+
+                <div class="form-group">
+                    <a asp-page="Login">
+                        <input type="button" class="btn login_btn" style="margin-left:150px; margin-right:150px;
+                               margin-top: 10px; margin-bottom: 10px" value="Go Back" />
+                    </a>
                 </div>
             </div>
         </div>
