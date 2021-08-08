@@ -3,12 +3,12 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
-    using static DataConstants.SLogisticsUser;
+    using static DataConstants.PremiumUser;
     using static DataConstants.Global;
 
-    public class SLogisticsUser
+    public class PremiumUser
     {
-        public SLogisticsUser()
+        public PremiumUser()
         {
             Freights = new List<Freight>();
         }
@@ -16,11 +16,11 @@
         public string Id { get; set; }
 
         [Required]
-        [MaxLength(usernameMaxLenght)]
+        [MaxLength(nameMaxLenght)]
         public string FirstName { get; set; }
 
         [Required]
-        [MaxLength(usernameMaxLenght)]
+        [MaxLength(nameMaxLenght)]
         public string LastName { get; set; }
 
         [Required]
@@ -38,12 +38,6 @@
 
         public string UserId { get; set; }
 
-        //public virtual Manager Manager { get; set; }
-
-        //public int ManagerId { get; set; }
-
         public virtual ICollection<Freight> Freights { get; set; }
-
-        //public virtual ICollection<Manager> Managers { get; set; }
     }
 }

@@ -31,7 +31,7 @@
 
         public DbSet<Manager> Managers { get; set; }
 
-        public DbSet<SLogisticsUser> SLogisticsUsers { get; set; }
+        public DbSet<PremiumUser> PremiumUsers { get; set; }
 
         public DbSet<Trailer> Trailers { get; set; }
 
@@ -47,7 +47,7 @@
             modelBuilder.ApplyConfiguration(new FreightConfiguration());
             modelBuilder.ApplyConfiguration(new LoadUnloadInfoConfiguration());
             modelBuilder.ApplyConfiguration(new ManagerConfiguration());
-            modelBuilder.ApplyConfiguration(new SLogisticsUserConfiguration());
+            modelBuilder.ApplyConfiguration(new PremiumUserConfiguration());
             modelBuilder.ApplyConfiguration(new TrailerConfiguration());
             modelBuilder.ApplyConfiguration(new TruckConfiguration());
 

@@ -25,7 +25,7 @@
         {
             public const int countryNameMinLenght = 4;
             public const int countryNameMaxLenght = 56;
-            public const int countryCodeLenght = 3;
+            public const int countryCodeLenght = 2;
         }
 
         public static class CargoSize
@@ -45,14 +45,15 @@
             public const int emailMaxLenght = 50;
             public const int passwordMinLenght = 6;
             public const int passwordMaxLenght = 30;
+            public const string phoneNumberRegex = @"0\d*";
             public const int phoneNumberMinLenght = 5;
             public const int phoneNumberMaxLenght = 15;
         }
 
-        public static class SLogisticsUser
+        public static class PremiumUser
         {
-            public const int usernameMinLenght = 3;
-            public const int usernameMaxLenght = 30;
+            public const int nameMinLenght = 3;
+            public const int nameMaxLenght = 30;
         }
 
         public static class TrailerType

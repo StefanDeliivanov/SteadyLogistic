@@ -4,9 +4,9 @@
     using Microsoft.EntityFrameworkCore.Metadata.Builders;
     using SteadyLogistic.Data.Models;
 
-    public class SLogisticsUserConfiguration : IEntityTypeConfiguration<SLogisticsUser>
+    public class PremiumUserConfiguration : IEntityTypeConfiguration<PremiumUser>
     {
-        public void Configure(EntityTypeBuilder<SLogisticsUser> builder)
+        public void Configure(EntityTypeBuilder<PremiumUser> builder)
         {
             builder
                 .HasOne(a => a.Company)
@@ -17,7 +17,7 @@
             builder
                 .HasOne<User>()
                 .WithOne()
-                .HasForeignKey<SLogisticsUser>(b => b.Id)
+                .HasForeignKey<PremiumUser>(b => b.Id)
                 .OnDelete(DeleteBehavior.Restrict);
 
             builder

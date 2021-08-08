@@ -10,7 +10,7 @@
     {
         public Company()
         {
-            Employees = new List<SLogisticsUser>();
+            Employees = new List<PremiumUser>();
         }
 
         public int Id { get; set; }
@@ -53,6 +53,6 @@
 
         public int FleetId { get; set; }
 
-        public virtual ICollection<SLogisticsUser> Employees { get; set; }
+        public virtual ICollection<PremiumUser> Employees { get; set; }
     }
 }

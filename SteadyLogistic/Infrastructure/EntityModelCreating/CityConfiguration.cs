@@ -15,7 +15,7 @@
                 .OnDelete(DeleteBehavior.Restrict);
 
             builder
-                .HasIndex(a => new { a.PostCode, a.CountryId })
+                .HasIndex(a => new { a.PostCode, a.Name, a.CountryId })
                 .IsUnique();
         }
     }

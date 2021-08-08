@@ -12,14 +12,10 @@
     [AllowAnonymous]
     public class LoginModel : PageModel
     {
-        private readonly UserManager<User> userManager;
         private readonly SignInManager<User> signInManager;
 
-        public LoginModel(
-            SignInManager<User> signInManager, 
-            UserManager<User> userManager)
+        public LoginModel(SignInManager<User> signInManager)
         {
-            this.userManager = userManager;
             this.signInManager = signInManager;
         }
 

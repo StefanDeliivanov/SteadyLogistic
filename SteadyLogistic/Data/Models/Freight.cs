@@ -49,7 +49,7 @@
         public int UnloadingId { get; set; }
 
         [Required]
-        public virtual SLogisticsUser User { get; set; }
+        public virtual PremiumUser User { get; set; }
 
         public string UserId { get; set; }
 
