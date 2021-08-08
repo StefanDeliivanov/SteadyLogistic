@@ -36,7 +36,7 @@
 
         public static class Freight
         {
-            public const int decriptionMaxLenght = 150;
+            public const int decriptionMaxLenght = 200;
         }
 
         public static class Global
@@ -44,10 +44,25 @@
             public const int emailMinLenght = 6;
             public const int emailMaxLenght = 50;
             public const int passwordMinLenght = 6;
-            public const int passwordMaxLenght = 30;
-            public const string phoneNumberRegex = @"0\d*";
-            public const int phoneNumberMinLenght = 5;
-            public const int phoneNumberMaxLenght = 15;
+            public const int passwordMaxLenght = 50;
+            public const int phoneNumberMinLenght = 8;
+            public const int phoneNumberMaxLenght = 30;
+            public const string phoneNumberRegex = @"\+\d*\-\d*";      
+        }
+
+        public static class Displays
+        {
+            public const string phoneNumberDisplay = "Phone Number";
+            public const string emailDisplay = "E-mail";
+            public const string countryDisplay = "Country";
+        }
+
+        public static class ErrorMessages
+        {
+            public const string requiredErrorMessage = "The field cannot be empty!";
+            public const string defaultErrorMessage = "Invalid {0}! Must be between {2} and {1} characters";
+            public const string emailErrorMessage = "Enter valid Email address! 'example@email.com'"; 
+            public const string phoneNumberErrorMessage = "Enter valid Phone Number! '+359-123456789'";
         }
 
         public static class PremiumUser
@@ -59,7 +74,7 @@
         public static class TrailerType
         {
             public const int trailerTypeNameMinLenght = 3;
-            public const int trailerTypeNameMaxLenght = 12;
+            public const int trailerTypeNameMaxLenght = 25;
         }
 
         public static class Vehicle

@@ -10,6 +10,10 @@
         {
             return user.FindFirst(ClaimTypes.NameIdentifier).Value;
         }
+        public static string GetEmail(this ClaimsPrincipal user)
+        {
+            return user.FindFirst(ClaimTypes.Email).Value;
+        }
 
         public static bool IsMember(this ClaimsPrincipal user)
         {

@@ -25,7 +25,6 @@
             return View();
         }
 
-        [Authorize(Roles = "NotAMemberRoleName")]
         public IActionResult News()
         {
             return View();

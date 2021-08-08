@@ -4,26 +4,118 @@
     ViewBag.Title = "Upgrade to Premium";
 }
 
-<div class="row">
-    <div class="col-sm-12 offset-lg-3 col-lg-6 offset-xl-4 col-xl-4">
-        <h2 class="heading-margin text-center" style="color: goldenrod">@ViewBag.Title</h2>
-
-        <form method="post">
-            <div class="form-group">
-                <label asp-for="FirstName"></label>
-                <input asp-for="FirstName" class="form-control" placeholder="Top Auto, Best Car, etc...">
-                <span asp-validation-for="FirstName" class="small text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="PhoneNumber"></label>
-                <input asp-for="PhoneNumber" class="form-control" placeholder="+359-888-888-888">
-                <span asp-validation-for="PhoneNumber" class="small text-danger"></span>
-            </div>
-
-            <input class="btn btn-primary mt-3" type="submit" value="Save" />
-        </form>
+<form method="post">
+    <div class="row">
+        <div class="col">
+            <p style="text-align: center"><i style="color: goldenrod; font-size: 30px;"> Company Info </i></p>
+        </div>
+        <div class="col">
+            <p style="text-align: center"><i style="color: goldenrod; font-size: 30px;"> User Info </i></p>
+        </div>
+        <div class="col">
+            <p style="text-align: center; margin-bottom: 50px;"><i style="color: goldenrod; font-size: 30px;"> City Info </i></p>
+        </div>
     </div>
-</div>
+    <div class="row mt-0">
+        <div class="col">
+            <div class="form-group">
+                <input asp-for="@Model.CompanyName" class="form-control" placeholder="Company name...">
+                <span asp-validation-for="@Model.CompanyName" class="small text-danger"></span>
+            </div>
+        </div>
+        <div class="col">
+            <div class="form-group">
+                <input asp-for="@Model.FirstName" class="form-control" placeholder="Your first name...">
+                <span asp-validation-for="@Model.FirstName" class="small text-danger"></span>
+            </div>
+        </div>
+        <div class="col">
+            <div class="form-group">
+                <input asp-for="@Model.CityName" class="form-control" placeholder="City name">
+                <span asp-validation-for="@Model.CityName" class="small text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-0">
+        <div class="col">
+            <div class="form-group">
+                <input asp-for="@Model.VatNumber" class="form-control" placeholder="Vat Number: BG123456789">
+                <span asp-validation-for="@Model.VatNumber" class="small text-danger"></span>
+            </div>
+        </div>
+        <div class="col">
+            <div class="form-group">
+                <input asp-for="@Model.LastName" class="form-control" placeholder="Your last name...">
+                <span asp-validation-for="@Model.LastName" class="small text-danger"></span>
+            </div>
+        </div>
+        <div class="col">
+            <div class="form-group">
+                <input asp-for="@Model.PostCode" class="form-control" placeholder="City post code: BG-12345">
+                <span asp-validation-for="@Model.PostCode" class="small text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-0">
+        <div class="col">
+            <div class="form-group">
+                <input asp-for="@Model.CompanyPhoneNumber" class="form-control" placeholder="Phone number: +359-888123456">
+                <span asp-validation-for="@Model.CompanyPhoneNumber" class="small text-danger"></span>
+            </div>
+        </div>
+        <div class="col">
+            <div class="form-group">
+                <input asp-for="@Model.PhoneNumber" class="form-control" placeholder="Mobile number: +359-888123456">
+                <span asp-validation-for="@Model.PhoneNumber" class="small text-danger"></span>
+            </div>
+        </div>
+        <div class="col">
+            <div class="form-group">
+                <select asp-for="@Model.CountryId" class="form-control">
+                    @foreach (var country in Model.Countries)
+                    {
+                        <option value="@country.Id">@country.Name</option>
+                    }
+                </select>
+                <span asp-validation-for="CountryId" class="small text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-0">
+        <div class="col">
+            <div class="form-group">
+                <input asp-for="@Model.CompanyEmail" class="form-control" placeholder="Email: example@email.com">
+                <span asp-validation-for="@Model.CompanyEmail" class="small text-danger"></span>
+            </div>
+        </div>
+        <div class="col">
+
+        </div>
+        <div class="col">
+
+        </div>
+    </div>
+    <div class="row mt-0">
+        <div class="col">
+            <div class="form-group">
+                <input asp-for="@Model.Address" class="form-control" placeholder="Street address... ">
+                <span asp-validation-for="@Model.Address" class="small text-danger"></span>
+            </div>
+        </div>
+        <div class="col">
+
+        </div>
+        <div class="col">
+
+        </div>
+    </div>
+    <div class="row mt-0">
+        <div class="offset-6">
+            <input type="submit" value="Confirm" class="btn btn-outline-primary btn-warning" />
+        </div>
+    </div>
+    
+</form>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />

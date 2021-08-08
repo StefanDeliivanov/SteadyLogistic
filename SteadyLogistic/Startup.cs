@@ -10,6 +10,7 @@ namespace SteadyLogistic
     using Microsoft.Extensions.Hosting;
     using SteadyLogistic.Data.Models;
     using SteadyLogistic.Infrastructure.Extensions;
+    using SteadyLogistic.Services.Country;
 
     public class Startup
     {
@@ -41,6 +42,8 @@ namespace SteadyLogistic
                 .AddEntityFrameworkStores<SteadyLogisticDbContext>();
 
             services.AddControllersWithViews();
+
+            services.AddTransient<ICountryService, CountryService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
