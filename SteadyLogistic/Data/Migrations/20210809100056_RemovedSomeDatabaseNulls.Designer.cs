@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SteadyLogistic.Data;
 
 namespace SteadyLogistic.Data.Migrations
 {
     [DbContext(typeof(SteadyLogisticDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210809100056_RemovedSomeDatabaseNulls")]
+    partial class RemovedSomeDatabaseNulls
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -242,8 +244,8 @@ namespace SteadyLogistic.Data.Migrations
                     b.Property<int>("FleetId")
                         .HasColumnType("int");
 
-                    b.Property<string>("ManagerId")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("ManagerId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -267,6 +269,9 @@ namespace SteadyLogistic.Data.Migrations
                     b.HasIndex("CountryId");
 
                     b.HasIndex("Email")
+                        .IsUnique();
+
+                    b.HasIndex("ManagerId")
                         .IsUnique();
 
                     b.HasIndex("Name")
@@ -422,6 +427,30 @@ namespace SteadyLogistic.Data.Migrations
                     b.HasIndex("CountryId");
 
                     b.ToTable("LoadUnloadInfos");
+                });
+
+            modelBuilder.Entity("SteadyLogistic.Data.Models.Manager", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CompanyId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.HasIndex("CompanyId", "UserId")
+                        .IsUnique()
+                        .HasFilter("[UserId] IS NOT NULL");
+
+                    b.ToTable("Managers");
                 });
 
             modelBuilder.Entity("SteadyLogistic.Data.Models.PremiumUser", b =>
@@ -721,9 +750,17 @@ namespace SteadyLogistic.Data.Migrations
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
+                    b.HasOne("SteadyLogistic.Data.Models.Manager", "Manager")
+                        .WithOne("Company")
+                        .HasForeignKey("SteadyLogistic.Data.Models.Company", "ManagerId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
                     b.Navigation("City");
 
                     b.Navigation("Country");
+
+                    b.Navigation("Manager");
                 });
 
             modelBuilder.Entity("SteadyLogistic.Data.Models.Fleet", b =>
@@ -797,6 +834,15 @@ namespace SteadyLogistic.Data.Migrations
                     b.Navigation("City");
 
                     b.Navigation("Country");
+                });
+
+            modelBuilder.Entity("SteadyLogistic.Data.Models.Manager", b =>
+                {
+                    b.HasOne("SteadyLogistic.Data.Models.PremiumUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("SteadyLogistic.Data.Models.PremiumUser", b =>
@@ -901,6 +947,11 @@ namespace SteadyLogistic.Data.Migrations
                     b.Navigation("Loadings");
 
                     b.Navigation("Unloadings");
+                });
+
+            modelBuilder.Entity("SteadyLogistic.Data.Models.Manager", b =>
+                {
+                    b.Navigation("Company");
                 });
 
             modelBuilder.Entity("SteadyLogistic.Data.Models.PremiumUser", b =>

@@ -1,6 +1,5 @@
 namespace SteadyLogistic
 {
-    using SteadyLogistic.Data;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Identity;
@@ -8,9 +7,13 @@ namespace SteadyLogistic
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
+    using SteadyLogistic.Data;
     using SteadyLogistic.Data.Models;
     using SteadyLogistic.Infrastructure.Extensions;
     using SteadyLogistic.Services.Country;
+    using SteadyLogistic.Services.City;
+    using SteadyLogistic.Services.Company;
+    using SteadyLogistic.Services.User;
 
     public class Startup
     {
@@ -44,6 +47,9 @@ namespace SteadyLogistic
             services.AddControllersWithViews();
 
             services.AddTransient<ICountryService, CountryService>();
+            services.AddTransient<ICityService, CityService>();
+            services.AddTransient<ICompanyService, CompanyService>();
+            services.AddTransient<IUserService, UserService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

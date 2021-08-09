@@ -31,7 +31,6 @@
         [MaxLength(phoneNumberMaxLenght)]
         public string PhoneNumber { get; set; }
 
-        [Required]
         public virtual Company Company { get; set; }
 
         public int CompanyId { get; set; }

@@ -3,91 +3,111 @@
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using SteadyLogistic.Areas.Member.Models;
-    using SteadyLogistic.Data;
-    using SteadyLogistic.Data.Models;
     using SteadyLogistic.Services.Country;
+    using SteadyLogistic.Services.City;
+    using SteadyLogistic.Services.Company;
+    using SteadyLogistic.Services.User;
     using SteadyLogistic.Infrastructure.Extensions;
 
     using static AreaGlobalConstants.Roles;
-    using System;
+    using static Data.DataConstants.ErrorMessages;
 
     [Area("Member")]
     [Authorize(Roles = MemberRoleName)]
     public class MemberController : Controller
     {
-        private readonly SteadyLogisticDbContext data;
         private readonly ICountryService countries;
+        private readonly ICityService cities;
+        private readonly ICompanyService companies;
+        private readonly IUserService users;
 
         public MemberController(
-            SteadyLogisticDbContext data, 
-            ICountryService countries)
+            ICountryService countries,
+            ICityService cities,
+            ICompanyService companies,
+            IUserService users)
         {
-            this.data = data;
             this.countries = countries;
+            this.cities = cities;
+            this.companies = companies;
+            this.users = users;
         }
 
+        [HttpGet]
+        [Authorize(Roles = MemberRoleName)]
         public IActionResult Index()
         {
             return View();
         }
 
         [HttpGet]
+        [Authorize(Roles = MemberRoleName)]
         public IActionResult UpgradeToPremium()
         {
             return View(new UpgradeToPremiumFormModel { Countries = countries.AllCountries() });
         }
 
         [HttpPost]
-        public IActionResult UpgradeToPremium(UpgradeToPremiumFormModel premiumModel)
+        [Authorize(Roles = MemberRoleName)]
+        public IActionResult UpgradeToPremium(UpgradeToPremiumFormModel model)
         {
-            var memberId = this.User.GetUserId();
-            var memberEmail = this.User.GetEmail();
+            var country = countries.GetCountryById(model.CountryId);
 
-            if (!this.countries.CountryExists(premiumModel.CountryId))
+            if (!this.countries.CountryExists(model.CountryId))
             {
-                this.ModelState.AddModelError(nameof(premiumModel.CountryId), "Country does not exist.");
+                this.ModelState.AddModelError(nameof(model.CountryId), "Country does not exist.");
+            }
+
+            if (users.PhoneNumberTaken(model.PhoneNumber))
+            {
+                this.ModelState.AddModelError(nameof(model.PhoneNumber), propertyExistsErrorMessage);
+            }
+
+            if (companies.PhoneNumberTaken(model.CompanyPhoneNumber))
+            {
+                this.ModelState.AddModelError(nameof(model.CompanyPhoneNumber), propertyExistsErrorMessage);
+            }
+
+            if (companies.EmailTaken(model.CompanyEmail))
+            {
+                this.ModelState.AddModelError(nameof(model.CompanyEmail), propertyExistsErrorMessage);
+            }
+
+            if (companies.NameTaken(model.CompanyName))
+            {
+                this.ModelState.AddModelError(nameof(model.CompanyName), propertyExistsErrorMessage);
+            }
+
+            if (companies.VatNumberTaken(model.VatNumber))
+            {
+                this.ModelState.AddModelError(nameof(model.VatNumber), propertyExistsErrorMessage);
             }
 
             if (!ModelState.IsValid)
             {
-                premiumModel.Countries = this.countries.AllCountries();
+                model.Countries = this.countries.AllCountries();
 
-                return View(premiumModel);
+                return View(model);
             }
 
-            var premiumUser = new PremiumUser
+            var city = cities.GetCity(model.PostCode, model.CityName, model.CountryId);
+
+            if (city == null)
             {
-                Id = new Guid().ToString(),
-                UserId = memberId,
-                FirstName = premiumModel.FirstName,
-                LastName = premiumModel.LastName,
-                Email = memberEmail,
-                PhoneNumber = premiumModel.PhoneNumber,
-                Company = new Company
-                {
-                    Name = premiumModel.CompanyName,
-                    Address = premiumModel.Address,
-                    VatNumber = premiumModel.VatNumber,
-                    PhoneNumber = premiumModel.CompanyPhoneNumber,
-                    Email = premiumModel.CompanyEmail,
-                    CountryId = premiumModel.CountryId,
-                    City = new City
-                    {
-                        Name = premiumModel.CityName,
-                        PostCode = premiumModel.PostCode,
-                    },
-                    Manager = new Manager
-                    {
-                        UserId = memberId,
-                    },
-                }
-            };
+                city = cities.Create(model.CityName, model.PostCode, model.CountryId);
+            }
 
-            data.PremiumUsers.Add(premiumUser);
+            var company = companies.Create(model.CompanyName, model.CompanyPhoneNumber, model.VatNumber, model.CompanyEmail, model.Address, city.Id, country);
 
-            data.SaveChanges();
+            var memberId = this.User.GetUserId();
+            var memberEmail = this.User.GetEmail();
 
-            return RedirectToAction("News", "Home");
+            var premiumUser = users.CreatePremium(memberId, model.FirstName, model.LastName, memberEmail, model.PhoneNumber, company.Id);
+
+            users.AddAsManager(premiumUser);
+            companies.AddManager(premiumUser.Id, company.Id);
+
+            return RedirectToAction("News", "Home", new { area = "" });
         }
     }
 }

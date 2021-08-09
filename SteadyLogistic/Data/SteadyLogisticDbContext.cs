@@ -29,8 +29,6 @@
 
         public DbSet<LoadUnloadInfo> LoadUnloadInfos { get; set; }
 
-        public DbSet<Manager> Managers { get; set; }
-
         public DbSet<PremiumUser> PremiumUsers { get; set; }
 
         public DbSet<Trailer> Trailers { get; set; }
@@ -46,7 +44,6 @@
             modelBuilder.ApplyConfiguration(new CountryConfiguration());
             modelBuilder.ApplyConfiguration(new FreightConfiguration());
             modelBuilder.ApplyConfiguration(new LoadUnloadInfoConfiguration());
-            modelBuilder.ApplyConfiguration(new ManagerConfiguration());
             modelBuilder.ApplyConfiguration(new PremiumUserConfiguration());
             modelBuilder.ApplyConfiguration(new TrailerConfiguration());
             modelBuilder.ApplyConfiguration(new TruckConfiguration());

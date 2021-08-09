@@ -25,12 +25,14 @@
             return View();
         }
 
+        [Authorize(Roles = ManagerRoleName)]
+        [Authorize(Roles = AdministratorRoleName)]
         public IActionResult News()
         {
             return View();
         }
 
-        [Authorize(Roles = "NotAMemberRoleName")]
+        [Authorize(Roles = "AdministratorRoleName, ManagerRoleName, PremiumRoleName")]
         public IActionResult Contacts()
         {
             return View();

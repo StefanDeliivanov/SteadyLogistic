@@ -34,17 +34,13 @@
         [Required]
         [MaxLength(emailMaxLenght)]
         public string Email { get; set; }
-      
-        public virtual Manager Manager { get; set; }
 
-        public int ManagerId { get; set; }
-
-        [Required]
+        public string ManagerId { get; set; }
+        
         public virtual Country Country { get; set; }
 
         public int CountryId { get; set; }
-
-        [Required]
+        
         public virtual City City { get; set; }
 
         public int CityId { get; set; }

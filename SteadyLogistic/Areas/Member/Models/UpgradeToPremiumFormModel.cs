@@ -7,7 +7,6 @@
     using static SteadyLogistic.Data.DataConstants.Global;
     using static SteadyLogistic.Data.DataConstants.Company;
     using static SteadyLogistic.Data.DataConstants.City;
-    using static SteadyLogistic.Data.DataConstants.Country;
     using static SteadyLogistic.Data.DataConstants.PremiumUser;
     using static SteadyLogistic.Data.DataConstants.ErrorMessages;
     using static SteadyLogistic.Data.DataConstants.Displays;
@@ -28,7 +27,6 @@
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
 
-        [Required(ErrorMessage = requiredErrorMessage)]
         [EmailAddress(ErrorMessage = emailErrorMessage)]
         [StringLength(emailMaxLenght, MinimumLength = emailMinLenght,
             ErrorMessage = emailErrorMessage)]

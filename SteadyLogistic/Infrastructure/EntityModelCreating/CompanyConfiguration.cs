@@ -9,12 +9,6 @@
         public void Configure(EntityTypeBuilder<Company> builder)
         {
             builder
-               .HasOne(a => a.Manager)
-               .WithOne(b => b.Company)
-               .HasForeignKey<Company>(c => c.ManagerId)
-               .OnDelete(DeleteBehavior.Restrict);
-
-            builder
                 .HasOne(a => a.Country)
                 .WithMany(b => b.Companies)
                 .HasForeignKey(c => c.CountryId)

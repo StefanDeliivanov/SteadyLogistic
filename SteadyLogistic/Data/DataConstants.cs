@@ -63,6 +63,7 @@
             public const string defaultErrorMessage = "Invalid {0}! Must be between {2} and {1} characters";
             public const string emailErrorMessage = "Enter valid Email address! 'example@email.com'"; 
             public const string phoneNumberErrorMessage = "Enter valid Phone Number! '+359-123456789'";
+            public const string propertyExistsErrorMessage = "Value already exists!";
         }
 
         public static class PremiumUser

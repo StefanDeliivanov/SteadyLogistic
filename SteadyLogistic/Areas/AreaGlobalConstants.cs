@@ -15,7 +15,6 @@
             public const string MemberRoleName = "Member";
             public const string ManagerRoleName = "Manager";
             public const string PremiumRoleName = "Premium";
-            public const string NotAMemberRoleName = AdministratorRoleName + " " + ManagerRoleName + " " + PremiumRoleName;
         }
     }
 }
