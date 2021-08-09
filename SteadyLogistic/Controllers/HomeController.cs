@@ -6,8 +6,6 @@
     using SteadyLogistic.Models;
     using SteadyLogistic.Infrastructure.Extensions;
 
-    using static Areas.AreaGlobalConstants.Roles;
-
     [Authorize]
     public class HomeController : Controller
     {  
@@ -20,19 +18,19 @@
         {
             if (User.IsMember())
             {
-                return Redirect("/Member/Member/Index");
+                return RedirectToAction("Index", "Member", new { area = "Member" });
             }
-            return View();
+            else
+            {
+                return RedirectToAction(nameof(News));
+            }
         }
 
-        [Authorize(Roles = ManagerRoleName)]
-        [Authorize(Roles = AdministratorRoleName)]
         public IActionResult News()
         {
             return View();
         }
 
-        [Authorize(Roles = "AdministratorRoleName, ManagerRoleName, PremiumRoleName")]
         public IActionResult Contacts()
         {
             return View();

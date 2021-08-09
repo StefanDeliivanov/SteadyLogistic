@@ -3,8 +3,8 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
-    using static DataConstants.Company;
     using static DataConstants.Global;
+    using static DataConstants.Company;  
 
     public class Company
     {

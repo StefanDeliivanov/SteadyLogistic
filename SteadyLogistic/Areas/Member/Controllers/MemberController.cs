@@ -1,12 +1,12 @@
 ﻿namespace SteadyLogistic.Areas.Member.Controllers
 {
-    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
-    using SteadyLogistic.Areas.Member.Models;
-    using SteadyLogistic.Services.Country;
+    using Microsoft.AspNetCore.Authorization;
+    using SteadyLogistic.Services.User;
     using SteadyLogistic.Services.City;
     using SteadyLogistic.Services.Company;
-    using SteadyLogistic.Services.User;
+    using SteadyLogistic.Services.Country;   
+    using SteadyLogistic.Areas.Member.Models;
     using SteadyLogistic.Infrastructure.Extensions;
 
     using static AreaGlobalConstants.Roles;

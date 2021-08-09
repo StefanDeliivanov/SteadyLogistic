@@ -3,8 +3,8 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
-    using static DataConstants.PremiumUser;
     using static DataConstants.Global;
+    using static DataConstants.PremiumUser; 
 
     public class PremiumUser
     {

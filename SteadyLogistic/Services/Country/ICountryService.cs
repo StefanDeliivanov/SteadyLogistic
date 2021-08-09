@@ -1,7 +1,7 @@
 ﻿namespace SteadyLogistic.Services.Country
 {
-    using SteadyLogistic.Data.Models;
     using System.Collections.Generic;
+    using SteadyLogistic.Data.Models;
 
     public interface ICountryService
     {

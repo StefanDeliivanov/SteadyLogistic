@@ -1,11 +1,11 @@
 ﻿namespace SteadyLogistic.Areas.Identity.Pages.Account
 {
-    using System.ComponentModel.DataAnnotations;
     using System.Threading.Tasks;
-    using Microsoft.AspNetCore.Authorization;
-    using Microsoft.AspNetCore.Authentication;
-    using Microsoft.AspNetCore.Identity;
+    using System.ComponentModel.DataAnnotations;
     using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Identity;
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Authentication; 
     using Microsoft.AspNetCore.Mvc.RazorPages;
     using SteadyLogistic.Data.Models;
 

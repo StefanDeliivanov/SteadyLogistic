@@ -4,16 +4,17 @@ namespace SteadyLogistic
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.EntityFrameworkCore;
+    using Microsoft.Extensions.Hosting;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
-    using Microsoft.Extensions.Hosting;
     using SteadyLogistic.Data;
     using SteadyLogistic.Data.Models;
-    using SteadyLogistic.Infrastructure.Extensions;
-    using SteadyLogistic.Services.Country;
+    using SteadyLogistic.Services.User;  
     using SteadyLogistic.Services.City;
     using SteadyLogistic.Services.Company;
-    using SteadyLogistic.Services.User;
+    using SteadyLogistic.Services.Country;
+    using SteadyLogistic.Infrastructure.Extensions;
+
 
     public class Startup
     {
