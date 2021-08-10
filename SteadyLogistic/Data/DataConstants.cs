@@ -66,7 +66,7 @@
             public const string propertyExistsErrorMessage = "Value already exists!";
         }
 
-        public static class PremiumUser
+        public static class User
         {
             public const int nameMinLenght = 3;
             public const int nameMaxLenght = 30;
@@ -76,6 +76,14 @@
         {
             public const int trailerTypeNameMinLenght = 3;
             public const int trailerTypeNameMaxLenght = 25;
+        }
+
+        public static class Message
+        {
+            public const int titleMinLenght = 2;
+            public const int titleMaxLenght = 40; 
+            public const int bodyMinLenght = 3;
+            public const int bodyMaxLenght = 1000;
         }
 
         public static class Vehicle

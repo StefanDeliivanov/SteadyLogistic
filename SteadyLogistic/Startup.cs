@@ -11,8 +11,9 @@ namespace SteadyLogistic
     using SteadyLogistic.Data.Models;
     using SteadyLogistic.Services.User;  
     using SteadyLogistic.Services.City;
-    using SteadyLogistic.Services.Company;
     using SteadyLogistic.Services.Country;
+    using SteadyLogistic.Services.Company;
+    using SteadyLogistic.Services.Message;
     using SteadyLogistic.Infrastructure.Extensions;
 
 
@@ -47,10 +48,11 @@ namespace SteadyLogistic
 
             services.AddControllersWithViews();
 
-            services.AddTransient<ICountryService, CountryService>();
-            services.AddTransient<ICityService, CityService>();
-            services.AddTransient<ICompanyService, CompanyService>();
             services.AddTransient<IUserService, UserService>();
+            services.AddTransient<ICityService, CityService>();           
+            services.AddTransient<ICountryService, CountryService>();           
+            services.AddTransient<ICompanyService, CompanyService>();           
+            services.AddTransient<IMessageService, MessageService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

@@ -29,6 +29,8 @@
 
         public DbSet<LoadUnloadInfo> LoadUnloadInfos { get; set; }
 
+        public DbSet<Message> Messages { get; set; }
+
         public DbSet<PremiumUser> PremiumUsers { get; set; }
 
         public DbSet<Trailer> Trailers { get; set; }

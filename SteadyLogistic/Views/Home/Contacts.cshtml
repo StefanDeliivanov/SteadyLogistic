@@ -1,26 +1,101 @@
-﻿@{
+﻿@model ContactFormModel
+
+@{
     ViewData["Title"] = "Contacts";
 }
+
 <style>
     .oleo-font {
+        text-align: center;
         font-family: 'Oleo Script', cursive;
         color: #fcc500;
         font-size: 45px;
     }
+
+    .socials-font {
+        text-align: center;
+        font-family: 'Agency FB';
+        color: dodgerblue;
+        font-size: 35px;
+        font-weight: bold;
+        margin-top: 30px;
+        margin-bottom: 10px;
+    }
+
+    .label-form {
+        text-align: center;
+        margin-bottom: 5px;
+        color: lightpink;
+        font-family: 'Agency FB';
+        font-size: 24px;
+    }
+
+    .login_btn {
+        color: goldenrod;
+        font-weight: bold;
+        background-color: lightpink;
+        width: 100px;
+    }
+
+        .login_btn:hover {
+            color: black;
+            background-color: white;
+        }
 </style>
 
-<div class="oleo-font"> Contacts </div>
+<div class="oleo-font" style="margin-bottom: 30px;"> Contact us <i class="fa fa-paper-plane"></i></div>
 
-<div class="col-md-7">
-    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d11742.139321069868!2d23.3747618!3d42.6288205!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xa99a6079f95e99ad!2sBusiness%20Park%20Sofia!5e0!3m2!1sen!2sbg!4v1628544490017!5m2!1sen!2sbg"
-            width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+<div class="row">
+    <div class="col">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d11742.139321069868!2d23.3747618!3d42.6288205!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xa99a6079f95e99ad!2sBusiness%20Park%20Sofia!5e0!3m2!1sen!2sbg!4v1628544490017!5m2!1sen!2sbg"
+                width="600" height="450" style="border: outset;" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+    <div class="col">
+        <form method="post">
+            @*<div class="form-group">
+                <div class="label-form">Enter your name:</div>
+                <input asp-for="@Model.Title" class="form-control" placeholder="John Smith, Alisa Patterson...">
+                <span asp-validation-for="@Model.Title" class="small text-danger"></span>
+            </div>*@
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <div class="label-form">Enter your first name:</div>
+                        <input asp-for="@Model.FirstName" class="form-control" placeholder="Firstname...">
+                        <span asp-validation-for="@Model.FirstName" class="small text-danger"></span>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <div class="label-form">Enter your last name:</div>
+                        <input asp-for="@Model.LastName" class="form-control" placeholder="Surname...">
+                        <span asp-validation-for="@Model.LastName" class="small text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="label-form">Title:</div>
+                <input asp-for="@Model.Title" class="form-control" placeholder="Write your message title...">
+                <span asp-validation-for="@Model.Title" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="label-form">Message:</div>
+                <textarea asp-for="@Model.Body" class="form-control" style="height: 165px; resize:none;" placeholder="Write your message..."></textarea>
+                <span asp-validation-for="@Model.Body" class="small text-danger"></span>
+            </div>
+            <div class="offset-xl-3 offset-lg-1 offset-md-4 offset-3">
+                <input type="submit" value="Send" class="btn offset-3 login_btn" />
+            </div>
+        </form>
+
+    </div>
+
 </div>
-
-<div>
-    <h3>Our Social Sites</h3>
-    <ul class="list-inline banner-social-buttons">
-        <li><a href="#" class="btn btn-default btn-lg"><i class="fa fa-twitter"> <span class="network-name">Twitter</span></i></a></li>
-        <li><a href="#" class="btn btn-default btn-lg"><i class="fa fa-facebook"> <span class="network-name">Facebook</span></i></a></li>
-        <li><a href="#" class="btn btn-default btn-lg"><i class="fa fa-youtube-play"> <span class="network-name">Youtube</span></i></a></li>
-    </ul>
+<div class="socials-font"> Our Social Sites</div>
+<div class="row">
+    <div class="offset-xl-4 offset-md-3 offset-2">
+        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="btn btn-default btn-lg btn-outline-warning btn-primary"><i class="fa fa-facebook"> <span class="network-name">Facebook</span></i></a>
+        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="btn btn-default btn-lg btn-outline-warning btn-primary"><i class="fa fa-instagram"> <span class="network-name">Instagram</span></i></a>
+        <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="btn btn-default btn-lg btn-outline-warning btn-primary"><i class="fa fa-twitter"> <span class="network-name">Twitter</span></i></a>
+    </div>
 </div>

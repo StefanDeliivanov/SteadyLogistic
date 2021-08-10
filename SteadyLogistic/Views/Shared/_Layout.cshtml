@@ -11,7 +11,6 @@
     <link href="https://fonts.googleapis.com/css?family=Oleo+Script:400,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Teko:400,700" rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-
 </head>
 <body>
     <header>
@@ -64,13 +63,19 @@
         </nav>
     </header>
     <div class="container">
+        @if (TempData.ContainsKey(WebConstants.GlobalMessageKey))
+        {
+            <div class="alert alert-success text-center" role="alert">
+                @TempData[WebConstants.GlobalMessageKey]
+            </div>
+        }
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
     <footer class="border-top footer text-muted bg-primary box-shadow">
         <div class="container float-left" style="color: goldenrod">
-            &copy; @DateTime.UtcNow.Year - SteadyLogistics<span class="float-right">Stefan Deliivanov &rarr; admin@steadylogistics.com </span>
+            &copy; @DateTime.UtcNow.Year - SteadyLogistics<span class="float-right">Stefan Deliivanov &rarr; @@admin@steadylogistics.com / +359-888-123456</span>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

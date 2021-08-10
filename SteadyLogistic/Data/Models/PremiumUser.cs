@@ -4,7 +4,7 @@
     using System.ComponentModel.DataAnnotations;
 
     using static DataConstants.Global;
-    using static DataConstants.PremiumUser; 
+    using static DataConstants.User; 
 
     public class PremiumUser
     {

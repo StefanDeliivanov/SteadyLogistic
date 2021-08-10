@@ -1,4 +1,26 @@
-﻿a.navbar-brand {
+﻿.oleo-font {
+    text-align: center;
+    font-family: 'Oleo Script', cursive;
+    color: #fcc500;
+    font-size: 45px;
+}
+
+.socials-font {
+    text-align: center;
+    font-family: 'Agency FB';
+    color: dodgerblue;
+    font-size: 32px;
+}
+
+.label-form {
+    text-align: center;
+    margin-bottom: 5px;
+    color: lightpink;
+    font-family: 'Agency FB';
+    font-size: 24px;
+}
+
+a.navbar-brand {
     white-space: normal;
     text-align: center;
     word-break: break-all;

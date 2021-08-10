@@ -14,8 +14,8 @@
     [AllowAnonymous]
     public class RegisterModel : PageModel
     {
-        private readonly SignInManager<User> signInManager;
         private readonly UserManager<User> userManager;
+        private readonly SignInManager<User> signInManager;
 
         public RegisterModel(
             UserManager<User> userManager,
