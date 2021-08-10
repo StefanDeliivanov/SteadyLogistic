@@ -36,6 +36,11 @@
             return View();
         }
 
+        public IActionResult Details()
+        {
+            return View();
+        }
+
         [HttpGet]
         public IActionResult Contacts()
         {

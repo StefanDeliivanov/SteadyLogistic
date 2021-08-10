@@ -10,24 +10,24 @@
     {
 
         [Required(ErrorMessage = requiredErrorMessage)]
-        [StringLength(nameMaxLenght, MinimumLength = nameMinLenght,
+        [StringLength(nameMaxLength, MinimumLength = nameMinLength,
             ErrorMessage = defaultErrorMessage)]
         [Display(Name = "First Name")]
         public string FirstName { get; set; }
 
         [Required(ErrorMessage = requiredErrorMessage)]
-        [StringLength(nameMaxLenght, MinimumLength = nameMinLenght,
+        [StringLength(nameMaxLength, MinimumLength = nameMinLength,
             ErrorMessage = defaultErrorMessage)]
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
 
         [Required(ErrorMessage = requiredErrorMessage)]
-        [StringLength(titleMaxLenght, MinimumLength = titleMinLenght,
+        [StringLength(titleMaxLength, MinimumLength = titleMinLength,
             ErrorMessage = defaultErrorMessage)]
         public string Title { get; set; }
 
         [Required(ErrorMessage = requiredErrorMessage)]
-        [StringLength(bodyMaxLenght, MinimumLength = bodyMinLenght,
+        [StringLength(bodyMaxLength, MinimumLength = bodyMinLength,
             ErrorMessage = defaultErrorMessage)]
         public string Body { get; set; }
     }

@@ -16,7 +16,7 @@
         public int Id { get; set; }
 
         [Required]
-        [MaxLength(trailerTypeNameMaxLenght)]
+        [MaxLength(trailerTypeNameMaxLength)]
         public string Name { get; set; }
 
         public virtual ICollection<Trailer> Trailers { get; set; }

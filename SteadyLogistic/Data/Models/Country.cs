@@ -17,11 +17,11 @@
         public int Id { get; set; }
 
         [Required]
-        [MaxLength(countryNameMaxLenght)]
+        [MaxLength(countryNameMaxLength)]
         public string Name { get; set; }
 
         [Required]
-        [MaxLength(countryCodeLenght)]
+        [MaxLength(countryCodeLength)]
         public string Code { get; set; }
 
         public virtual ICollection<City> Cities { get; set; }

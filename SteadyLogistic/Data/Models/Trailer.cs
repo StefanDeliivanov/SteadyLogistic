@@ -11,15 +11,15 @@
         public int Id { get; set; }
 
         [Required]
-        [MaxLength(plateNumbersMaxLenght)]
+        [MaxLength(plateNumbersMaxLength)]
         public string PlateNumber { get; set; }
 
         [Required]
-        [MaxLength(brandNameMaxLenght)]
+        [MaxLength(brandNameMaxLength)]
         public string Brand { get; set; }
 
         [Required]
-        [MaxLength(modelNameMaxLenght)]
+        [MaxLength(modelNameMaxLength)]
         public string Model { get; set; }
 
         [Required]

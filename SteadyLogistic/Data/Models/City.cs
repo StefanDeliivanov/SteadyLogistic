@@ -17,11 +17,11 @@
         public int Id { get; set; }
 
         [Required]
-        [MaxLength(cityNameMaxLenght)]
+        [MaxLength(cityNameMaxLength)]
         public string Name { get; set; }
 
         [Required]
-        [MaxLength(cityPostCodeMaxLenght)]
+        [MaxLength(cityPostCodeMaxLength)]
         public string PostCode { get; set; }
 
         [Required]

@@ -13,6 +13,8 @@
         {
         }
 
+        public DbSet<Article> Articles { get; set; }
+
         public DbSet<CargoSize> CargoSizes { get; set; }
 
         public DbSet<City> Cities { get; set; }   

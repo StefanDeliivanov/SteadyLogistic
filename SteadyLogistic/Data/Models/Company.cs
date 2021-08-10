@@ -16,23 +16,23 @@
         public int Id { get; set; }
 
         [Required]
-        [MaxLength(companyNameMaxLenght)]
+        [MaxLength(companyNameMaxLength)]
         public string Name { get; set; }
 
         [Required]
-        [MaxLength(vatNumberMaxLenght)]
+        [MaxLength(vatNumberMaxLength)]
         public string VatNumber { get; set; }
 
         [Required]
-        [MaxLength(addressMaxLenght)]
+        [MaxLength(addressMaxLength)]
         public string Address { get; set; }
 
         [Required]
-        [MaxLength(phoneNumberMaxLenght)]
+        [MaxLength(phoneNumberMaxLength)]
         public string PhoneNumber { get; set; }
 
         [Required]
-        [MaxLength(emailMaxLenght)]
+        [MaxLength(emailMaxLength)]
         public string Email { get; set; }
 
         public string ManagerId { get; set; }

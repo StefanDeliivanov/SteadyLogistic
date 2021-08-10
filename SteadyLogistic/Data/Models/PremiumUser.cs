@@ -16,19 +16,19 @@
         public string Id { get; set; }
 
         [Required]
-        [MaxLength(nameMaxLenght)]
+        [MaxLength(nameMaxLength)]
         public string FirstName { get; set; }
 
         [Required]
-        [MaxLength(nameMaxLenght)]
+        [MaxLength(nameMaxLength)]
         public string LastName { get; set; }
 
         [Required]
-        [MaxLength(emailMaxLenght)]
+        [MaxLength(emailMaxLength)]
         public string Email { get; set; }
 
         [Required]
-        [MaxLength(phoneNumberMaxLenght)]
+        [MaxLength(phoneNumberMaxLength)]
         public string PhoneNumber { get; set; }
 
         public virtual Company Company { get; set; }

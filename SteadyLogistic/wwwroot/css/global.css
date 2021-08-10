@@ -1,0 +1,55 @@
+﻿.oleo-font {
+    text-align: center;
+    font-family: 'Oleo Script', cursive;
+    color: #fcc500;
+    font-size: 45px;
+}
+
+.image-fit {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    margin-bottom: 20px;
+}
+
+.socials-font {
+    text-align: center;
+    font-family: 'Agency FB';
+    color: dodgerblue;
+    font-size: 35px;
+    font-weight: bold;
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+.label-form {
+    text-align: center;
+    margin-bottom: 5px;
+    color: lightpink;
+    font-family: 'Agency FB';
+    font-size: 24px;
+}
+
+.contacts-btn {
+    color: goldenrod;
+    font-weight: bold;
+    width: 120px;
+    background-color: lightpink
+}
+
+    .contacts-btn:hover {
+        color: dodgerblue;
+        background-color: goldenrod;
+    }
+
+.details-btn {
+    color: goldenrod;
+    font-weight: bold;
+    width: 130px;
+    border-color: lightpink
+}
+
+    .details-btn:hover {
+        color: dodgerblue;
+        background-color: goldenrod;
+    }

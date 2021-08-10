@@ -15,7 +15,7 @@
         public int Id { get; set; }
 
         [Required]
-        [MaxLength(cargoSizeNameMaxLenght)]
+        [MaxLength(cargoSizeNameMaxLength)]
         public string Name { get; set; }
 
         public virtual ICollection<Freight> Freights { get; set; }

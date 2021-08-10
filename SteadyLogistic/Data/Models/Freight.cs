@@ -16,7 +16,7 @@
 
         public int Id { get; set; }
 
-        [MaxLength(decriptionMaxLenght)]
+        [MaxLength(descriptionMaxLength)]
         public string Description { get; set; }
 
         [Required]

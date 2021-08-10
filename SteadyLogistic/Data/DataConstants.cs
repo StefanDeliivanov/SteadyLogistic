@@ -3,50 +3,61 @@
 
     public static class DataConstants
     {
+
+        public static class Article
+        {
+            public const int categoryMinLength = 3;
+            public const int categoryMaxLength = 30;
+            public const int articleTitleMinLength = 3;
+            public const int articleTitleMaxLength = 40;
+            public const int articleBodyMinLength = 5;
+            public const int articleBodyMaxLength = 50000;
+        }
+
         public static class City
         {
-            public const int cityNameMinLenght = 2;
-            public const int cityNameMaxLenght = 58;
-            public const int cityPostCodeMinLenght = 3;
-            public const int cityPostCodeMaxLenght = 10;
+            public const int cityNameMinLength = 2;
+            public const int cityNameMaxLength = 58;
+            public const int cityPostCodeMinLength = 3;
+            public const int cityPostCodeMaxLength = 10;
         }
 
         public static class Company
         {
-            public const int companyNameMinLenght = 2;
-            public const int companyNameMaxLenght = 40;
-            public const int vatNumberMinLenght = 7;
-            public const int vatNumberMaxLenght = 15;
-            public const int addressMinLenght = 5;
-            public const int addressMaxLenght = 50;
+            public const int companyNameMinLength = 2;
+            public const int companyNameMaxLength = 40;
+            public const int vatNumberMinLength = 7;
+            public const int vatNumberMaxLength = 15;
+            public const int addressMinLength = 5;
+            public const int addressMaxLength = 50;
         }
 
         public static class Country
         {
-            public const int countryNameMinLenght = 4;
-            public const int countryNameMaxLenght = 56;
-            public const int countryCodeLenght = 2;
+            public const int countryNameMinLength = 4;
+            public const int countryNameMaxLength = 56;
+            public const int countryCodeLength = 2;
         }
 
         public static class CargoSize
         {
-            public const int cargoSizeNameMinLenght = 8;
-            public const int cargoSizeNameMaxLenght = 9;
+            public const int cargoSizeNameMinLength = 8;
+            public const int cargoSizeNameMaxLength = 9;
         }
 
         public static class Freight
         {
-            public const int decriptionMaxLenght = 200;
+            public const int descriptionMaxLength = 200;
         }
 
         public static class Global
         {
-            public const int emailMinLenght = 6;
-            public const int emailMaxLenght = 50;
-            public const int passwordMinLenght = 6;
-            public const int passwordMaxLenght = 50;
-            public const int phoneNumberMinLenght = 8;
-            public const int phoneNumberMaxLenght = 30;
+            public const int emailMinLength = 6;
+            public const int emailMaxLength = 50;
+            public const int passwordMinLength = 6;
+            public const int passwordMaxLength = 50;
+            public const int phoneNumberMinLength = 8;
+            public const int phoneNumberMaxLength = 30;
             public const string phoneNumberRegex = @"\+\d*\-\d*";      
         }
 
@@ -68,32 +79,32 @@
 
         public static class User
         {
-            public const int nameMinLenght = 3;
-            public const int nameMaxLenght = 30;
+            public const int nameMinLength = 3;
+            public const int nameMaxLength = 30;
         }
 
         public static class TrailerType
         {
-            public const int trailerTypeNameMinLenght = 3;
-            public const int trailerTypeNameMaxLenght = 25;
+            public const int trailerTypeNameMinLength = 3;
+            public const int trailerTypeNameMaxLength = 25;
         }
 
         public static class Message
         {
-            public const int titleMinLenght = 2;
-            public const int titleMaxLenght = 40; 
-            public const int bodyMinLenght = 3;
-            public const int bodyMaxLenght = 1000;
+            public const int titleMinLength = 2;
+            public const int titleMaxLength = 40; 
+            public const int bodyMinLength = 3;
+            public const int bodyMaxLength = 1000;
         }
 
         public static class Vehicle
         {
-            public const int brandNameMinLenght = 3;
-            public const int brandNameMaxLenght = 30;
-            public const int modelNameMinLenght = 3;
-            public const int modelNameMaxLenght = 30;
-            public const int plateNumbersMinLenght = 4;
-            public const int plateNumbersMaxLenght = 15;
+            public const int brandNameMinLength = 3;
+            public const int brandNameMaxLength = 30;
+            public const int modelNameMinLength = 3;
+            public const int modelNameMaxLength = 30;
+            public const int plateNumbersMinLength = 4;
+            public const int plateNumbersMaxLength = 15;
             public const int vehicleMinWeight = 1000;
             public const int vehicleMaxWeight = 17000;
         }

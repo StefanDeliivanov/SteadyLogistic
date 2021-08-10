@@ -16,26 +16,26 @@
         #region User
 
         [Required(ErrorMessage = requiredErrorMessage)]
-        [StringLength(nameMaxLenght, MinimumLength = nameMinLenght,
+        [StringLength(nameMaxLength, MinimumLength = nameMinLength,
             ErrorMessage = defaultErrorMessage)]
         [Display(Name = "First Name")]
         public string FirstName { get; set; }
 
         [Required(ErrorMessage = requiredErrorMessage)]
-        [StringLength(nameMaxLenght, MinimumLength = nameMinLenght,
+        [StringLength(nameMaxLength, MinimumLength = nameMinLength,
             ErrorMessage = defaultErrorMessage)]
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
 
         [EmailAddress(ErrorMessage = emailErrorMessage)]
-        [StringLength(emailMaxLenght, MinimumLength = emailMinLenght,
+        [StringLength(emailMaxLength, MinimumLength = emailMinLength,
             ErrorMessage = emailErrorMessage)]
         [Display(Name = emailDisplay)]
         public string Email { get; set; }
 
         [Required(ErrorMessage = requiredErrorMessage)]
         [RegularExpression(phoneNumberRegex, ErrorMessage = phoneNumberErrorMessage)]
-        [StringLength(phoneNumberMaxLenght, MinimumLength = phoneNumberMinLenght,
+        [StringLength(phoneNumberMaxLength, MinimumLength = phoneNumberMinLength,
             ErrorMessage = defaultErrorMessage)]
         [Display(Name = phoneNumberDisplay)]
         public string PhoneNumber { get; set; }
@@ -45,32 +45,32 @@
         #region Company
 
         [Required(ErrorMessage = requiredErrorMessage)]
-        [StringLength(companyNameMaxLenght, MinimumLength = companyNameMinLenght,
+        [StringLength(companyNameMaxLength, MinimumLength = companyNameMinLength,
             ErrorMessage = defaultErrorMessage)]
         [Display(Name = "Company Name")]
         public string CompanyName { get; set; }
 
         [Required(ErrorMessage = requiredErrorMessage)]
-        [StringLength(vatNumberMaxLenght, MinimumLength = vatNumberMinLenght,
+        [StringLength(vatNumberMaxLength, MinimumLength = vatNumberMinLength,
             ErrorMessage = defaultErrorMessage)]
         [Display(Name = "Vat Number")]
         public string VatNumber { get; set; }
 
         [Required(ErrorMessage = requiredErrorMessage)]
-        [StringLength(addressMaxLenght, MinimumLength = addressMinLenght,
+        [StringLength(addressMaxLength, MinimumLength = addressMinLength,
             ErrorMessage = defaultErrorMessage)]
         public string Address { get; set; }
 
         [Required(ErrorMessage = requiredErrorMessage)]
         [RegularExpression(phoneNumberRegex, ErrorMessage = phoneNumberErrorMessage)]
-        [StringLength(phoneNumberMaxLenght, MinimumLength = phoneNumberMinLenght,
+        [StringLength(phoneNumberMaxLength, MinimumLength = phoneNumberMinLength,
             ErrorMessage = defaultErrorMessage)]
         [Display(Name = phoneNumberDisplay)]
         public string CompanyPhoneNumber { get; set; }
 
         [Required(ErrorMessage = requiredErrorMessage)]
         [EmailAddress(ErrorMessage = emailErrorMessage)]
-        [StringLength(emailMaxLenght, MinimumLength = emailMinLenght,
+        [StringLength(emailMaxLength, MinimumLength = emailMinLength,
             ErrorMessage = emailErrorMessage)]
         [Display(Name = emailDisplay)]
         public string CompanyEmail { get; set; }
@@ -80,13 +80,13 @@
         #region City
 
         [Required(ErrorMessage = requiredErrorMessage)]
-        [StringLength(cityNameMaxLenght, MinimumLength = cityNameMinLenght,
+        [StringLength(cityNameMaxLength, MinimumLength = cityNameMinLength,
             ErrorMessage = defaultErrorMessage)]
         [Display(Name = "City Name")]
         public string CityName { get; set; }
 
         [Required(ErrorMessage = requiredErrorMessage)]
-        [StringLength(cityPostCodeMaxLenght, MinimumLength = cityPostCodeMinLenght,
+        [StringLength(cityPostCodeMaxLength, MinimumLength = cityPostCodeMinLength,
             ErrorMessage = defaultErrorMessage)]
         [Display(Name = "Post Code")]
         public string PostCode { get; set; }
