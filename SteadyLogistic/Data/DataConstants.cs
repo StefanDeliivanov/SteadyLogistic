@@ -6,6 +6,8 @@
 
         public static class Article
         {
+            public const int authorNameMinLength = 5;
+            public const int authorNameMaxLength = 50;
             public const int categoryMinLength = 3;
             public const int categoryMaxLength = 30;
             public const int articleTitleMinLength = 3;
@@ -66,6 +68,7 @@
             public const string phoneNumberDisplay = "Phone Number";
             public const string emailDisplay = "E-mail";
             public const string countryDisplay = "Country";
+            public const string urlDisplay = "Image";
         }
 
         public static class ErrorMessages

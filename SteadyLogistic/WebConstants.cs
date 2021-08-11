@@ -4,5 +4,6 @@
     {
 
         public const string GlobalMessageKey = "GlobalMessage";
+        public const string GlobalErrorKey = "ErrorMessage";
     }
 }

@@ -12,8 +12,8 @@
     using static AreaGlobalConstants.Roles;
     using static Data.DataConstants.ErrorMessages;
 
+    [Authorize]
     [Area("Member")]
-    [Authorize(Roles = MemberRoleName)]
     public class MemberController : Controller
     {
         private readonly ICountryService countries;

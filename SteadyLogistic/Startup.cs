@@ -14,8 +14,8 @@ namespace SteadyLogistic
     using SteadyLogistic.Services.Country;
     using SteadyLogistic.Services.Company;
     using SteadyLogistic.Services.Message;
-    using SteadyLogistic.Infrastructure.Extensions;
-
+    using SteadyLogistic.Services.Article;
+    using SteadyLogistic.Infrastructure.Extensions;    
 
     public class Startup
     {
@@ -53,6 +53,7 @@ namespace SteadyLogistic
             services.AddTransient<ICountryService, CountryService>();           
             services.AddTransient<ICompanyService, CompanyService>();           
             services.AddTransient<IMessageService, MessageService>();
+            services.AddTransient<IArticleService, ArticleService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

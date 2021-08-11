@@ -4,7 +4,6 @@
     {
         public static class Admin
         {
-            public const string AreaName = "Admin";
             public const string defaultAdminEmail = "admin@steadylogistics.com";
             public const string defaultAdminPassword = "admin123";
         }

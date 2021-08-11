@@ -3,7 +3,6 @@
     using System;
     using System.ComponentModel.DataAnnotations;
 
-    using static DataConstants.User;
     using static DataConstants.Article;
 
     public class Article
@@ -12,7 +11,7 @@
         public int Id { get; set; }
 
         [Required]
-        [MaxLength(nameMaxLength)]
+        [MaxLength(authorNameMaxLength)]
         public string Author { get; set; }  
 
         [Required]

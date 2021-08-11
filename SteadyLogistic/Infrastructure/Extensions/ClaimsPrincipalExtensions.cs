@@ -19,6 +19,14 @@
         public static bool IsMember(this ClaimsPrincipal user)
         {
             return user.IsInRole(MemberRoleName);
-        }           
+        }
+        public static bool IsAdmin(this ClaimsPrincipal user)
+        {
+            return user.IsInRole(AdministratorRoleName);
+        }
+        public static bool IsManager(this ClaimsPrincipal user)
+        {
+            return user.IsInRole(ManagerRoleName);
+        }
     }
 }

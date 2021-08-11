@@ -68,6 +68,11 @@
             <div class="alert alert-success text-center" role="alert">
                 @TempData[WebConstants.GlobalMessageKey]
             </div>
+        }@if (TempData.ContainsKey(WebConstants.GlobalErrorKey))
+        {
+            <div class="alert alert-danger text-center" role="alert">
+                @TempData[WebConstants.GlobalErrorKey]
+            </div>
         }
         <main role="main" class="pb-3">
             @RenderBody()
@@ -75,7 +80,7 @@
     </div>
     <footer class="border-top footer text-muted bg-primary box-shadow">
         <div class="container float-left" style="color: goldenrod">
-            &copy; @DateTime.UtcNow.Year - SteadyLogistics<span class="float-right">Stefan Deliivanov &rarr; @@admin@steadylogistics.com / +359-888-123456</span>
+            All rights reserved! &copy; @DateTime.UtcNow.Year - SteadyLogistics<span class="float-right">Stefan Deliivanov &rarr; @@admin@steadylogistics.com / +359-888-123456</span>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

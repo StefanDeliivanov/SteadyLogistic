@@ -34,7 +34,7 @@
     color: goldenrod;
     font-weight: bold;
     width: 120px;
-    background-color: lightpink
+    background-color: lightpink;
 }
 
     .contacts-btn:hover {
@@ -46,10 +46,22 @@
     color: goldenrod;
     font-weight: bold;
     width: 130px;
-    border-color: lightpink
+    border-color: lightpink;
 }
 
     .details-btn:hover {
+        color: dodgerblue;
+        background-color: goldenrod;
+    }
+
+.delete-article-btn {
+    color: red;
+    font-weight: bold;
+    width: 160px;
+    border-color: red;
+}
+
+    .delete-article-btn:hover {
         color: dodgerblue;
         background-color: goldenrod;
     }

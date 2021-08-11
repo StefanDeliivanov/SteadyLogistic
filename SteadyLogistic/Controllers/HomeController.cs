@@ -7,6 +7,7 @@
     using SteadyLogistic.Models;
     using SteadyLogistic.Models.Home;
     using SteadyLogistic.Services.Message;
+    using SteadyLogistic.Services.Article;
     using SteadyLogistic.Infrastructure.Extensions;
 
     using static WebConstants;
@@ -15,10 +16,14 @@
     public class HomeController : Controller
     {
         private readonly IMessageService messages;
+        private readonly IArticleService articles;
 
-        public HomeController(IMessageService messages)
+        public HomeController(
+            IMessageService messages,
+            IArticleService articles)
         {
             this.messages = messages;
+            this.articles = articles;
         }
 
         public IActionResult Index()
@@ -31,15 +36,34 @@
             return RedirectToAction(nameof(News));
         }
 
-        public IActionResult News()
+        public IActionResult News([FromQuery] NewsViewModel query)
         {
-            return View();
+            var queryResult = this.articles.All(
+                query.CurrentPage,
+                NewsViewModel.ArticlesPerPage);
+
+
+            query.TotalNews = queryResult.TotalArticles;
+            query.News = queryResult.AllArticles;
+
+            return View(query);
         }
 
-        public IActionResult Details()
+        public IActionResult Details(int id)
         {
-            return View();
+            var article = this.articles.Details(id);
+
+            if (article == null)
+            {
+                TempData[GlobalErrorKey] = "This article does not exist!";
+
+                return RedirectToAction(nameof(News));
+            }
+
+            return View(article);
         }
+
+
 
         [HttpGet]
         public IActionResult Contacts()
