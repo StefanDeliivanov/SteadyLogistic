@@ -65,19 +65,26 @@
 
         public static class Displays
         {
+            public const string firstNameDisplay = "First Name";
+            public const string lastNameDisplay = "Last Name";
             public const string phoneNumberDisplay = "Phone Number";
             public const string emailDisplay = "E-mail";
             public const string countryDisplay = "Country";
             public const string urlDisplay = "Image";
+            public const string confirmPassword = "Confirm Password";
         }
 
         public static class ErrorMessages
         {
+            public const string countryNotExistErrorMessage = "Country does not exist.";
+            public const string passwordErrorMessage = "The {0} must be between {2} and {1} characters";
+            public const string confirmPasswordErrorMessage = "The password and it's confirmation do not match.";
             public const string requiredErrorMessage = "The field cannot be empty!";
             public const string defaultErrorMessage = "Invalid {0}! Must be between {2} and {1} characters";
             public const string emailErrorMessage = "Enter valid Email address! 'example@email.com'"; 
             public const string phoneNumberErrorMessage = "Enter valid Phone Number! '+359-123456789'";
             public const string propertyExistsErrorMessage = "Value already exists!";
+            public const string userRegisterFailedErrorMessage = "Employee registration have failed";
         }
 
         public static class User

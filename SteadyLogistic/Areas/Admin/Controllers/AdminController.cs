@@ -86,6 +86,7 @@
             return View(query);
         }
 
+        [Authorize(Roles = AdministratorRoleName)]
         public IActionResult MessageDetails(int id)
         {
             var message = this.messages.Details(id);
@@ -100,6 +101,7 @@
             return View(message);
         }
 
+        [Authorize(Roles = AdministratorRoleName)]
         public IActionResult MessageDelete (int id)
         {
             if (!this.messages.MessageExists(id))

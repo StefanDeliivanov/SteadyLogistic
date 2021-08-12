@@ -7,8 +7,10 @@
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc.RazorPages;
     using SteadyLogistic.Data.Models;
-
+   
     using static SteadyLogistic.Data.DataConstants.Global;
+    using static SteadyLogistic.Data.DataConstants.Displays;
+    using static SteadyLogistic.Data.DataConstants.ErrorMessages;
     using static SteadyLogistic.Areas.AreaGlobalConstants.Roles;
 
     [AllowAnonymous]
@@ -33,18 +35,21 @@
         public class InputModel
         {
             [Required]
-            [EmailAddress]
-            [StringLength(emailMaxLength, MinimumLength = emailMinLength)]
+            [EmailAddress(ErrorMessage = emailErrorMessage)]
+            [StringLength(emailMaxLength, MinimumLength = emailMinLength,
+                ErrorMessage = emailErrorMessage)]
             public string Email { get; set; }
 
             [Required]
-            [StringLength(passwordMaxLength, MinimumLength = passwordMinLength, ErrorMessage ="The password length must be between {2} and {1} characters")]
+            [StringLength(passwordMaxLength, MinimumLength = passwordMinLength, 
+                ErrorMessage = passwordErrorMessage)]
             [DataType(DataType.Password)]
             public string Password { get; set; }
 
+            [Required]
             [DataType(DataType.Password)]
-            [Display(Name = "Confirm password")]
-            [Compare("Password", ErrorMessage = "The password and it's confirmation do not match.")]
+            [Display(Name = confirmPassword)]
+            [Compare("Password", ErrorMessage = confirmPasswordErrorMessage)]
             public string ConfirmPassword { get; set; }
         }
 

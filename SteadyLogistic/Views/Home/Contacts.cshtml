@@ -19,14 +19,14 @@
                 <div class="col">
                     <div class="form-group">
                         <div class="label-form">Enter your first name:</div>
-                        <input asp-for="@Model.FirstName" class="form-control" placeholder="Firstname...">
+                        <input asp-for="@Model.FirstName" class="form-control" placeholder="First name...">
                         <span asp-validation-for="@Model.FirstName" class="small text-danger"></span>
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-group">
                         <div class="label-form">Enter your last name:</div>
-                        <input asp-for="@Model.LastName" class="form-control" placeholder="Surname...">
+                        <input asp-for="@Model.LastName" class="form-control" placeholder="Last name...">
                         <span asp-validation-for="@Model.LastName" class="small text-danger"></span>
                     </div>
                 </div>
@@ -41,8 +41,8 @@
                 <textarea asp-for="@Model.Body" class="form-control" style="height: 165px; resize:none;" placeholder="Write your message..."></textarea>
                 <span asp-validation-for="@Model.Body" class="small text-danger"></span>
             </div>
-            <div class="offset-xl-3 offset-lg-1 offset-md-4 offset-3">
-                <input type="submit" value="Send" class="btn offset-3 contacts-btn" />
+            <div class="col text-center">
+                <input type="submit" value="Send" class="btn contacts-btn" />
             </div>
         </form>
     </div>
@@ -55,3 +55,7 @@
         <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="btn btn-default btn-lg btn-outline-warning btn-primary"><i class="fa fa-twitter"> <span class="network-name">Twitter</span></i></a>
     </div>
 </div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -18,13 +18,13 @@
         [Required(ErrorMessage = requiredErrorMessage)]
         [StringLength(nameMaxLength, MinimumLength = nameMinLength,
             ErrorMessage = defaultErrorMessage)]
-        [Display(Name = "First Name")]
+        [Display(Name = firstNameDisplay)]
         public string FirstName { get; set; }
 
         [Required(ErrorMessage = requiredErrorMessage)]
         [StringLength(nameMaxLength, MinimumLength = nameMinLength,
             ErrorMessage = defaultErrorMessage)]
-        [Display(Name = "Last Name")]
+        [Display(Name = lastNameDisplay)]
         public string LastName { get; set; }
 
         [EmailAddress(ErrorMessage = emailErrorMessage)]

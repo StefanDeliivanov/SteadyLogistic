@@ -11,6 +11,7 @@
 
     using static AreaGlobalConstants.Roles;
     using static Data.DataConstants.ErrorMessages;
+    using static WebConstants;
 
     [Authorize]
     [Area("Member")]
@@ -55,7 +56,7 @@
 
             if (!this.countries.CountryExists(model.CountryId))
             {
-                this.ModelState.AddModelError(nameof(model.CountryId), "Country does not exist.");
+                this.ModelState.AddModelError(nameof(model.CountryId), countryNotExistErrorMessage);
             }
 
             if (users.PhoneNumberTaken(model.PhoneNumber))
@@ -106,6 +107,8 @@
 
             users.AddAsManager(premiumUser);
             companies.AddManager(premiumUser.Id, company.Id);
+
+            TempData[GlobalMessageKey] = "Your company was added successfully! Enjoy SteadyLogistics!";
 
             return RedirectToAction("News", "Home", new { area = "" });
         }

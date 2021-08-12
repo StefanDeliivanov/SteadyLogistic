@@ -1,6 +1,7 @@
 ﻿@model AddNewsFormModel
-
-<link rel="stylesheet" href="~/css/global.css" />
+<head>
+    <link rel="stylesheet" href="~/css/global.css" />
+</head>
 
 <div class="oleo-font" style="margin-bottom: 30px;"> Add an Article</div>
 
@@ -44,9 +45,15 @@
                 <textarea asp-for="@Model.Body" class="form-control" style="height: 165px; resize:none;" placeholder="Write your article..."></textarea>
                 <span asp-validation-for="@Model.Body" class="small text-danger"></span>
             </div>
-            <div class="offset-xl-3 offset-lg-1 offset-md-4 offset-3">
-                <input type="submit" value="Publish" class="btn offset-3 contacts-btn" />
-            </div>
+            <div class="row">
+                <div class="col text-center">
+                    <input type="submit" value="Publish" class="btn contacts-btn" />
+                </div>
+            </div>         
         </form>
     </div>
 </div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
