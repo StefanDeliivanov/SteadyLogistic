@@ -1,0 +1,42 @@
+﻿@model MessageDetailsServiceModel
+
+<head>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/messageDetails.css" />
+</head>
+
+<div class="oleo-font" style="margin-bottom: 30px;"> Message #@Model.Id</div>
+
+<div class="container col-md-8">
+    <form class="form-horizontal">
+        <div class="panel mail-wrapper">
+            <div class="panel-sub-heading inner-all">
+                <div class="pull-left">
+                    <h3 class="lead no-margin title-style">@Model.Title</h3>
+                </div>
+                <div class="pull-right">
+                    <a asp-area="Admin" asp-controller="Admin" asp-action="MessageDelete" asp-route-id="@Model.Id" 
+                       class="btn btn-danger btn-sm tooltips" data-container="body" data-original-title="Trash"
+                                data-toggle="tooltip" data-placement="top" title=""><i class="fa fa-trash-o"> Delete </i></a>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="panel-sub-heading inner-all">
+                <div class="row">
+                    <div class="col-md-8 col-sm-8 col-xs-7">
+                        <div>From: <span class="text-space">@Model.FullName</span></div>
+                        <div>Email: <span class="text-space">@Model.Email</span></div>
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-5">
+                        <p class="pull-right">@Model.SendOn.ToLocalTime().ToString("HH:mm'h' '/' dd MMMM, yyyy") </p>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-body">
+                <div class="view-mail">
+                    @Model.Body
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

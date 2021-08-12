@@ -1,0 +1,93 @@
+﻿.title-style {
+    color: goldenrod;
+    font-size: 32px;
+    font-weight: bold;
+    font-family: 'Agency FB', cursive;
+}
+
+.text-space {
+    margin-left: 5px;
+    color: dodgerblue;
+}
+
+.title-mailbox {
+    color: goldenrod;
+    font-size: 32px;
+    font-weight: bold;
+    font-family: 'Agency FB', cursive;
+    float: left;
+}
+
+.title-emails {
+    color: goldenrod;
+    font-size: 24px;
+    margin-top: 8px;
+    font-weight: normal;
+    float: right;
+    font-family: 'Agency FB', cursive;
+}
+
+.btn-danger {
+    background-color: #E9573F;
+    border-color: #E9573F;
+    color: white;
+    margin-top: 5px;
+}
+
+.panel .panel-heading {
+    padding: 5px;
+    border-top-right-radius: 3px;
+    border-top-left-radius: 3px;
+    border-bottom: 1px solid #DDD;
+    -moz-border-radius: 0px;
+    -webkit-border-radius: 0px;
+    border-radius: 0px;
+}
+
+    .panel .panel-heading .panel-title {
+        padding: 10px;
+        font-size: 17px;
+    }
+
+form .form-group {
+    position: relative;
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+}
+
+.inner-all {
+    padding: 10px;
+}
+
+.view-mail {
+    padding: 10px;
+    font-weight: 300;
+}
+
+@media (max-width: 640px) {
+    .compose-mail-wrapper .compose-mail {
+        padding: 0px;
+    }
+}
+
+@media (max-width: 360px) {
+    .mail-wrapper .panel-sub-heading {
+        text-align: center;
+    }
+
+        .mail-wrapper .panel-sub-heading .pull-left, .mail-wrapper .panel-sub-heading .pull-right {
+            float: none !important;
+            display: block;
+        }
+
+        .mail-wrapper .panel-sub-heading .pull-right {
+            margin-top: 10px;
+        }
+
+        .mail-wrapper .panel-sub-heading img {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 10px;
+        }
+}

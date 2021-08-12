@@ -1,0 +1,18 @@
+﻿@model IEnumerable<MessageServiceModel>
+
+@foreach (var message in Model)
+{
+    <tr>
+        <td>
+            <a asp-area="Admin" asp-controller="Admin" asp-action="MessageDetails" asp-route-id="@message.Id" class="text-muted">
+                <div class="media">
+                    <div class="media-body">
+                        <h4 class="text-primary float-left">@message.FullName</h4>
+                        <p class="email-summary" style="color: black;">@message.Title</p>
+                        <span class="media-meta">@message.SendOn.ToLocalTime().ToString("dd MMMM, yyyy") </span>
+                    </div>
+                </div>
+            </a>
+        </td>
+    </tr>
+}

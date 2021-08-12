@@ -3,7 +3,6 @@
     using System;
     using System.ComponentModel.DataAnnotations;
 
-    using static DataConstants.User;
     using static DataConstants.Global;  
     using static DataConstants.Message;
 
@@ -13,11 +12,11 @@
         public int Id { get; set; }
 
         [Required]
-        [MaxLength(nameMaxLength)]
+        [MaxLength(contactNameMaxLength)]
         public string FirstName { get; set; }
 
         [Required]
-        [MaxLength(nameMaxLength)]
+        [MaxLength(contactNameMaxLength)]
         public string LastName { get; set; }
 
         [Required]

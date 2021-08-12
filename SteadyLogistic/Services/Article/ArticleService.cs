@@ -98,12 +98,10 @@
             try
             {
                 this.data.Articles.Remove(article);
-
                 this.data.SaveChanges();
             }
             catch (Exception)
             {
-
                 return false;
             }
             

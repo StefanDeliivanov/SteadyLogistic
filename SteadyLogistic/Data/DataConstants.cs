@@ -55,7 +55,7 @@
         public static class Global
         {
             public const int emailMinLength = 6;
-            public const int emailMaxLength = 50;
+            public const int emailMaxLength = 45;
             public const int passwordMinLength = 6;
             public const int passwordMaxLength = 50;
             public const int phoneNumberMinLength = 8;
@@ -94,6 +94,8 @@
 
         public static class Message
         {
+            public const int contactNameMinLength = 2;
+            public const int contactNameMaxLength = 14;
             public const int titleMinLength = 2;
             public const int titleMaxLength = 40; 
             public const int bodyMinLength = 3;

@@ -5,6 +5,7 @@
     using Microsoft.AspNetCore.Authorization;
     using SteadyLogistic.Areas.Admin.Models;
     using SteadyLogistic.Services.Article;
+    using SteadyLogistic.Services.Message;
 
     using static AreaGlobalConstants.Roles;
     using static WebConstants;
@@ -14,10 +15,14 @@
     public class AdminController : Controller
     {
         private readonly IArticleService articles;
+        private readonly IMessageService messages;
 
-        public AdminController(IArticleService articles)
+        public AdminController(
+            IArticleService articles,
+            IMessageService messages)
         {
             this.articles = articles;
+            this.messages = messages;
         }
 
         [HttpGet]
@@ -68,9 +73,52 @@
         }
 
         [Authorize(Roles = AdministratorRoleName)]
-        public IActionResult Messages()
+        public IActionResult Messages([FromQuery] MessagesViewModel query)
         {
-            return View();
+            var queryResult = this.messages.All(
+                query.CurrentPage,
+                MessagesViewModel.MessagesPerPage);
+
+
+            query.TotaMessages = queryResult.TotalMessages;
+            query.Messages = queryResult.AllMessages;
+
+            return View(query);
+        }
+
+        public IActionResult MessageDetails(int id)
+        {
+            var message = this.messages.Details(id);
+
+            if (message == null)
+            {
+                TempData[GlobalErrorKey] = "This message does not exist!";
+
+                return RedirectToAction(nameof(Messages));
+            }
+
+            return View(message);
+        }
+
+        public IActionResult MessageDelete (int id)
+        {
+            if (!this.messages.MessageExists(id))
+            {
+                TempData[GlobalMessageKey] = "The requested message does not exist!";
+
+                return RedirectToAction(nameof(Messages));
+            }
+
+            if (this.messages.Delete(id))
+            {
+                TempData[GlobalMessageKey] = "Message was deleted successfully!";
+
+                return RedirectToAction(nameof(Messages));
+            }
+
+            TempData[GlobalErrorKey] = "Something went wrong! Please try again";
+
+            return RedirectToAction(nameof(MessageDetails), id);
         }
     }
 }

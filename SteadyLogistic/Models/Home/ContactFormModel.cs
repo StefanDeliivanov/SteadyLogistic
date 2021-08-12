@@ -2,7 +2,6 @@
 {
     using System.ComponentModel.DataAnnotations;
 
-    using static Data.DataConstants.User;
     using static Data.DataConstants.Message;
     using static Data.DataConstants.ErrorMessages;
 
@@ -10,13 +9,13 @@
     {
 
         [Required(ErrorMessage = requiredErrorMessage)]
-        [StringLength(nameMaxLength, MinimumLength = nameMinLength,
+        [StringLength(contactNameMaxLength, MinimumLength = contactNameMinLength,
             ErrorMessage = defaultErrorMessage)]
         [Display(Name = "First Name")]
         public string FirstName { get; set; }
 
         [Required(ErrorMessage = requiredErrorMessage)]
-        [StringLength(nameMaxLength, MinimumLength = nameMinLength,
+        [StringLength(contactNameMaxLength, MinimumLength = contactNameMinLength,
             ErrorMessage = defaultErrorMessage)]
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
