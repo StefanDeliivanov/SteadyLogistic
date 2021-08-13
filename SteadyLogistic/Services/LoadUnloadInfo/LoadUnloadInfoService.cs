@@ -27,5 +27,10 @@
 
             return loadUnloadInfo;
         }
+
+        public bool DateIsValid(DateTime date)
+        {
+            return date.ToLocalTime() > DateTime.UtcNow.ToLocalTime();
+        }
     }
 }

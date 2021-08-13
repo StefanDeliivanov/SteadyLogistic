@@ -72,7 +72,7 @@
 
         [Required(ErrorMessage = requiredErrorMessage)]
         [Timestamp]
-        public DateTime LoadingDate { get; set; }
+        public DateTime LoadingDate { get; set; } = DateTime.UtcNow.ToLocalTime();
         #endregion
 
         #region Unloading
@@ -93,7 +93,7 @@
 
         [Required(ErrorMessage = requiredErrorMessage)]
         [Timestamp]
-        public DateTime UnloadingDate { get; set; }
+        public DateTime UnloadingDate { get; set; } = DateTime.UtcNow.ToLocalTime();
         #endregion
 
         public ICollection<CargoSizeServiceModel> CargoSizes { get; set; }

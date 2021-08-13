@@ -85,6 +85,16 @@
                 this.ModelState.AddModelError(nameof(model.TrailerTypeId), trailerTypeNotExistErrorMessage);
             }
 
+            if (!loadUnloadInfos.DateIsValid(model.LoadingDate))
+            {
+                this.ModelState.AddModelError(nameof(model.LoadingDate), invalidDateErrorMessage);
+            }
+
+            if (!loadUnloadInfos.DateIsValid(model.UnloadingDate))
+            {
+                this.ModelState.AddModelError(nameof(model.UnloadingDate), invalidDateErrorMessage);
+            }
+
             if (!ModelState.IsValid)
             {
                 model.Countries = this.countries.AllCountries();
