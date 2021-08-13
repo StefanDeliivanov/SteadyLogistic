@@ -40,11 +40,11 @@
                                         Freight Exchange
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
-                                        <a class="dropdown-item" asp-area="" asp-controller="FreightExchange" asp-action="AllFreights">All Freights</a>
+                                        <a class="dropdown-item" asp-area="" asp-controller="FreightExchange" asp-action="All">All Freights</a>
                                         <a class="dropdown-item" asp-area="" asp-controller="FreightExchange" asp-action="MyOffers">My Offers</a>
                                         <a class="dropdown-item" asp-area="" asp-controller="FreightExchange" asp-action="CompanyOffers">Company Offers</a>
-                                        <a class="dropdown-item" asp-area="" asp-controller="FreightExchange" asp-action="SearchFreight">Search for a Freight</a>
-                                        <a class="dropdown-item" asp-area="" asp-controller="FreightExchange" asp-action="AddFreight">Add Freight</a>
+                                        <a class="dropdown-item" asp-area="" asp-controller="FreightExchange" asp-action="Search">Search for a Freight</a>
+                                        <a class="dropdown-item" asp-area="" asp-controller="FreightExchange" asp-action="Add">Add Freight</a>
                                     </div>
                                 </li>
                                 <li class="nav-item">
@@ -52,9 +52,8 @@
                                 </li>
                             }
                         }
-
                         <li class="nav-item">
-                            <a class="nav-link text-warning" asp-area="" asp-controller="Documentation" asp-action="All">Documentation</a>
+                            <a class="nav-link text-warning" asp-area="" asp-controller="Documentation" asp-action="Index">Documentation</a>
                         </li>
                     </ul>
                     <partial name="_LoginPartial" />

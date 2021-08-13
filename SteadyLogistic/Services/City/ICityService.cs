@@ -8,6 +8,6 @@
 
         public City GetCity(string postCode, string name, int countryId);
 
-        public City Create(string name, string postCode, int countryId);
+        public City Create(string postCode, string name, int countryId);
     }
 }

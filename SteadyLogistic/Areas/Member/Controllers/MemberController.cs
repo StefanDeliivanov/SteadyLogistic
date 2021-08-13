@@ -54,7 +54,7 @@
         {
             var country = countries.GetCountryById(model.CountryId);
 
-            if (!this.countries.CountryExists(model.CountryId))
+            if (!this.countries.Exists(model.CountryId))
             {
                 this.ModelState.AddModelError(nameof(model.CountryId), countryNotExistErrorMessage);
             }
@@ -92,11 +92,6 @@
             }
 
             var city = cities.GetCity(model.PostCode, model.CityName, model.CountryId);
-
-            if (city == null)
-            {
-                city = cities.Create(model.CityName, model.PostCode, model.CountryId);
-            }
 
             var company = companies.Create(model.CompanyName, model.CompanyPhoneNumber, model.VatNumber, model.CompanyEmail, model.Address, city.Id, country);
 

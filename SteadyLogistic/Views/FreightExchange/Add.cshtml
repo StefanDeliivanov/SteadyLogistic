@@ -1,0 +1,175 @@
+﻿@model AddFreightFormModel
+
+<head>
+    <link rel="stylesheet" href="~/css/global.css" />
+</head>
+
+<div class="oleo-font" style="margin-bottom: 45px;"> Add a Freight</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <form method="post">
+            <div class="row">
+                <div class="col-md-3">
+                    <p class="oleo-font-sub" style="margin-bottom: 15px;"> Cargo</p>
+                </div>
+                <div class="col-md-3">
+                    <p class="oleo-font-sub" style="margin-bottom: 15px;"> Loading</p>
+                </div>
+                <div class="col-md-3">
+                    <p class="oleo-font-sub" style="margin-bottom: 15px;"> Unloading</p>
+                </div>
+                <div class="col-md-3">
+                    <p class="oleo-font-sub" style="margin-bottom: 15px;"> Dimensions</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <div class="label-form">Price:</div>
+                        <input asp-for="@Model.Price" class="form-control" placeholder="Enter price number in leva...">
+                        <span asp-validation-for="@Model.Price" class="small text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <div class="label-form">Country:</div>
+                        <select asp-for="@Model.LoadingCountryId" class="form-control">
+                            @foreach (var country in Model.Countries)
+                            {
+                                <option value="@country.Id">@country.Name</option>
+                            }
+                        </select>
+                        <span asp-validation-for="@Model.LoadingCountryId" class="small text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <div class="label-form">Country:</div>
+                        <select asp-for="@Model.UnloadingCountryId" class="form-control">
+                            @foreach (var country in Model.Countries)
+                            {
+                                <option value="@country.Id">@country.Name</option>
+                            }
+                        </select>
+                        <span asp-validation-for="@Model.UnloadingCountryId" class="small text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <div class="label-form">Length:</div>
+                        <input asp-for="@Model.Length" class="form-control" placeholder="Enter cargo length in centimeters...">
+                        <span asp-validation-for="@Model.Length" class="small text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <div class="label-form">Cargo Size:</div>
+                        <select asp-for="@Model.CargoSizeId" class="form-control">
+                            @foreach (var cargoSize in Model.CargoSizes)
+                            {
+                                <option value="@cargoSize.Id">@cargoSize.Name</option>
+                            }
+                        </select>
+                        <span asp-validation-for="@Model.CargoSizeId" class="small text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <div class="label-form">City Name:</div>
+                        <input asp-for="@Model.LoadingCityName" class="form-control" placeholder="Enter loading city name...">
+                        <span asp-validation-for="@Model.LoadingCityName" class="small text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <div class="label-form">City Name:</div>
+                        <input asp-for="@Model.UnloadingCityName" class="form-control" placeholder="Enter unloading city name...">
+                        <span asp-validation-for="@Model.UnloadingCityName" class="small text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <div class="label-form">Width:</div>
+                        <input asp-for="@Model.Width" class="form-control" placeholder="Enter cargo width in centimeters...">
+                        <span asp-validation-for="@Model.Width" class="small text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="label-form">Trailer Type:</div>
+                    <select asp-for="@Model.TrailerTypeId" class="form-control">
+                        @foreach (var trailerType in Model.TrailerTypes)
+                        {
+                            <option value="@trailerType.Id">@trailerType.Name</option>
+                        }
+                    </select>
+                    <span asp-validation-for="@Model.TrailerTypeId" class="small text-danger"></span>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <div class="label-form">City Post Code:</div>
+                        <input asp-for="@Model.LoadingPostCode" class="form-control" placeholder="Enter loading city post code...">
+                        <span asp-validation-for="@Model.LoadingPostCode" class="small text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <div class="label-form">City Post Code:</div>
+                        <input asp-for="@Model.UnloadingPostCode" class="form-control" placeholder="Enter unloading city post code...">
+                        <span asp-validation-for="@Model.UnloadingPostCode" class="small text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <div class="label-form">Height:</div>
+                        <input asp-for="@Model.Height" class="form-control" placeholder="Enter cargo height in centimeters...">
+                        <span asp-validation-for="@Model.Height" class="small text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <div class="label-form">Description:</div>
+                        <textarea asp-for="@Model.Description" class="form-control" placeholder="Enter cargo description up to 200 characters..."></textarea>
+                        <span asp-validation-for="@Model.Description" class="small text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <div class="label-form">Date:</div>
+                        <input asp-for="@Model.LoadingDate" class="form-control" placeholder="Enter loading date in format dd/mm/yyyy">
+                        <span asp-validation-for="@Model.LoadingDate" class="small text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <div class="label-form">Date:</div>
+                        <input asp-for="@Model.UnloadingDate" class="form-control" placeholder="Enter unloading date in format dd/mm/yyyy">
+                        <span asp-validation-for="@Model.UnloadingDate" class="small text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <div class="label-form">Weight:</div>
+                        <input asp-for="@Model.Weight" class="form-control" placeholder="Enter cargo weight in centimeters...">
+                        <span asp-validation-for="@Model.Weight" class="small text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row text-center">
+                <div class="col">
+                    <input type="submit" value="Publish" class="btn contacts-btn" style="margin-top: 10px;" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

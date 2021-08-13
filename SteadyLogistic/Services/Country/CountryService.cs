@@ -26,7 +26,7 @@
                         .ToList();
         }
 
-        public bool CountryExists(int countryId)
+        public bool Exists(int countryId)
         {
             return this.data
                         .Countries

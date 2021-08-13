@@ -39,8 +39,10 @@
                 .OnDelete(DeleteBehavior.Restrict);
 
             builder
-                .HasMany(a => a.TrailerTypes)
-                .WithMany(b => b.Freights);
+                .HasOne(a => a.TrailerType)
+                .WithMany(b => b.Freights)
+                .HasForeignKey(c => c.TrailerTypeId)
+                .OnDelete(DeleteBehavior.Restrict);
 
             builder
                 .Property(a => a.Price)

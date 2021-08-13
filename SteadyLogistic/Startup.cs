@@ -15,6 +15,11 @@ namespace SteadyLogistic
     using SteadyLogistic.Services.Company;
     using SteadyLogistic.Services.Message;
     using SteadyLogistic.Services.Article;
+    using SteadyLogistic.Services.CargoSize;
+    using SteadyLogistic.Services.Dimension;
+    using SteadyLogistic.Services.Freight;
+    using SteadyLogistic.Services.LoadUnloadInfo;
+    using SteadyLogistic.Services.TrailerType;
     using SteadyLogistic.Infrastructure.Extensions;    
 
     public class Startup
@@ -54,6 +59,11 @@ namespace SteadyLogistic
             services.AddTransient<ICompanyService, CompanyService>();           
             services.AddTransient<IMessageService, MessageService>();
             services.AddTransient<IArticleService, ArticleService>();
+            services.AddTransient<ICargoSizeService, CargoSizeService>();
+            services.AddTransient<ITrailerTypeService, TrailerTypeService>();
+            services.AddTransient<IDimensionService, DimensionService>();
+            services.AddTransient<IFreightService, FreightService>();
+            services.AddTransient<ILoadUnloadInfoService, LoadUnloadInfoService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

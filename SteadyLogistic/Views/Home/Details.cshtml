@@ -4,26 +4,12 @@
     <link rel="stylesheet" href="~/css/global.css" />
 </head>
 
-<style>
-    .delete-article-btn {
-        color: red;
-        font-weight: bold;
-        width: 160px;
-        border-color: red;
-    }
-
-        .delete-article-btn:hover {
-            color: dodgerblue;
-            background-color: goldenrod;
-        }
-</style>
-
 <div class="oleo-font" style="margin-bottom: 30px;"> Article #@Model.Id</div>
 
-<main role="main" class="container">
+<main role="main" class="container col-md-8 text-center">
     <div class="row">
-        <div class="col-md-8  blog-main">
-            <div class="col-8">
+        <div class="blog-main">
+            <div>
                 <img class="image-fit" src="@Model.ImageUrl" />
             </div>
 
@@ -31,29 +17,28 @@
             <div class="blog-post">
                 <h2 class="blog-post-title">@Model.Title</h2>
                 <p class="blog-post-meta">@Model.PublishedOn.ToLocalTime().ToString("dd MMMM, yyyy") by @Model.Author</p>
-                <div class="article-font">
+                <div class="article-font  text-justify">
                     <hr>
                     <p>
-                        @Model.Body 
+                        @Model.Body
                     </p>
                 </div>
             </div>
         </div>
     </div>
-</main>
-
-<div class="row">
-    <div class="col-4">
-        <a asp-controller="Home" asp-action="News">
-            <input type="button" class="btn details-btn float-left" value="Back to News" />
-        </a>
-    </div>
-    @if (User.IsAdmin())
-    {
-        <div class="col-4">
-            <a asp-area="Admin" asp-controller="Admin" asp-action="Delete" asp-route-id="@Model.Id">
-                <input type="button" class="btn delete-article-btn float-right" value="Delete this article" />
+    <div class="row">
+        <div class="col">
+            <a asp-controller="Home" asp-action="News">
+                <input type="button" class="btn details-btn float-left" value="Back to News" />
             </a>
         </div>
-    }
-</div>
+        @if (User.IsAdmin())
+        {
+            <div class="col">
+                <a asp-area="Admin" asp-controller="Admin" asp-action="Delete" asp-route-id="@Model.Id">
+                    <input type="button" class="btn delete-article-btn float-right" value="Delete this article" />
+                </a>
+            </div>
+        }
+    </div>
+</main>

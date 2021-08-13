@@ -1,4 +1,6 @@
-﻿namespace SteadyLogistic.Data
+﻿using System;
+
+namespace SteadyLogistic.Data
 {
 
     public static class DataConstants
@@ -50,6 +52,16 @@
         public static class Freight
         {
             public const int descriptionMaxLength = 200;
+            public const double weightMinAmount = 1;
+            public const double weightMaxAmount = 25000;
+            public const double heightMinAmount = 1;
+            public const double heightMaxAmount = 300;
+            public const double lengthMinAmount = 1;
+            public const double lengthMaxAmount = 1360;
+            public const double widthMinAmount = 1;
+            public const double widthMaxAmount = 245;     
+            public const double priceMinAmount = 0.0;
+            public const double priceMaxAmount = 1000000;
         }
 
         public static class Global
@@ -72,11 +84,18 @@
             public const string countryDisplay = "Country";
             public const string urlDisplay = "Image";
             public const string confirmPassword = "Confirm Password";
+            public const string cargoSizeDisplay = "Cargo Size";
+            public const string cityNameDisplay = "City Name";
+            public const string postCodeDisplay = "Post Code";
+            public const string companyNameDsplay = "Company Name";
+            public const string vatNumberDisplay = "VAT Number";
         }
 
         public static class ErrorMessages
         {
             public const string countryNotExistErrorMessage = "Country does not exist.";
+            public const string cargoSizeNotExistErrorMessage = "Cargo Size does not exist.";
+            public const string trailerTypeNotExistErrorMessage = "Trailer Type does not exist.";
             public const string passwordErrorMessage = "The {0} must be between {2} and {1} characters";
             public const string confirmPasswordErrorMessage = "The password and it's confirmation do not match.";
             public const string requiredErrorMessage = "The field cannot be empty!";
@@ -85,6 +104,10 @@
             public const string phoneNumberErrorMessage = "Enter valid Phone Number! '+359-123456789'";
             public const string propertyExistsErrorMessage = "Value already exists!";
             public const string userRegisterFailedErrorMessage = "Employee registration have failed";
+            public const string descriptionErrorMessage = "The {0} cannot be more than {1} characters";
+            public const string dimensionValuesErrorMessage = "{0} must be between {1} and {2}cm!";
+            public const string weightValueErrorMessage = "{0} must be between {1} and {2}kilograms!";
+            public const string priceErrorMessage = "{0} must be between {1} and {2} leva!";
         }
 
         public static class User

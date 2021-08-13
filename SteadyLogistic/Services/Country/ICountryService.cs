@@ -8,7 +8,7 @@
 
         public ICollection<CountryServiceModel> AllCountries();
 
-        public bool CountryExists(int countryId);
+        public bool Exists(int countryId);
 
         public Country GetCountryById(int countryId);
     }

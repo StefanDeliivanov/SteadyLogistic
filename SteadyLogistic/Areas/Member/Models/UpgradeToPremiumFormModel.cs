@@ -13,8 +13,8 @@
 
     public class UpgradeToPremiumFormModel
     {
-        #region User
 
+        #region User
         [Required(ErrorMessage = requiredErrorMessage)]
         [StringLength(nameMaxLength, MinimumLength = nameMinLength,
             ErrorMessage = defaultErrorMessage)]
@@ -39,21 +39,19 @@
             ErrorMessage = defaultErrorMessage)]
         [Display(Name = phoneNumberDisplay)]
         public string PhoneNumber { get; set; }
-
         #endregion
 
         #region Company
-
         [Required(ErrorMessage = requiredErrorMessage)]
         [StringLength(companyNameMaxLength, MinimumLength = companyNameMinLength,
             ErrorMessage = defaultErrorMessage)]
-        [Display(Name = "Company Name")]
+        [Display(Name = companyNameDsplay)]
         public string CompanyName { get; set; }
 
         [Required(ErrorMessage = requiredErrorMessage)]
         [StringLength(vatNumberMaxLength, MinimumLength = vatNumberMinLength,
             ErrorMessage = defaultErrorMessage)]
-        [Display(Name = "Vat Number")]
+        [Display(Name = vatNumberDisplay)]
         public string VatNumber { get; set; }
 
         [Required(ErrorMessage = requiredErrorMessage)]
@@ -74,23 +72,20 @@
             ErrorMessage = emailErrorMessage)]
         [Display(Name = emailDisplay)]
         public string CompanyEmail { get; set; }
-
         #endregion
 
         #region City
-
         [Required(ErrorMessage = requiredErrorMessage)]
         [StringLength(cityNameMaxLength, MinimumLength = cityNameMinLength,
             ErrorMessage = defaultErrorMessage)]
-        [Display(Name = "City Name")]
+        [Display(Name = cityNameDisplay)]
         public string CityName { get; set; }
 
         [Required(ErrorMessage = requiredErrorMessage)]
         [StringLength(cityPostCodeMaxLength, MinimumLength = cityPostCodeMinLength,
             ErrorMessage = defaultErrorMessage)]
-        [Display(Name = "Post Code")]
+        [Display(Name = postCodeDisplay)]
         public string PostCode { get; set; }
-
         #endregion
 
         [Required(ErrorMessage = requiredErrorMessage)]
