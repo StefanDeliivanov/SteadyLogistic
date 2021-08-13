@@ -1,4 +1,9 @@
-﻿.oleo-font {
+﻿.freights-head {
+    font-family: 'Agency FB';
+    font-size: 20px;
+}
+
+.oleo-font {
     text-align: center;
     font-family: 'Oleo Script', cursive;
     color: #fcc500;

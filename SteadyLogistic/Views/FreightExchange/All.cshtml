@@ -1,48 +1,37 @@
-﻿@{
-    ViewBag.Title = " Freight exhange all   ";
-}
+﻿@model AllFreightsQueryModel
 
-<h1>All Freights</h1>
+@{ ViewBag.Title = " Freight exhange all   "; }
 
-<table class="table table-striped">
-    <thead class="thead-dark">
+<head>
+    <link rel="stylesheet" href="~/css/global.css" />
+</head>
+
+<style>
+    .table-hover tbody tr:hover td {
+        background-color: lightpink;
+    }
+</style>
+
+<div class="oleo-font" style="margin-bottom: 15px;"> All Freights ( @Model.TotalFreights )</div>
+
+<table class="table table-sm table-striped table-hover">
+    <thead class="bg-primary text-warning freights-head">
         <tr>
-            <th scope="col">Id</th>
-            <th scope="col">From</th>
-            <th scope="col">To</th>
-            <th scope="col">Person</th>
-            <th scope="col">Company</th>
-            <th scope="col">Date</th>
-            <th scope="col"></th>
+            <th class="col-md-5 ">Loading and unloading Destinations:</th>
+            <th class="col-md-5 text-right">User <span style="font-family: Arial; font-size:18px">@@ </span> Company:</th>
+            <th class="col-md-2 text-right">Published on:</th>
+            <th class="col-md-1 text-right">Loading on:</th>
         </tr>
     </thead>
     <tbody>
+        @if (!Model.Freights.Any())
+        {
         <tr>
-            <td scope="col">Id</td>
-            <td scope="col">From</td>
-            <td scope="col">To</td>
-            <td scope="col">Person</td>
-            <td scope="col">Company</td>
-            <td scope="col">Date</td>
-            <td scope="col"></td>
+            <td>
+                <div class="oleo-font" style="margin-bottom: 30px;">There are no News found</div>
+            </td>
         </tr>
-        <tr>
-            <td scope="col">Id</td>
-            <td scope="col">From</td>
-            <td scope="col">To</td>
-            <td scope="col">Person</td>
-            <td scope="col">Company</td>
-            <td scope="col">Date</td>
-            <td scope="col"></td>
-        </tr>
-        <tr>
-            <td scope="col">Id</td>
-            <td scope="col">From</td>
-            <td scope="col">To</td>
-            <td scope="col">Person</td>
-            <td scope="col">Company</td>
-            <td scope="col">Date</td>
-            <td scope="col"></td>
-        </tr>
+        }
+        <partial name="_FreightPartial" model="@Model.Freights" />
     </tbody>
 </table>

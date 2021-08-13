@@ -1,0 +1,20 @@
+﻿@model IEnumerable<FreightServiceModel>
+
+@foreach (var freight in Model)
+{
+    <tr>
+        <td class="col-md-5">
+            <a asp-controller="FreightExchange" asp-action="Details" asp-route-id="@freight.Id">
+                from <strong>@freight.LoadingCountryCode / @freight.LoadingCityName</strong> 
+                to <strong>@freight.UnloadingCountryCode / @freight.UnloadingCityName</strong>
+            </a>
+        </td>
+        <td class="col-md-5 text-right">
+            <a asp-controller="Catalogue" asp-action="Details" asp-route-id="@freight.UserId">
+                @freight.UserFullName @@"@freight.CompanyName"
+            </a>
+        </td>
+        <td class="col-md-2 text-right">@freight.PublishedOn.ToLocalTime().ToString("dd/MM/yyyy HH:mm'h'")</td>
+        <td class="col-md-1 text-right">@freight.LoadingDate.ToLocalTime().ToString("dd/MM/yyyy") </td>
+    </tr>
+}

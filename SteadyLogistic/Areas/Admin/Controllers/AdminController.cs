@@ -80,7 +80,7 @@
                 MessagesViewModel.MessagesPerPage);
 
 
-            query.TotaMessages = queryResult.TotalMessages;
+            query.TotalMessages = queryResult.TotalMessages;
             query.Messages = queryResult.AllMessages;
 
             return View(query);

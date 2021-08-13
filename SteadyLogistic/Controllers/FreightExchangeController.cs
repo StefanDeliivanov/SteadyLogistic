@@ -47,9 +47,17 @@
             this.loadUnloadInfos = loadUnloadInfos;
         }
 
-        public IActionResult All()
+        public IActionResult All([FromQuery] AllFreightsQueryModel query)
         {
-            return View();
+            var queryResult = this.freights.All(
+                query.CurrentPage,
+                AllFreightsQueryModel.FreightsPerPage);
+
+
+            query.TotalFreights = queryResult.TotalFreights;
+            query.Freights = queryResult.AllFreights;
+
+            return View(query);
         }
 
         [HttpGet]

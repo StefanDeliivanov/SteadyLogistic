@@ -12,7 +12,7 @@
         previousPage = 1;
     }
 
-    var maxPage = Math.Ceiling((double)Model.TotaMessages / MessagesViewModel.MessagesPerPage);
+    var maxPage = Math.Ceiling((double)Model.TotalMessages / MessagesViewModel.MessagesPerPage);
 }
 
 
@@ -22,7 +22,7 @@
         <div class="panel-heading">
             <div>
                 <span class="title-mailbox">Admin Mailbox</span>
-                <span class="title-emails">@Model.TotaMessages total Messages</span>
+                <span class="title-emails">@Model.TotalMessages total Messages</span>
             </div>
             <div class="clearfix"></div>
         </div>

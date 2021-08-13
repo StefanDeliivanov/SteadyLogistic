@@ -52,6 +52,7 @@
                 AllMessages = messages
             };
         }
+
         private static IEnumerable<MessageServiceModel> GetMessages(IQueryable<Message> query)
         {
             var messages = query

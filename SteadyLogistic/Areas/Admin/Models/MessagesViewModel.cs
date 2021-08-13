@@ -9,7 +9,7 @@
 
         public int CurrentPage { get; init; } = 1;
 
-        public int TotaMessages { get; set; }
+        public int TotalMessages { get; set; }
 
         public IEnumerable<MessageServiceModel> Messages { get; set; }
     }
