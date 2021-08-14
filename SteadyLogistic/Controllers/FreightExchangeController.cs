@@ -1,6 +1,5 @@
 ﻿namespace SteadyLogistic.Controllers
 {
-    using System.Security.Claims;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using SteadyLogistic.Models.FreightExchange;
@@ -11,6 +10,7 @@
     using SteadyLogistic.Services.Dimension;
     using SteadyLogistic.Services.LoadUnloadInfo;
     using SteadyLogistic.Services.Freight;
+    using SteadyLogistic.Infrastructure.Extensions;
 
     using static Areas.AreaGlobalConstants.Roles;
     using static Data.DataConstants.ErrorMessages;
@@ -58,6 +58,35 @@
             return View(query);
         }
 
+        [Authorize(Roles = FreightBrokersRoleName)]
+        public IActionResult MyOffers([FromQuery] AllFreightsQueryModel query)
+        {
+            var queryResult = this.freights.GetFreightsByUser(
+                this.User.GetUserId(),
+                query.CurrentPage,
+                AllFreightsQueryModel.FreightsPerPage);
+
+
+            query.TotalFreights = queryResult.TotalFreights;
+            query.Freights = queryResult.AllFreights;
+
+            return View(query);
+        }
+
+        [Authorize(Roles = FreightBrokersRoleName)]
+        public IActionResult CompanyOffers([FromQuery] AllFreightsQueryModel query)
+        {
+            var queryResult = this.freights.GetCompanyFreightsByUser(
+                this.User.GetUserId(),
+                query.CurrentPage,
+                AllFreightsQueryModel.FreightsPerPage);
+
+            query.TotalFreights = queryResult.TotalFreights;
+            query.Freights = queryResult.AllFreights;
+
+            return View(query);
+        }
+
         [HttpGet]
         [Authorize(Roles = FreightBrokersRoleName)]
         public IActionResult Add()
@@ -78,14 +107,17 @@
             {
                 this.ModelState.AddModelError(nameof(model.LoadingCountryId), countryNotExistErrorMessage);
             }
+
             if (!this.countries.Exists(model.UnloadingCountryId))
             {
                 this.ModelState.AddModelError(nameof(model.UnloadingCountryId), countryNotExistErrorMessage);
             }
+
             if (!this.cargoSizes.Exists(model.CargoSizeId))
             {
                 this.ModelState.AddModelError(nameof(model.CargoSizeId), cargoSizeNotExistErrorMessage);
             }
+
             if (!this.trailerTypes.Exists(model.TrailerTypeId))
             {
                 this.ModelState.AddModelError(nameof(model.TrailerTypeId), trailerTypeNotExistErrorMessage);
@@ -112,7 +144,7 @@
 
             var loadingCity = cities.GetCity(model.LoadingPostCode, model.LoadingCityName, model.LoadingCountryId);
             var unloadingCity = cities.GetCity(model.UnloadingPostCode, model.UnloadingCityName, model.UnloadingCountryId);
-            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            var userId = this.User.GetUserId();
             var dimension = dimensions.Create(model.Length, model.Width, model.Height);
             var loading = loadUnloadInfos.Create(loadingCity.Id, model.LoadingCountryId, model.LoadingDate);
             var unloading = loadUnloadInfos.Create(unloadingCity.Id, model.UnloadingCountryId, model.UnloadingDate);
@@ -131,6 +163,35 @@
             TempData[GlobalMessageKey] = "Freight was added successfully!";
 
             return RedirectToAction(nameof(All));
+        }
+
+
+        public IActionResult Delete([FromQuery]int freightId, string userId)
+        {
+            if (!this.freights.Exists(freightId))
+            {
+                TempData[GlobalErrorKey] = "The freight does not exist!";
+
+                return RedirectToAction(nameof(All));
+            }
+
+            if (!freights.IsAuthorized(freightId, userId) && !this.User.IsAdmin())
+            {
+                TempData[GlobalErrorKey] = "You are not authorized to delete this";
+
+                return RedirectToAction(nameof(All));
+            }        
+
+            if (this.freights.Delete(freightId))
+            {
+                TempData[GlobalMessageKey] = "Freight was deleted successfully!";
+
+                return RedirectToAction(nameof(All));
+            }
+
+            TempData[GlobalErrorKey] = "Something went wrong! Please try again";
+
+            return RedirectToAction(nameof(Details), freightId);
         }
 
         public IActionResult Details(int id)

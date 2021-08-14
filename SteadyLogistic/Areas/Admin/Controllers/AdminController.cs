@@ -55,7 +55,7 @@
         {
             if (!this.articles.ArticleExists(id))
             {
-                TempData[GlobalMessageKey] = "The requested article does not exist!";
+                TempData[GlobalErrorKey] = "The requested article does not exist!";
 
                 return RedirectToAction("News", "Home", new { area = "" });
             }
@@ -106,7 +106,7 @@
         {
             if (!this.messages.MessageExists(id))
             {
-                TempData[GlobalMessageKey] = "The requested message does not exist!";
+                TempData[GlobalErrorKey] = "The requested message does not exist!";
 
                 return RedirectToAction(nameof(Messages));
             }

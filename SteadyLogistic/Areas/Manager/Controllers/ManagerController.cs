@@ -1,10 +1,10 @@
 ﻿namespace SteadyLogistic.Areas.Manager.Controllers
 {
-    using System.Security.Claims;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using SteadyLogistic.Areas.Manager.Models;
     using SteadyLogistic.Services.User;
+    using SteadyLogistic.Infrastructure.Extensions;
 
     using static AreaGlobalConstants.Roles;
     using static SteadyLogistic.Data.DataConstants.ErrorMessages;
@@ -53,7 +53,7 @@
                 return View(model);
             }
 
-            var managerId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            var managerId = this.User.GetUserId();
             var user = users.GetUserByEmail(model.Email);
             var companyId = users.GetCompanyIdByPremiumUserId(managerId);
 

@@ -1,6 +1,6 @@
 ﻿@model AllFreightsQueryModel
 
-@{ ViewBag.Title = " Freight exhange all   "; }
+@{ ViewBag.Title = " My Offers  "; }
 
 <head>
     <link rel="stylesheet" href="~/css/global.css" />
@@ -21,7 +21,7 @@
 
     var maxPage = Math.Ceiling((double)Model.TotalFreights / AllFreightsQueryModel.FreightsPerPage); }
 
-<div class="oleo-font" style="margin-bottom: 15px;"> All Freights ( @Model.TotalFreights )</div>
+<div class="oleo-font" style="margin-bottom: 15px;"> My Freights ( @Model.TotalFreights )</div>
 
 <table class="table table-sm table-striped table-hover">
     <thead class="bg-primary text-warning freights-head">
@@ -43,8 +43,7 @@
     <td>
         <div class="oleo-font" style="margin-bottom: 30px;">There are no Freights found</div>
     </td>
-</tr>
-}
+</tr>}
 
 <div class="row mb-5">
     <div class="col-md-6">
@@ -55,7 +54,7 @@
     </div>
 
     @{ var shouldButtonBeDisabled = Model.CurrentPage == maxPage ||
-                                                  !Model.Freights.Any(); }
+                                                   !Model.Freights.Any(); }
 
     <div class="col-md-6">
         <a class="btn float-sm-right @(shouldButtonBeDisabled ? "disabled" : string.Empty) steady-btn"

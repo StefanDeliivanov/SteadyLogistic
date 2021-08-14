@@ -102,7 +102,104 @@
                 .FirstOrDefault();
 
             return freight;
-        }    
+        }
+
+        public bool Delete(int id)
+        {
+            var freight = this.data
+               .Freights
+               .Where(a => a.Id == id)
+               .FirstOrDefault();
+
+            try
+            {
+                this.data.Freights.Remove(freight);
+                this.data.SaveChanges();
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        public bool Exists(int id)
+        {
+            var freight = this.data
+                .Freights
+                .Where(a => a.Id == id)
+                .FirstOrDefault();
+
+            if (freight == null)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        public bool IsAuthorized(int freightId, string userId)
+        {
+            var freight = this.data.Freights
+                .Where(a => a.Id == freightId)
+                .FirstOrDefault();
+
+            if (freight.UserId == userId)
+            {
+                return true;
+            }
+
+            return false;            
+        }
+
+        public FreightQueryServiceModel GetFreightsByUser(string userId, int currentPage = 1, int freightsPerPage = int.MaxValue)
+        {
+            var freightsQuery = this.data.Freights
+                .Where(a => a.UserId == userId)
+                .OrderByDescending(a => a.PublishedOn);
+
+            var totalFreights = freightsQuery.Count();
+
+            var freights = GetFreights(freightsQuery
+                .Skip((currentPage - 1) * freightsPerPage)
+                .Take(freightsPerPage)).ToList();
+
+            return new FreightQueryServiceModel
+            {
+                TotalFreights = totalFreights,
+                CurrentPage = currentPage,
+                FreightsPerPage = freightsPerPage,
+                AllFreights = freights
+            };
+        }
+
+        public FreightQueryServiceModel GetCompanyFreightsByUser(string userId, int currentPage = 1, int freightsPerPage = int.MaxValue)
+        {
+            var company = this.data.Companies
+                .Where(a => a.ManagerId == userId
+                    || a.Employees.Any(
+                        b => b.UserId == userId))
+                .FirstOrDefault();
+
+            var freightsQuery = this.data.Freights
+                .Where(a => a.User.Company.Id == company.Id)
+                .OrderByDescending(a => a.PublishedOn);
+
+            var totalFreights = freightsQuery.Count();
+
+            var freights = GetFreights(freightsQuery
+                .Skip((currentPage - 1) * freightsPerPage)
+                .Take(freightsPerPage)).ToList();
+
+            return new FreightQueryServiceModel
+            {
+                TotalFreights = totalFreights,
+                CurrentPage = currentPage,
+                FreightsPerPage = freightsPerPage,
+                AllFreights = freights
+            };
+        }
 
         private static IEnumerable<FreightServiceModel> GetFreights (IQueryable<Freight> query)
         {

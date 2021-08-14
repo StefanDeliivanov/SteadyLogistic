@@ -1,4 +1,9 @@
-﻿.edit-btn {
+﻿.freights-bold-right {
+    text-align: right;
+    font-weight: bold;
+}
+
+.edit-btn {
     color: white;
     font-weight: bold;
     width: 120px;
