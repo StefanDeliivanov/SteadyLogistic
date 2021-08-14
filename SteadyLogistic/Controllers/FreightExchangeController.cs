@@ -12,8 +12,6 @@
     using SteadyLogistic.Services.LoadUnloadInfo;
     using SteadyLogistic.Services.Freight;
 
-    using SteadyLogistic.Data.Models;
-
     using static Areas.AreaGlobalConstants.Roles;
     using static Data.DataConstants.ErrorMessages;
     using static WebConstants;
@@ -133,6 +131,20 @@
             TempData[GlobalMessageKey] = "Freight was added successfully!";
 
             return RedirectToAction(nameof(All));
+        }
+
+        public IActionResult Details(int id)
+        {
+            var freight = this.freights.Details(id);
+
+            if (freight == null)
+            {
+                TempData[GlobalErrorKey] = "This freight does not exist!";
+
+                return RedirectToAction(nameof(All));
+            }
+
+            return View(freight);
         }
     }
 }

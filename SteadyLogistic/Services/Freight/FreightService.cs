@@ -64,6 +64,46 @@
             };
         }
 
+        public FreightDetailsServiceModel Details(int id)
+        {
+            var freight = this.data.Freights
+                .Where(a => a.Id == id)
+                .Select(b => new FreightDetailsServiceModel
+                {
+                    Id = b.Id,
+                    Description = b.Description,
+                    Price = b.Price,                 
+                    TrailerType = b.TrailerType.Name,
+                    CargoSize = b.CargoSize.Name,
+                    Weight = b.Weight,
+                    Length = b.Dimension.Length,
+                    Width = b.Dimension.Width,
+                    Height = b.Dimension.Height,
+                    LoadingCountryCode = b.Loading.Country.Code,
+                    LoadingCountryName = b.Loading.Country.Name,
+                    LoadingCityName = b.Loading.City.Name,
+                    LoadingCityCode = b.Loading.City.PostCode,
+                    LoadingDate = b.Loading.Date,
+                    UnloadingCountryCode = b.Unloading.Country.Code,
+                    UnloadingCountryName = b.Unloading.Country.Name,
+                    UnloadingCityName = b.Unloading.City.Name,
+                    UnloadingCityCode = b.Unloading.City.PostCode,
+                    UnloadingDate = b.Unloading.Date,
+                    PublishedOn = b.PublishedOn,
+                    UserId = b.User.Id,
+                    UserFullName = b.User.FirstName + " " + b.User.LastName,
+                    UserPhoneNumber = b.User.PhoneNumber,
+                    UserEmail = b.User.Email,
+                    CompanyId = b.User.Company.Id,
+                    CompanyName = b.User.Company.Name,
+                    CompanyPhoneNumber = b.User.Company.PhoneNumber,
+                    CompanyEmail = b.User.Company.Email
+                })
+                .FirstOrDefault();
+
+            return freight;
+        }    
+
         private static IEnumerable<FreightServiceModel> GetFreights (IQueryable<Freight> query)
         {
             var freights = query

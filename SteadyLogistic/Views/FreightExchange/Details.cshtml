@@ -1,0 +1,191 @@
+﻿@model FreightDetailsServiceModel
+
+<head>
+    <link rel="stylesheet" href="~/css/global.css" />
+    <link rel="stylesheet" href="~/css/messages.css" />
+</head>
+
+<div class="oleo-font" style="margin-bottom: 15px;"> Freight #@Model.Id</div>
+
+<div class="row">
+    <div class="col-md-8">
+        <table class="table table-sm table-striped col-md-12">
+            <thead class="bg-primary text-warning freights-head">
+                <tr>
+                    <th class="col-md-2"> </th>
+                    <th class="col-md-6"> Freight information: 
+                        <a href="https://google.com/maps/dir/@Model.LoadingCityName/@Model.UnloadingCityName" 
+                           class="float-right google-directions" target="_blank" rel="noopener noreferrer"> 
+                            <i class="fa fa-map-marker"> Google Directions</i></a>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="col-md-2" style="text-align: right; font-weight: bold">
+                        From:
+                    </td>
+                    <td class="col-md-6">
+                        @Model.LoadingCountryCode - @Model.LoadingCountryName | @Model.LoadingCityName - @Model.LoadingCityCode
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-2" style="text-align: right; font-weight: bold">
+                        To: 
+                    </td>
+                    <td class="col-md-6">
+                        @Model.UnloadingCountryCode - @Model.UnloadingCountryName | @Model.UnloadingCityName - @Model.UnloadingCityCode
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-2" style="text-align: right; font-weight: bold">
+                        Loading date:
+                    </td>
+                    <td class="col-md-6">
+                        @Model.LoadingDate.ToLocalTime().ToString("dd MMMM, yyyy")
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-2" style="text-align: right; font-weight: bold">
+                        Unloading date:
+                    </td>
+                    <td class="col-md-6">
+                        @Model.UnloadingDate.ToLocalTime().ToString("dd MMMM, yyyy")
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-2" style="text-align: right; font-weight: bold">
+                        Cargo / Trailer Types:
+                    </td>
+                    <td class="col-md-6">
+                        @Model.CargoSize | @Model.TrailerType
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-2" style="text-align: right; font-weight: bold">
+                        Dimensions:
+                    </td>
+                    <td class="col-md-6">
+                        Length: @Model.Length cm | Width: @Model.Width cm | Height: @Model.Height cm
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-2" style="text-align: right; font-weight: bold">
+                        Weight:
+                    </td>
+                    <td class="col-md-6">
+                        @Model.Weight kg
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-2" style="text-align: right; font-weight: bold">
+                        Published on:
+                    </td>
+                    <td class="col-md-6">
+                        @Model.PublishedOn.ToLocalTime().ToString("dd MMMM yyyy, HH:mm'h'")
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-2" style="text-align: right; font-weight: bold">
+                        Price:
+                    </td>
+                    <td class="col-md-6">
+                        @Model.Price Euro
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-2" style="text-align: right; font-weight: bold">
+                        Description:
+                    </td>
+                    <td class="col-md-6">
+                        @Model.Description
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-4">
+        <table class="table table-sm table-striped col-md-12 mb-5">
+            <thead class="bg-primary text-warning freights-head">
+                <tr>
+                    <th class="col-md-2"> </th>
+                    <th class="col-md-10"> User: </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="col-md-2" style="text-align: right; font-weight: bold">
+                        Name:
+                    </td>
+                    <td class="col-md-10">
+                        @Model.UserFullName
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-2" style="text-align: right; font-weight: bold">
+                        Phone:
+                    </td>
+                    <td class="col-md-10">
+                        @Model.UserPhoneNumber
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-2" style="text-align: right; font-weight: bold">
+                        Email:
+                    </td>
+                    <td class="col-md-10">
+                        @Model.UserEmail
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-striped col-md-12 mb-5">
+            <thead class="bg-primary text-warning freights-head">
+                <tr>
+                    <th class="col-md-2"> </th>
+                    <th class="col-md-10"> Company: </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="col-md-2" style="text-align: right; font-weight: bold">
+                        Name:
+                    </td>
+                    <td class="col-md-10">
+                        @Model.CompanyName
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-2" style="text-align: right; font-weight: bold">
+                        Phone:
+                    </td>
+                    <td class="col-md-10">
+                        @Model.CompanyPhoneNumber
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-2" style="text-align: right; font-weight: bold">
+                        Email:
+                    </td>
+                    <td class="col-md-10">
+                        @Model.CompanyEmail
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="row">
+            <div class="col">
+                <a asp-area="Admin" asp-controller="Admin" asp-action="Delete" asp-route-id="12">
+                    <input type="button" class="btn edit-btn float-left" value="Edit" />
+                </a>
+            </div>
+            <div class="col">
+                <a asp-area="Admin" asp-controller="Admin" asp-action="Delete" asp-route-id="12">
+                    <input type="button" class="btn delete-btn float-right" value="Delete" />
+                </a>
+            </div>
+        </div>
+
+    </div>
+</div>

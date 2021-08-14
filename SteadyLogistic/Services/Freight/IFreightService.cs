@@ -17,5 +17,7 @@
             string userId);
 
         public FreightQueryServiceModel All(int currentPage = 1, int freightsPerPage = int.MaxValue);
+
+        public FreightDetailsServiceModel Details(int id);
     } 
 }

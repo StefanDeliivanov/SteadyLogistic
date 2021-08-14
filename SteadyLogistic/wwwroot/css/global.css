@@ -1,6 +1,37 @@
-﻿.freights-head {
+﻿.edit-btn {
+    color: white;
+    font-weight: bold;
+    width: 120px;
+    background-color: gold;
+}
+
+    .edit-btn:hover {
+        color: dodgerblue;
+        background-color: goldenrod;
+    }
+
+.delete-btn {
+    color: white;
+    font-weight: bold;
+    width: 120px;
+    background-color: red;
+}
+
+    .delete-btn:hover {
+        color: dodgerblue;
+        background-color: goldenrod;
+    }
+
+.freights-head {
     font-family: 'Agency FB';
     font-size: 20px;
+}
+
+.google-directions {
+    font-family: 'Agency FB';
+    font-size: 20px;
+    color: goldenrod;
+    text-decoration: underline;
 }
 
 .oleo-font {

@@ -107,7 +107,7 @@ namespace SteadyLogistic.Data
             public const string descriptionErrorMessage = "The {0} cannot be more than {1} characters";
             public const string dimensionValuesErrorMessage = "{0} must be between {1} and {2}cm!";
             public const string weightValueErrorMessage = "{0} must be between {1} and {2}kilograms!";
-            public const string priceErrorMessage = "{0} must be between {1} and {2} leva!";
+            public const string priceErrorMessage = "{0} must be between {1} and {2} euro!";
             public const string invalidDateErrorMessage = "Date Invalid! Cannot select past date";
         }
 
