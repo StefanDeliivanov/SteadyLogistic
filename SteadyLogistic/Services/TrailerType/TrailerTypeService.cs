@@ -25,6 +25,15 @@
                         .ToList();
         }
 
+        public ICollection<string> AllTrailerTypeNames()
+        {
+            return this.data
+                        .TrailerTypes
+                        .Select(a => a.Name)
+                        .OrderBy(b => b)
+                        .ToList();
+        }
+
         public bool Exists(int trailerTypeId)
         {
             return this.data

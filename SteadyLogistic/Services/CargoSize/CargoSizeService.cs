@@ -24,6 +24,16 @@
                         })
                         .ToList();
         }
+
+        public ICollection<string> AllCargoSizeNames()
+        {
+            return this.data
+                        .CargoSizes
+                        .Select(a => a.Name)
+                        .OrderBy(b => b)
+                        .ToList();
+        }
+
         public bool Exists(int cargoSizeId)
         {
             return this.data

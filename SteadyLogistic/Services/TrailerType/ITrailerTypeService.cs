@@ -7,6 +7,8 @@
 
         public ICollection<TrailerTypeServiceModel> AllTrailerTypes();
 
+        public ICollection<string> AllTrailerTypeNames();
+
         public bool Exists(int trailerTypeId);
     }
 }

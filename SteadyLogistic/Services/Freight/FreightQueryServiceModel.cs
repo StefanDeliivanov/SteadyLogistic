@@ -5,12 +5,12 @@
     public class FreightQueryServiceModel
     {
 
-        public int CurrentPage { get; init; }
+        public int CurrentPage { get; set; }
 
-        public int FreightsPerPage { get; init; }
+        public int FreightsPerPage { get; set; }
 
-        public int TotalFreights { get; init; }
+        public int TotalFreights { get; set; }
 
-        public IEnumerable<FreightServiceModel> AllFreights { get; init; }
+        public IEnumerable<FreightServiceModel> AllFreights { get; set; }
     }
 }

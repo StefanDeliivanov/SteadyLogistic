@@ -4,12 +4,12 @@
 
     public class ArticleQueryServiceModel
     {
-        public int CurrentPage { get; init; }
+        public int CurrentPage { get; set; }
 
-        public int ArticlesPerPage { get; init; }
+        public int ArticlesPerPage { get; set; }
 
-        public int TotalArticles { get; init; }
+        public int TotalArticles { get; set; }
 
-        public IEnumerable<ArticleServiceModel> AllArticles { get; init; }
+        public IEnumerable<ArticleServiceModel> AllArticles { get; set; }
     }
 }

@@ -5,6 +5,7 @@
     using System.Linq;
     using SteadyLogistic.Data;
     using SteadyLogistic.Data.Models;
+    using SteadyLogistic.Models.FreightExchange;
 
     public class FreightService : IFreightService
     {
@@ -44,10 +45,66 @@
             this.data.SaveChanges();
         }
 
-        public FreightQueryServiceModel All(int currentPage = 1, int freightsPerPage = int.MaxValue)
+        public FreightQueryServiceModel All(
+            string loadingCountryCode = null,
+            string unloadingCountryCode = null,
+            string cargoSize = null,
+            string trailerType = null,
+            string searchTerm = null,
+            FreightSorting sorting = FreightSorting.PublishedOnDescending, 
+            int currentPage = 1, 
+            int freightsPerPage = int.MaxValue)
         {
-            var freightsQuery = this.data.Freights
-                .OrderByDescending(a => a.PublishedOn);
+            var freightsQuery = this.data.Freights.AsQueryable();
+
+            if (!string.IsNullOrWhiteSpace(loadingCountryCode))
+            {
+                freightsQuery = freightsQuery.Where(a => a.Loading.Country.Code == loadingCountryCode);
+            }
+
+            if (!string.IsNullOrWhiteSpace(unloadingCountryCode))
+            {
+                freightsQuery = freightsQuery.Where(a => a.Unloading.Country.Code == unloadingCountryCode);
+            }
+
+            if (!string.IsNullOrWhiteSpace(cargoSize))
+            {
+                freightsQuery = freightsQuery.Where(a => a.CargoSize.Name == cargoSize);
+            }
+
+            if (!string.IsNullOrWhiteSpace(trailerType))
+            {
+                freightsQuery = freightsQuery.Where(a => a.TrailerType.Name == trailerType);
+            }
+
+            if (!string.IsNullOrWhiteSpace(searchTerm))
+            {
+                freightsQuery = freightsQuery.Where(a =>
+                       a.Loading.City.Name.ToLower().Contains(searchTerm.ToLower())
+                    || a.Loading.City.PostCode.ToLower().Contains(searchTerm.ToLower())
+                    || a.Unloading.City.Name.ToLower().Contains(searchTerm.ToLower())
+                    || a.Unloading.City.PostCode.ToLower().Contains(searchTerm.ToLower()));
+            }
+
+            freightsQuery = sorting switch
+            {
+                FreightSorting.LoadingCountryCodeDescending => freightsQuery.OrderByDescending(a => a.Loading.Country.Code),
+                FreightSorting.LoadingCountryCodeAscending => freightsQuery.OrderBy(a => a.Loading.Country.Code),
+                FreightSorting.UnloadingCountryCodeDescending => freightsQuery.OrderByDescending(a => a.Unloading.Country.Code),
+                FreightSorting.UnloadingCountryCodeAscending => freightsQuery.OrderBy(a => a.Unloading.Country.Code),
+                FreightSorting.LoadingCityNameDescending => freightsQuery.OrderByDescending(a => a.Loading.City.Name),
+                FreightSorting.LoadingCityNameAscending => freightsQuery.OrderBy(a => a.Loading.City.Name),
+                FreightSorting.UnloadingCityNameDescending => freightsQuery.OrderByDescending(a => a.Unloading.City.Name),
+                FreightSorting.UnloadingCityNameAscending => freightsQuery.OrderBy(a => a.Unloading.City.Name),
+                FreightSorting.UserFullNameDescending => freightsQuery.OrderByDescending(a => a.User.FirstName).ThenBy(a => a.User.LastName),
+                FreightSorting.UserFullNameAscending => freightsQuery.OrderBy(a => a.User.FirstName).ThenBy(a => a.User.LastName),
+                FreightSorting.CompanyNameDescending => freightsQuery.OrderByDescending(a => a.User.Company.Name),
+                FreightSorting.CompanyNameAscending => freightsQuery.OrderBy(a => a.User.Company.Name),
+                FreightSorting.LoadingDateDescending => freightsQuery.OrderByDescending(a => a.Loading.Date),
+                FreightSorting.LoadingDateAscending => freightsQuery.OrderBy(a => a.Loading.Date),          
+                FreightSorting.PublishedOnAscending => freightsQuery.OrderBy(a => a.PublishedOn),
+                FreightSorting.PublishedOnDescending or _ => freightsQuery.OrderByDescending(a => a.PublishedOn)          
+            };
 
             var totalFreights = freightsQuery.Count();
 

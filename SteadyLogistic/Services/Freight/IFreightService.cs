@@ -1,7 +1,7 @@
 ﻿namespace SteadyLogistic.Services.Freight
 {
-    using System.Collections.Generic;
     using SteadyLogistic.Data.Models;
+    using SteadyLogistic.Models.FreightExchange;
 
     public interface IFreightService
     {
@@ -17,7 +17,15 @@
             LoadUnloadInfo unloading, 
             string userId);
 
-        public FreightQueryServiceModel All(int currentPage = 1, int freightsPerPage = int.MaxValue);
+        public FreightQueryServiceModel All(
+            string loadingCountryCode = null,
+            string unloadingCountryCode = null,
+            string cargoSize = null,
+            string trailerType = null,
+            string searchTerm = null,
+            FreightSorting sorting = FreightSorting.PublishedOnDescending,
+            int currentPage = 1,
+            int freightsPerPage = int.MaxValue);
 
         public FreightDetailsServiceModel Details(int id);
 

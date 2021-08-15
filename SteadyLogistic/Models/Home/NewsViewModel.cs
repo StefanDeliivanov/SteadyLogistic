@@ -7,7 +7,7 @@
     {
         public const int ArticlesPerPage = 6;
 
-        public int CurrentPage { get; init; } = 1;
+        public int CurrentPage { get; set; } = 1;
 
         public int TotalNews { get; set; }
 

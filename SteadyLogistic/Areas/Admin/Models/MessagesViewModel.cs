@@ -7,7 +7,7 @@
     {
         public const int MessagesPerPage = 8;
 
-        public int CurrentPage { get; init; } = 1;
+        public int CurrentPage { get; set; } = 1;
 
         public int TotalMessages { get; set; }
 

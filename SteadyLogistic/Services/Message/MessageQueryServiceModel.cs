@@ -4,12 +4,12 @@
 
     public class MessageQueryServiceModel
     {
-        public int CurrentPage { get; init; }
+        public int CurrentPage { get; set; }
 
-        public int MessagesPerPage { get; init; }
+        public int MessagesPerPage { get; set; }
 
-        public int TotalMessages { get; init; }
+        public int TotalMessages { get; set; }
 
-        public IEnumerable<MessageServiceModel> AllMessages { get; init; }
+        public IEnumerable<MessageServiceModel> AllMessages { get; set; }
     }
 }

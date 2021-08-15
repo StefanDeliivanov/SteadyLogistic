@@ -26,6 +26,15 @@
                         .ToList();
         }
 
+        public ICollection<string> AllCountryCodes()
+        {
+            return this.data
+                        .Countries
+                        .Select(a => a.Code)
+                        .OrderBy(b => b)
+                        .ToList();
+        }
+
         public bool Exists(int countryId)
         {
             return this.data

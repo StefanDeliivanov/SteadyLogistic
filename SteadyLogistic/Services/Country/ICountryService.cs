@@ -11,5 +11,7 @@
         public bool Exists(int countryId);
 
         public Country GetCountryById(int countryId);
+
+        public ICollection<string> AllCountryCodes();
     }
 }
