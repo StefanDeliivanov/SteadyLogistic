@@ -1,0 +1,17 @@
+﻿@model IEnumerable<FreightServiceModel>
+
+@foreach (var freight in Model)
+{
+<tr>
+    <td class="col-md-5">
+        <a asp-controller="FreightExchange" asp-action="Details" asp-route-id="@freight.Id">
+            LKW Walters InternationalLKW Walters International
+        </a>
+    </td>
+    <td class="col-md-5 text-right">
+        <a asp-controller="Catalogue" asp-action="Details" asp-route-id="@freight.UserId">
+            Dimitrakis Mazonakis Junior
+        </a>
+    </td>
+    <td class="col-md-2 text-right">13 September, 2021</td>
+</tr>}

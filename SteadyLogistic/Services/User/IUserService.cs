@@ -21,5 +21,7 @@
         public User GetUserByEmail(string email);
 
         public int GetCompanyIdByPremiumUserId(string id);
+
+        public string GetUserNamesById(string id);
     }
 }

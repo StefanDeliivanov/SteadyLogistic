@@ -93,7 +93,16 @@
 
             var city = cities.GetCity(model.PostCode, model.CityName, model.CountryId);
 
-            var company = companies.Create(model.CompanyName, model.CompanyPhoneNumber, model.VatNumber, model.CompanyEmail, model.Address, city.Id, country);
+            var company = companies.Create(
+                model.CompanyName, 
+                model.CompanyPhoneNumber, 
+                model.VatNumber, 
+                model.CompanyEmail, 
+                model.Address, 
+                model.FirstName, 
+                model.LastName, 
+                city.Id, 
+                country);
 
             var memberId = this.User.GetUserId();
             var memberEmail = this.User.GetEmail();

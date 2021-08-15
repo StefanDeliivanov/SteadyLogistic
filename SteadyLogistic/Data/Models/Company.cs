@@ -1,5 +1,6 @@
 ﻿namespace SteadyLogistic.Data.Models
 {
+    using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
@@ -35,6 +36,9 @@
         [MaxLength(emailMaxLength)]
         public string Email { get; set; }
 
+        [MaxLength(managerFullNameMaxLength)]
+        public string ManagerFullName { get; set; }
+
         public string ManagerId { get; set; }
         
         public virtual Country Country { get; set; }
@@ -48,6 +52,8 @@
         public virtual Fleet Fleet { get; set; }
 
         public int FleetId { get; set; }
+
+        public DateTime RegisteredOn { get; set; }
 
         public virtual ICollection<PremiumUser> Employees { get; set; }
     }

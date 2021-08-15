@@ -1,0 +1,17 @@
+﻿@model IEnumerable<CompanyServiceModel>
+
+@foreach (var company in Model)
+{
+<tr>
+    <td class="col-md-5">
+        <a asp-controller="Catalogue" asp-action="CompanyDetails" asp-route-id="@company.Id">
+            @company.CompanyName
+        </a>
+    </td>
+    <td class="col-md-5 text-right">
+        <a asp-controller="Catalogue" asp-action="UserDetails" asp-route-id="@company.ManagerId">
+            @company.ManagerName
+        </a>
+    </td>
+    <td class="col-md-2 text-right">@company.RegisteredOn.ToLocalTime().ToString("dd MMMM, yyyy") </td>
+</tr>}

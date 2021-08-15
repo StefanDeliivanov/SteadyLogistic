@@ -127,5 +127,14 @@
 
             return user.CompanyId;
         }
+
+        public string GetUserNamesById(string id)
+        {
+            var user = this.data.PremiumUsers
+                .Where(a => a.Id == id)
+                .FirstOrDefault();
+
+            return user.FirstName + " " + user.LastName;
+        }
     }
 }

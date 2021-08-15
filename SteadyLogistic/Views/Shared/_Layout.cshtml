@@ -41,19 +41,26 @@
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
                                         <a class="dropdown-item" asp-area="" asp-controller="FreightExchange" asp-action="All">All Freights</a>
-                                        <a class="dropdown-item" asp-area="" asp-controller="FreightExchange" asp-action="MyOffers">My Offers</a>
-                                        <a class="dropdown-item" asp-area="" asp-controller="FreightExchange" asp-action="CompanyOffers">Company Offers</a>
-                                        <a class="dropdown-item" asp-area="" asp-controller="FreightExchange" asp-action="Add">Add Freight</a>
+                                        @if (!User.IsAdmin())
+                                        {
+                                            <a class="dropdown-item" asp-area="" asp-controller="FreightExchange" asp-action="MyOffers">My Offers</a>
+                                            <a class="dropdown-item" asp-area="" asp-controller="FreightExchange" asp-action="CompanyOffers">Company Offers</a>
+                                            <a class="dropdown-item" asp-area="" asp-controller="FreightExchange" asp-action="Add">Add Freight</a>
+                                         }
                                     </div>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link text-warning" asp-area="" asp-controller="Catalogue" asp-action="All">Catalogue</a>
+
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link text-warning dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                        Catalogue
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown3">
+                                        <a class="dropdown-item" asp-area="" asp-controller="Catalogue" asp-action="AllCompanies">All Companies</a>
+                                        <a class="dropdown-item" asp-area="" asp-controller="Catalogue" asp-action="AllUsers">All Users</a>
+                                    </div>
                                 </li>
                             }
                         }
-                        <li class="nav-item">
-                            <a class="nav-link text-warning" asp-area="" asp-controller="Documentation" asp-action="Index">Documentation</a>
-                        </li>
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>

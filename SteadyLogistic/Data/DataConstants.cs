@@ -34,6 +34,7 @@ namespace SteadyLogistic.Data
             public const int vatNumberMaxLength = 15;
             public const int addressMinLength = 5;
             public const int addressMaxLength = 50;
+            public const int managerFullNameMaxLength = 41;
         }
 
         public static class Country
@@ -114,7 +115,7 @@ namespace SteadyLogistic.Data
         public static class User
         {
             public const int nameMinLength = 3;
-            public const int nameMaxLength = 30;
+            public const int nameMaxLength = 20;
         }
 
         public static class TrailerType
