@@ -56,8 +56,9 @@
             var managerId = this.User.GetUserId();
             var user = users.GetUserByEmail(model.Email);
             var companyId = users.GetCompanyIdByPremiumUserId(managerId);
+            var registeredOn = user.RegisteredOn;
 
-            var premiumUser = users.CreatePremium(user.Id, model.FirstName, model.LastName, model.Email, model.PhoneNumber, companyId);
+            var premiumUser = users.CreatePremium(user.Id, model.FirstName, model.LastName, model.Email, model.PhoneNumber, companyId, registeredOn);
             users.AddAsEmployee(premiumUser);
 
             TempData[GlobalMessageKey] = "Employee was added successfully to your company";

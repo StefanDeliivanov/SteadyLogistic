@@ -1,5 +1,6 @@
 ﻿namespace SteadyLogistic.Data.Models
 {
+    using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
@@ -30,6 +31,8 @@
         [Required]
         [MaxLength(phoneNumberMaxLength)]
         public string PhoneNumber { get; set; }
+
+        public DateTime RegisteredOn { get; set; }
 
         public virtual Company Company { get; set; }
 

@@ -106,8 +106,10 @@
 
             var memberId = this.User.GetUserId();
             var memberEmail = this.User.GetEmail();
+            var user = users.GetUserByEmail(memberEmail);
+            var registeredOn = user.RegisteredOn;
 
-            var premiumUser = users.CreatePremium(memberId, model.FirstName, model.LastName, memberEmail, model.PhoneNumber, company.Id);
+            var premiumUser = users.CreatePremium(memberId, model.FirstName, model.LastName, memberEmail, model.PhoneNumber, company.Id, registeredOn);
 
             users.AddAsManager(premiumUser);
             companies.AddManager(premiumUser.Id, company.Id);

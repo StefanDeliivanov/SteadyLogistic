@@ -11,6 +11,7 @@
     using SteadyLogistic.Services.LoadUnloadInfo;
     using SteadyLogistic.Services.Freight;
     using SteadyLogistic.Services.Company;
+    using SteadyLogistic.Services.User;
     using SteadyLogistic.Infrastructure.Extensions;
 
     using static Areas.AreaGlobalConstants.Roles;
@@ -28,6 +29,7 @@
         private readonly IFreightService freights;
         private readonly ILoadUnloadInfoService loadUnloadInfos;
         private readonly ICompanyService companies;
+        private readonly IUserService users;
 
         public CatalogueController(
             ICityService cities,
@@ -36,7 +38,9 @@
             ITrailerTypeService trailerTypes,
             IDimensionService dimensions,
             IFreightService freights,
-            ILoadUnloadInfoService loadUnloadInfos, ICompanyService companies)
+            ILoadUnloadInfoService loadUnloadInfos, 
+            ICompanyService companies, 
+            IUserService users)
         {
             this.cities = cities;
             this.countries = countries;
@@ -46,6 +50,7 @@
             this.freights = freights;
             this.loadUnloadInfos = loadUnloadInfos;
             this.companies = companies;
+            this.users = users;
         }
 
         public IActionResult AllCompanies([FromQuery] AllCompaniesQueryModel query)
@@ -64,25 +69,20 @@
             return View(query);
         }
 
-        //public IActionResult AllCompanies([FromQuery] AllFreightsQueryModel query)
-        //{
-        //    var queryResult = this.freights.All(
-        //        query.LoadingCountryCode,
-        //        query.UnloadingCountryCode,
-        //        query.CargoSize,
-        //        query.TrailerType,
-        //        query.SearchTerm,
-        //        query.Sorting,
-        //        query.CurrentPage,
-        //        AllFreightsQueryModel.FreightsPerPage);
+        public IActionResult AllUsers([FromQuery] AllUsersQueryModel query)
+        {
+            var queryResult = this.users.All(
+                 query.SearchTerm,
+                 query.SearchType,
+                 query.Sorting,
+                 query.CurrentPage,
+                 AllFreightsQueryModel.FreightsPerPage);
 
-        //    query.CountryCodes = countries.AllCountryCodes();
-        //    query.CargoSizes = cargoSizes.AllCargoSizeNames();
-        //    query.TrailerTypes = trailerTypes.AllTrailerTypeNames();
-        //    query.TotalFreights = queryResult.TotalFreights;
-        //    query.Freights = queryResult.AllFreights;
 
-        //    return View(query);
-        //}
+            query.TotalUsers = queryResult.TotalUsers;
+            query.Users = queryResult.AllUsers;
+
+            return View(query);
+        }
     }
 }

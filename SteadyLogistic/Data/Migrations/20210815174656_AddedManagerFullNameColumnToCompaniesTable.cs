@@ -1,7 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
-
-namespace SteadyLogistic.Data.Migrations
+﻿namespace SteadyLogistic.Data.Migrations
 {
+    using Microsoft.EntityFrameworkCore.Migrations;
+
     public partial class AddedManagerFullNameColumnToCompaniesTable : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)

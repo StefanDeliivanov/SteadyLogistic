@@ -1,17 +1,17 @@
-﻿@model IEnumerable<FreightServiceModel>
+﻿@model IEnumerable<UserServiceModel>
 
-@foreach (var freight in Model)
+@foreach (var user in Model)
 {
 <tr>
     <td class="col-md-5">
-        <a asp-controller="FreightExchange" asp-action="Details" asp-route-id="@freight.Id">
-            LKW Walters InternationalLKW Walters International
+        <a asp-controller="Catalogue" asp-action="UserDetails" asp-route-id="@user.Id">
+            @user.UserName
         </a>
     </td>
     <td class="col-md-5 text-right">
-        <a asp-controller="Catalogue" asp-action="Details" asp-route-id="@freight.UserId">
-            Dimitrakis Mazonakis Junior
+        <a asp-controller="Catalogue" asp-action="CompanyDetails" asp-route-id="@user.CompanyId">
+            @user.CompanyName
         </a>
     </td>
-    <td class="col-md-2 text-right">13 September, 2021</td>
+    <td class="col-md-2 text-right">@user.RegisteredOn.ToLocalTime().ToString("dd MMMM, yyyy") </td>
 </tr>}

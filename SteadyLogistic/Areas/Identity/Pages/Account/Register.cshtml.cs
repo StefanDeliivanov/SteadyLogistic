@@ -1,5 +1,6 @@
 ﻿namespace SteadyLogistic.Areas.Identity.Pages.Account
 {
+    using System;
     using System.Threading.Tasks;
     using System.ComponentModel.DataAnnotations;
     using Microsoft.AspNetCore.Mvc;   
@@ -66,7 +67,8 @@
                 var user = new User
                 {
                     UserName = Input.Email,
-                    Email = Input.Email
+                    Email = Input.Email,
+                    RegisteredOn = DateTime.UtcNow
                 };
 
                 var result = await userManager.CreateAsync(user, Input.Password);

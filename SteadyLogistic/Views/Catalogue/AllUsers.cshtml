@@ -1,6 +1,6 @@
-﻿@model AllFreightsQueryModel
+﻿@model AllUsersQueryModel
 
-@{ ViewBag.Title = " Freight exhange all   "; }
+@{ ViewBag.Title = " Users Catalogue "; }
 
 <head>
     <link rel="stylesheet" href="~/css/global.css" />
@@ -19,107 +19,92 @@
         previousPage = 1;
     }
 
-    var maxPage = Math.Ceiling((double)Model.TotalFreights / AllFreightsQueryModel.FreightsPerPage); }
+    var maxPage = Math.Ceiling((double)Model.TotalUsers / AllUsersQueryModel.UsersPerPage); }
 
-<div class="oleo-font" style="margin-bottom: 45px;"> All Companies ( @Model.TotalFreights )</div>
+<div class="oleo-font" style="margin-bottom: 45px;"> All Users ( @Model.TotalUsers )</div>
 
 <form method="get" style="margin-bottom: 45px;">
     <div class="row">
         <div class="form-group col-md-4 mb-0">
-            <div class="label-form">Search by City name or postcode:</div>
-            <input asp-for="SearchTerm" class="form-control" placeholder="Mandra, 196 00">
+            <div class="label-form">Search text:</div>
+            <input asp-for="SearchTerm" class="form-control" placeholder="Search text...">
         </div>
+
         <div class="form-group col-md-4">
             <div class="form-group mb-0">
-                <div class="label-form">Trailer Type:</div>
-                <select asp-for="TrailerType" class="form-control">
-                    <option value="">All</option>
-                    @foreach (var type in Model.TrailerTypes)
-                    {
-        <option value="@type">@type</option>
-}
+                <div class="label-form">Search Type:</div>
+                <select asp-for="SearchType" class="form-control">
+                    <option value="0" selected>Name </option>
+                    <option value="1">PhoneNumber </option>
+                    <option value="2">Email </option>
+                    <option value="3">Company Name </option>
                 </select>
             </div>
         </div>
+
         <div class="form-group col-md-4">
             <div class="form-group mb-0">
                 <div class="label-form">Sort by:</div>
                 <select asp-for="Sorting" class="form-control">
-                    <option value="0" selected>Published On &darr; </option>
-                    <option value="1">Published On &uarr; </option>
-                    <option value="2">Loading Country Code &darr; </option>
-                    <option value="3">Loading Country Code &uarr; </option>
-                    <option value="4">Unloading Country Code &darr; </option>
-                    <option value="5">Unloading Country Code &uarr; </option>
-                    <option value="6">Loading City Name &darr; </option>
-                    <option value="7">Loading City Name &uarr; </option>
-                    <option value="8">Unloading City Name &darr; </option>
-                    <option value="9">Unloading City Name &uarr; </option>
-                    <option value="10">User FullName &darr; </option>
-                    <option value="11">User FullName &uarr; </option>
-                    <option value="12">Company Name &darr; </option>
-                    <option value="13">Company Name &uarr; </option>
-                    <option value="14">Loading Date &darr; </option>
-                    <option value="15">Loading Date &uarr; </option>
+                    <option value="0" selected>User Name &uarr; </option>
+                    <option value="1">User Name &darr; </option>
+                    <option value="2">Company Name &uarr; </option>
+                    <option value="3">Company Name &darr; </option>
+                    <option value="4">Registered On &uarr; </option>
+                    <option value="5">Registered On &darr; </option>
                 </select>
             </div>
         </div>
+
     </div>
     <div class="row">
         <div class="col-md-12 text-center">
             <input type="submit" class="btn steady-btn" value="Search" />
         </div>
-
     </div>
 </form>
 
 <table class="table table-sm table-striped table-hover col-md-10 offset-md-1">
     <thead class="bg-primary text-warning freights-head">
         <tr>
-            <th class="col-md-5 ">Company name:</th>
-            <th class="col-md-5 text-right">Manager:</th>
+            <th class="col-md-5 ">User name:</th>
+            <th class="col-md-5 text-right">Company:</th>
             <th class="col-md-2 text-right">Registered on:</th>
         </tr>
     </thead>
     <tbody>
-        <partial name="_FreightPartial" model="@Model.Freights" />
+        <partial name="_UsersPartial" model="@Model.Users" />
     </tbody>
 </table>
 
-@if (!Model.Freights.Any())
+@if (!Model.Users.Any())
 {
 <tr>
     <td>
-        <div class="oleo-font" style="margin-bottom: 30px;">There are no Freights found</div>
+        <div class="oleo-font" style="margin-bottom: 30px;">There are no users found</div>
     </td>
 </tr>}
 
 <div class="row mb-12">
     <div class="col-md-4 offset-md-1">
         <a class="btn float-sm-left @(Model.CurrentPage == 1 ? "disabled" : string.Empty) steady-btn"
-           asp-controller="FreightExchange"
-           asp-action="All"
+           asp-controller="Catalogue"
+           asp-action="AllUsers"
            asp-route-currentPage="@previousPage"
-           asp-route-loadingCountryCode="@Model.LoadingCountryCode"
-           asp-route-unloadingCountryCode="@Model.UnloadingCountryCode"
-           asp-route-cargoSize="@Model.CargoSize"
-           asp-route-trailerType="@Model.TrailerType"
+           asp-route-searchType="@Model.SearchType"
            asp-route-searchTerm="@Model.SearchTerm"
            asp-route-sorting="@((int)Model.Sorting)">Previous Page</a>
     </div>
 
     @{ var shouldButtonBeDisabled = Model.CurrentPage == maxPage ||
-                                                        !Model.Freights.Any(); }
+                                                          !Model.Users.Any(); }
 
     <div class="col-md-6">
         <a class="btn float-sm-right @(shouldButtonBeDisabled ? "disabled" : string.Empty) steady-btn"
-           asp-controller="FreightExchange"
-           asp-action="All"
+           asp-controller="Catalogue"
+           asp-action="AllUsers"
            asp-route-currentPage="@(Model.CurrentPage + 1)"
-           asp-route-loadingCountryCode="@Model.LoadingCountryCode"
-           asp-route-unloadingCountryCode="@Model.UnloadingCountryCode"
-           asp-route-cargoSize="@Model.CargoSize"
-           asp-route-trailerType="@Model.TrailerType"
+           asp-route-searchType="@Model.SearchType"
            asp-route-searchTerm="@Model.SearchTerm"
            asp-route-sorting="@((int)Model.Sorting)">Next Page</a>
     </div>

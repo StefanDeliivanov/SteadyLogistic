@@ -1,10 +1,13 @@
 ﻿namespace SteadyLogistic.Services.User
 {
+    using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Identity;
     using SteadyLogistic.Data;
     using SteadyLogistic.Data.Models;
+    using SteadyLogistic.Models.Catalogue;
 
     using static Areas.AreaGlobalConstants.Roles;
 
@@ -51,7 +54,14 @@
                 .GetResult();
         }
 
-        public PremiumUser CreatePremium(string id, string firstName, string lastName, string email, string phoneNumber, int companyId)
+        public PremiumUser CreatePremium(
+            string id, 
+            string firstName, 
+            string lastName, 
+            string email, 
+            string phoneNumber, 
+            int companyId, 
+            DateTime registeredOn)
         {
             var premiumUser = new PremiumUser()
             {
@@ -62,6 +72,7 @@
                 Email = email,
                 PhoneNumber = phoneNumber,
                 CompanyId = companyId,
+                RegisteredOn = registeredOn
             };
 
             data.PremiumUsers.Add(premiumUser);
@@ -76,7 +87,8 @@
             var user = new User
             {
                 UserName = email,
-                Email = email
+                Email = email,
+                RegisteredOn = DateTime.UtcNow
             };
 
             try
@@ -135,6 +147,68 @@
                 .FirstOrDefault();
 
             return user.FirstName + " " + user.LastName;
+        }
+
+        public UserQueryServiceModel All(
+            string searchTerm = null,
+            UserSearchType searchType = UserSearchType.Name,
+            UserSorting sorting = UserSorting.UserNameAscending,
+            int currentPage = 1,
+            int usersPerPage = int.MaxValue)
+        {
+            var usersQuery = this.data.PremiumUsers.AsQueryable();
+
+            if (!string.IsNullOrWhiteSpace(searchTerm))
+            {
+                usersQuery = searchType switch
+                {
+                    UserSearchType.CompanyName => usersQuery.Where(a => a.Company.Name.Contains(searchTerm)),
+                    UserSearchType.PhoneNumber => usersQuery.Where(a => a.PhoneNumber.Contains(searchTerm)),
+                    UserSearchType.Email => usersQuery.Where(a => a.Email.Contains(searchTerm)),
+                    UserSearchType.Name or _ => usersQuery.Where(a => a.FirstName.Contains(searchTerm) 
+                                                                   || a.LastName.Contains(searchTerm))
+                };
+            }
+
+            usersQuery = sorting switch
+            {
+                UserSorting.RegisteredOnDescending => usersQuery.OrderByDescending(a => a.RegisteredOn),
+                UserSorting.RegisteredOnAscending => usersQuery.OrderBy(a => a.RegisteredOn),
+                UserSorting.CompanyNameDescending => usersQuery.OrderByDescending(a => a.Company.Name),
+                UserSorting.CompanyNameAscending => usersQuery.OrderBy(a => a.Company.Name),
+                UserSorting.UserNameDescending => usersQuery.OrderByDescending(a => a.FirstName).ThenBy(a => a.LastName),
+                UserSorting.UserNameAscending or _ => usersQuery.OrderBy(a => a.FirstName).ThenBy(a => a.LastName)
+            };
+
+            var totalUsers = usersQuery.Count();
+
+            var users = GetUsers(usersQuery
+                .Skip((currentPage - 1) * usersPerPage)
+                .Take(usersPerPage)).ToList();
+
+            return new UserQueryServiceModel
+            {
+                TotalUsers = totalUsers,
+                CurrentPage = currentPage,
+                UsersPerPage = usersPerPage,
+                AllUsers = users
+            };
+        }
+
+        private static IEnumerable<UserServiceModel> GetUsers(IQueryable<PremiumUser> query)
+        {
+            var users = query
+                .Select(a => new UserServiceModel
+                {
+                    Id = a.Id,
+                    CompanyId = a.CompanyId,
+                    UserName = a.FirstName + " " + a.LastName,
+                    CompanyName = a.Company.Name,
+                    RegisteredOn = a.RegisteredOn
+                })
+                .ToList();
+                
+            return users;
         }
     }
 }
