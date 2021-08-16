@@ -2,10 +2,10 @@
 {
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
+    using SteadyLogistic.Models.Catalogue;
     using SteadyLogistic.Models.FreightExchange;
     using SteadyLogistic.Services.Company;
     using SteadyLogistic.Services.User;
-    using SteadyLogistic.Models.Catalogue;
 
     using static Areas.AreaGlobalConstants.Roles;
     using static WebConstants;
@@ -34,13 +34,11 @@
                 query.CurrentPage,
                 AllFreightsQueryModel.FreightsPerPage);
 
-
             query.TotalCompanies = queryResult.TotalCompanies;
             query.Companies = queryResult.AllCompanies;
 
             return View(query);
         }
-
 
         [Authorize(Roles = NotAMemberRoleName)]
         public IActionResult AllUsers([FromQuery] AllUsersQueryModel query)
@@ -52,7 +50,6 @@
                  query.CurrentPage,
                  AllFreightsQueryModel.FreightsPerPage);
 
-
             query.TotalUsers = queryResult.TotalUsers;
             query.Users = queryResult.AllUsers;
 
@@ -63,11 +60,9 @@
         public IActionResult CompanyDetails(int id)
         {
             var company = this.companies.Details(id);
-
             if (company == null)
             {
                 TempData[GlobalErrorKey] = "This company does not exist!";
-
                 return RedirectToAction(nameof(AllCompanies));
             }
 
@@ -82,7 +77,6 @@
             if (user == null)
             {
                 TempData[GlobalErrorKey] = "This user does not exist!";
-
                 return RedirectToAction(nameof(AllUsers));
             }
 

@@ -1,9 +1,9 @@
 ﻿namespace SteadyLogistic.Areas.Identity.Pages.Account
 {
     using System.Threading.Tasks;
-    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
-    using Microsoft.AspNetCore.Authorization; 
+    using Microsoft.AspNetCore.Mvc; 
     using Microsoft.AspNetCore.Mvc.RazorPages;
     using SteadyLogistic.Data.Models;
 
@@ -23,7 +23,7 @@
 
         public async Task<IActionResult> OnPost()
         {
-            await signInManager.SignOutAsync();
+            await this.signInManager.SignOutAsync();
  
             return RedirectToPage("Login");
         }

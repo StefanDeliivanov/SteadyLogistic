@@ -1,9 +1,12 @@
 ﻿@model AddNewsFormModel
+
+@{ ViewBag.Title = "Add News"; }
+
 <head>
     <link rel="stylesheet" href="~/css/global.css" />
 </head>
 
-<div class="oleo-font" style="margin-bottom: 30px;"> Add an Article</div>
+<div class="oleo-font" style="margin-bottom: 30px;">Add an Article </div>
 
 <div class="row">
     <div class="col">
@@ -11,15 +14,15 @@
             <div class="row">
                 <div class="col">
                     <div class="form-group">
-                        <div class="label-form">Author:</div>
+                        <div class="label-form">Author: </div>
                         <input asp-for="@Model.Author" class="form-control" placeholder="John Doe, Lisa Cho...">
                         <span asp-validation-for="@Model.Author" class="small text-danger"></span>
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-group">
-                        <div class="label-form">Image:</div>
-                        <input asp-for="@Model.ImageUrl" class="form-control" placeholder="https://example.com...">
+                        <div class="label-form">Image: </div>
+                        <input asp-for="@Model.ImageUrl" class="form-control" placeholder="Image Url: https://example.com...">
                         <span asp-validation-for="@Model.ImageUrl" class="small text-danger"></span>
                     </div>
                 </div>
@@ -27,21 +30,21 @@
             <div class="row">
                 <div class="col">
                     <div class="form-group">
-                        <div class="label-form">Category:</div>
+                        <div class="label-form">Category: </div>
                         <input asp-for="@Model.Category" class="form-control" placeholder="Economy, Fuels, Traffic...">
                         <span asp-validation-for="@Model.Category" class="small text-danger"></span>
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-group">
-                        <div class="label-form">Title:</div>
+                        <div class="label-form">Title: </div>
                         <input asp-for="@Model.Title" class="form-control" placeholder="Write your news title...">
                         <span asp-validation-for="@Model.Title" class="small text-danger"></span>
                     </div>
                 </div>
             </div>
             <div class="form-group">
-                <div class="label-form">Article text:</div>
+                <div class="label-form">Article text: </div>
                 <textarea asp-for="@Model.Body" class="form-control" style="height: 165px; resize:none;" placeholder="Write your article..."></textarea>
                 <span asp-validation-for="@Model.Body" class="small text-danger"></span>
             </div>
@@ -49,7 +52,7 @@
                 <div class="col text-center">
                     <input type="submit" value="Publish" class="btn contacts-btn" />
                 </div>
-            </div>         
+            </div>
         </form>
     </div>
 </div>

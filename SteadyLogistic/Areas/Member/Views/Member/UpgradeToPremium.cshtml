@@ -1,8 +1,6 @@
 ﻿@model UpgradeToPremiumFormModel
 
-@{
-    ViewBag.Title = "Upgrade to Premium";
-}
+@{ ViewBag.Title = "Upgrade to Premium"; }
 
 <head>
     <link rel="stylesheet" href="~/css/global.css"/>
@@ -11,13 +9,13 @@
 <form method="post">
     <div class="row">
         <div class="col">
-            <p class="oleo-font" style="margin-bottom: 30px;"> Company Info</p>
+            <p class="oleo-font" style="margin-bottom: 30px;">Company Info </p>
         </div>
         <div class="col">
-            <p class="oleo-font" style="margin-bottom: 30px;"> User Info</p>
+            <p class="oleo-font" style="margin-bottom: 30px;">User Info </p>
         </div>
         <div class="col">
-            <p class="oleo-font" style="margin-bottom: 30px;"> City Info</p>
+            <p class="oleo-font" style="margin-bottom: 30px;">City Info </p>
         </div>
     </div>
     <div class="row mt-0">
@@ -35,7 +33,7 @@
         </div>
         <div class="col">
             <div class="form-group">
-                <input asp-for="@Model.CityName" class="form-control" placeholder="City name">
+                <input asp-for="@Model.CityName" class="form-control" placeholder="City name...">
                 <span asp-validation-for="@Model.CityName" class="small text-danger"></span>
             </div>
         </div>
@@ -43,7 +41,7 @@
     <div class="row mt-0">
         <div class="col">
             <div class="form-group">
-                <input asp-for="@Model.VatNumber" class="form-control" placeholder="Vat Number: BG123456789">
+                <input asp-for="@Model.VatNumber" class="form-control" placeholder="Vat Number: BG123456789...">
                 <span asp-validation-for="@Model.VatNumber" class="small text-danger"></span>
             </div>
         </div>
@@ -55,7 +53,7 @@
         </div>
         <div class="col">
             <div class="form-group">
-                <input asp-for="@Model.PostCode" class="form-control" placeholder="City post code: BG-12345">
+                <input asp-for="@Model.PostCode" class="form-control" placeholder="City post code: BG-12345...">
                 <span asp-validation-for="@Model.PostCode" class="small text-danger"></span>
             </div>
         </div>

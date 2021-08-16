@@ -1,11 +1,11 @@
 ﻿namespace SteadyLogistic.Areas.Identity.Pages.Account
 {
-    using System.Threading.Tasks;
     using System.ComponentModel.DataAnnotations;
-    using Microsoft.AspNetCore.Mvc;
-    using Microsoft.AspNetCore.Identity;
+    using System.Threading.Tasks;
+    using Microsoft.AspNetCore.Authentication;
     using Microsoft.AspNetCore.Authorization;
-    using Microsoft.AspNetCore.Authentication; 
+    using Microsoft.AspNetCore.Identity;
+    using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.RazorPages;
     using SteadyLogistic.Data.Models;
 
@@ -45,7 +45,7 @@
         {
             if (!string.IsNullOrEmpty(ErrorMessage))
             {
-                ModelState.AddModelError(string.Empty, ErrorMessage);
+                this.ModelState.AddModelError(string.Empty, ErrorMessage);
             }
 
             returnUrl ??= Url.Content("~/");
@@ -59,9 +59,14 @@
         {
             returnUrl ??= Url.Content("~/");
        
-            if (ModelState.IsValid)
+            if (this.ModelState.IsValid)
             {
-                var result = await signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: false);
+                var result = await this.signInManager.PasswordSignInAsync(
+                    Input.Email, 
+                    Input.Password, 
+                    Input.RememberMe, 
+                    lockoutOnFailure: false);
+
                 if (result.Succeeded)
                 {
                     return LocalRedirect(returnUrl);
@@ -69,10 +74,11 @@
 
                 else
                 {
-                    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                    this.ModelState.AddModelError(string.Empty, "Invalid login attempt.");
                     return Page();
                 }
             }
+
             return Page();
         }
     }

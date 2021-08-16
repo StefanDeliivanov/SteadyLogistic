@@ -4,7 +4,6 @@
 
     public class FreightQueryServiceModel
     {
-
         public int CurrentPage { get; set; }
 
         public int FreightsPerPage { get; set; }

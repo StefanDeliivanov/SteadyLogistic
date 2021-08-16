@@ -3,18 +3,6 @@
     font-weight: bold;
 }
 
-.edit-btn {
-    color: white;
-    font-weight: bold;
-    width: 120px;
-    background-color: gold;
-}
-
-    .edit-btn:hover {
-        color: dodgerblue;
-        background-color: goldenrod;
-    }
-
 .delete-btn {
     color: white;
     font-weight: bold;
@@ -114,15 +102,3 @@
         color: dodgerblue;
         background-color: goldenrod;
     }
-
-/*.delete-article-btn {
-    color: red;
-    font-weight: bold;
-    width: 160px;
-    border-color: red;
-}
-
-    .delete-article-btn:hover {
-        color: dodgerblue;
-        background-color: goldenrod;
-    }*/

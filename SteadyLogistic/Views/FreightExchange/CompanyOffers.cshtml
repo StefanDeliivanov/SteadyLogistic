@@ -1,6 +1,6 @@
 ﻿@model AllFreightsQueryModel
 
-@{ ViewBag.Title = " Company Offers  "; }
+@{ ViewBag.Title = "Company Offers"; }
 
 <head>
     <link rel="stylesheet" href="~/css/global.css" />
@@ -14,22 +14,22 @@
 </style>
 
 @{ var previousPage = Model.CurrentPage - 1;
-    if (previousPage < 1)
-    {
+   if (previousPage < 1)
+   {
         previousPage = 1;
-    }
-
-    var maxPage = Math.Ceiling((double)Model.TotalFreights / AllFreightsQueryModel.FreightsPerPage); }
+   }
+   var maxPage = Math.Ceiling((double)Model.TotalFreights / AllFreightsQueryModel.FreightsPerPage); 
+ }
 
 <div class="oleo-font" style="margin-bottom: 15px;"> My Company Freights ( @Model.TotalFreights )</div>
 
 <table class="table table-sm table-striped table-hover">
     <thead class="bg-primary text-warning freights-head">
         <tr>
-            <th class="col-md-5 ">Loading and unloading Destinations:</th>
-            <th class="col-md-5 text-right">User <span style="font-family: Arial; font-size:18px">@@ </span> Company:</th>
-            <th class="col-md-2 text-right">Published on:</th>
-            <th class="col-md-1 text-right">Loading on:</th>
+            <th class="col-md-5 ">Loading and unloading Destinations: </th>
+            <th class="col-md-5 text-right">User <span style="font-family: Arial; font-size:18px">@@ </span> Company: </th>
+            <th class="col-md-2 text-right">Published on: </th>
+            <th class="col-md-1 text-right">Loading on: </th>
         </tr>
     </thead>
     <tbody>
@@ -39,11 +39,12 @@
 
 @if (!Model.Freights.Any())
 {
-<tr>
-    <td>
-        <div class="oleo-font" style="margin-bottom: 30px;">There are no Freights found</div>
-    </td>
-</tr>}
+    <tr>
+        <td>
+            <div class="oleo-font" style="margin-bottom: 30px;">There are no Freights found! </div>
+        </td>
+    </tr>
+}
 
 <div class="row mb-5">
     <div class="col-md-6">
@@ -53,8 +54,7 @@
            asp-route-currentPage="@previousPage">Previous Page</a>
     </div>
 
-    @{ var shouldButtonBeDisabled = Model.CurrentPage == maxPage ||
-                                                    !Model.Freights.Any(); }
+    @{ var shouldButtonBeDisabled = Model.CurrentPage == maxPage || !Model.Freights.Any(); }
 
     <div class="col-md-6">
         <a class="btn float-sm-right @(shouldButtonBeDisabled ? "disabled" : string.Empty) steady-btn"

@@ -1,31 +1,33 @@
 namespace SteadyLogistic
 {
     using Microsoft.AspNetCore.Builder;
-    using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Identity;
+    using Microsoft.AspNetCore.Hosting;
     using Microsoft.EntityFrameworkCore;
-    using Microsoft.Extensions.Hosting;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.Extensions.Hosting;
     using SteadyLogistic.Data;
     using SteadyLogistic.Data.Models;
-    using SteadyLogistic.Services.User;  
-    using SteadyLogistic.Services.City;
-    using SteadyLogistic.Services.Country;
-    using SteadyLogistic.Services.Company;
-    using SteadyLogistic.Services.Message;
+    using SteadyLogistic.Infrastructure.Extensions;
     using SteadyLogistic.Services.Article;
     using SteadyLogistic.Services.CargoSize;
+    using SteadyLogistic.Services.City;
+    using SteadyLogistic.Services.Company;
+    using SteadyLogistic.Services.Country;
     using SteadyLogistic.Services.Dimension;
     using SteadyLogistic.Services.Freight;
     using SteadyLogistic.Services.LoadUnloadInfo;
+    using SteadyLogistic.Services.Message;
     using SteadyLogistic.Services.TrailerType;
-    using SteadyLogistic.Infrastructure.Extensions;    
+    using SteadyLogistic.Services.User;
 
     public class Startup
     {
         public Startup(IConfiguration configuration)
-            => Configuration = configuration;
+        {
+            Configuration = configuration;
+        }
 
         public IConfiguration Configuration { get; }
 
@@ -53,17 +55,17 @@ namespace SteadyLogistic
 
             services.AddControllersWithViews();
 
-            services.AddTransient<IUserService, UserService>();
-            services.AddTransient<ICityService, CityService>();           
-            services.AddTransient<ICountryService, CountryService>();           
-            services.AddTransient<ICompanyService, CompanyService>();           
-            services.AddTransient<IMessageService, MessageService>();
             services.AddTransient<IArticleService, ArticleService>();
             services.AddTransient<ICargoSizeService, CargoSizeService>();
-            services.AddTransient<ITrailerTypeService, TrailerTypeService>();
+            services.AddTransient<ICityService, CityService>();
+            services.AddTransient<ICompanyService, CompanyService>();
+            services.AddTransient<ICountryService, CountryService>();
             services.AddTransient<IDimensionService, DimensionService>();
             services.AddTransient<IFreightService, FreightService>();
             services.AddTransient<ILoadUnloadInfoService, LoadUnloadInfoService>();
+            services.AddTransient<IMessageService, MessageService>();
+            services.AddTransient<ITrailerTypeService, TrailerTypeService>();
+            services.AddTransient<IUserService, UserService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

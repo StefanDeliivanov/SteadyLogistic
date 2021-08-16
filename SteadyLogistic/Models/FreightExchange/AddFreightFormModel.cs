@@ -8,13 +8,12 @@
     using SteadyLogistic.Services.TrailerType;
 
     using static SteadyLogistic.Data.DataConstants.City;
-    using static SteadyLogistic.Data.DataConstants.Freight;
-    using static SteadyLogistic.Data.DataConstants.ErrorMessages;
     using static SteadyLogistic.Data.DataConstants.Displays;
+    using static SteadyLogistic.Data.DataConstants.ErrorMessages;
+    using static SteadyLogistic.Data.DataConstants.Freight;
 
     public class AddFreightFormModel
     {
-
         [StringLength(descriptionMaxLength, ErrorMessage = descriptionErrorMessage)]
         public string Description { get; set; }
 

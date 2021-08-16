@@ -1,10 +1,12 @@
 ﻿@model AddEmployeeFormModel
 
+@{ ViewBag.Title = "Add Employee"; }
+
 <head>
     <link rel="stylesheet" href="~/css/global.css" />
 </head>
 
-<div class="oleo-font" style="margin-bottom: 30px;"> Add an Employee</div>
+<div class="oleo-font" style="margin-bottom: 30px;">Add an Employee </div>
 
 <div class="row">
     <div class="col">
@@ -12,47 +14,47 @@
             <div class="row">
                 <div class="col">
                     <div class="form-group">
-                        <div class="label-form">Email:</div>
-                        <input asp-for="@Model.Email" class="form-control" placeholder="Enter your employee email:   example@email.com ...">
+                        <div class="label-form">Email: </div>
+                        <input asp-for="@Model.Email" class="form-control" placeholder="Enter your employee email: example@email.com...">
                         <span asp-validation-for="@Model.Email" class="small text-danger"></span>
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-group">
-                        <div class="label-form">First Name:</div>
+                        <div class="label-form">First Name: </div>
                         <input asp-for="@Model.FirstName" class="form-control" placeholder="Enter employee first name...">
                         <span asp-validation-for="@Model.FirstName" class="small text-danger"></span>
-                    </div>                   
+                    </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col">
                     <div class="form-group">
-                        <div class="label-form">Password:</div>
+                        <div class="label-form">Password: </div>
                         <input asp-for="@Model.Password" class="form-control" placeholder="Enter your employee password...">
                         <span asp-validation-for="@Model.Password" class="small text-danger"></span>
-                    </div>                 
+                    </div>
                 </div>
                 <div class="col">
                     <div class="form-group">
-                        <div class="label-form">Last Name:</div>
+                        <div class="label-form">Last Name: </div>
                         <input asp-for="@Model.LastName" class="form-control" placeholder="Enter your employee last name...">
                         <span asp-validation-for="@Model.LastName" class="small text-danger"></span>
-                    </div>                 
+                    </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col">
                     <div class="form-group">
-                        <div class="label-form">Confirm Password:</div>
+                        <div class="label-form">Confirm Password: </div>
                         <input asp-for="@Model.ConfirmPassword" class="form-control" placeholder="Confirm password...">
                         <span asp-validation-for="@Model.ConfirmPassword" class="small text-danger"></span>
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-group">
-                        <div class="label-form">Phone Number:</div>
-                        <input asp-for="@Model.PhoneNumber" class="form-control" placeholder="Enter your employee phone number:    +359-888123456 ...">
+                        <div class="label-form">Phone Number: </div>
+                        <input asp-for="@Model.PhoneNumber" class="form-control" placeholder="Enter your employee phone number: +359-888123456...">
                         <span asp-validation-for="@Model.PhoneNumber" class="small text-danger"></span>
                     </div>
                 </div>
@@ -60,7 +62,7 @@
             <div class="row text-center">
                 <div class="col">
                     <input type="submit" value="Confirm" class="btn contacts-btn" style="margin-top: 10px;" />
-                </div>               
+                </div>
             </div>
         </form>
     </div>

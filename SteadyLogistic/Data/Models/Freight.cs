@@ -7,7 +7,6 @@
 
     public class Freight
     {
-
         public int Id { get; set; }
 
         [MaxLength(descriptionMaxLength)]

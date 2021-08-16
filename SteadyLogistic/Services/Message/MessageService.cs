@@ -15,24 +15,6 @@
             this.data = data;
         }
 
-        public void Create(string userId, string email, string firstName, string lastName, string title, string body, DateTime sendOn)
-        {
-            var message = new Message
-            {
-                UserID = userId,
-                FirstName = firstName,
-                LastName = lastName,
-                Email = email,
-                Title = title,
-                Body = body,
-                SendOn = sendOn
-            };
-
-            data.Messages.Add(message);
-
-            data.SaveChanges();
-        }
-
         public MessageQueryServiceModel All(int currentPage = 1, int messagesPerPage = int.MaxValue)
         {
             var messagesQuery = this.data.Messages
@@ -53,19 +35,41 @@
             };
         }
 
-        private static IEnumerable<MessageServiceModel> GetMessages(IQueryable<Message> query)
+        public void Create(string userId, string email, string firstName, string lastName, string title, string body, DateTime sendOn)
         {
-            var messages = query
-                .Select(a => new MessageServiceModel
-                {
-                    Id = a.Id,
-                    FullName = a.FirstName + " " + a.LastName,
-                    Title = a.Title,
-                    SendOn = a.SendOn
-                })
-                .ToList();
+            var message = new Message
+            {
+                UserID = userId,
+                FirstName = firstName,
+                LastName = lastName,
+                Email = email,
+                Title = title,
+                Body = body,
+                SendOn = sendOn
+            };
 
-            return messages;
+            this.data.Messages.Add(message);
+            this.data.SaveChanges();
+        }
+
+        public bool Delete(int id)
+        {
+            var message = this.data
+                .Messages
+                .Where(a => a.Id == id)
+                .FirstOrDefault();
+
+            try
+            {
+                this.data.Messages.Remove(message);
+                this.data.SaveChanges();
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+
+            return true;
         }
 
         public MessageDetailsServiceModel Details(int id)
@@ -86,26 +90,6 @@
             return message;
         }
 
-        public bool Delete(int id)
-        {
-            var message = this.data
-               .Messages
-               .Where(a => a.Id == id)
-               .FirstOrDefault();
-
-            try
-            {
-                this.data.Messages.Remove(message);
-                this.data.SaveChanges();
-            }
-            catch (Exception)
-            {
-                return false;
-            }
-
-            return true;
-        }
-
         public bool MessageExists(int id)
         {
             var message = this.data
@@ -119,6 +103,21 @@
             }
 
             return true;
+        }
+
+        private static IEnumerable<MessageServiceModel> GetMessages(IQueryable<Message> query)
+        {
+            var messages = query
+                .Select(a => new MessageServiceModel
+                {
+                    Id = a.Id,
+                    FullName = a.FirstName + " " + a.LastName,
+                    Title = a.Title,
+                    SendOn = a.SendOn
+                })
+                .ToList();
+
+            return messages;
         }
     }
 }

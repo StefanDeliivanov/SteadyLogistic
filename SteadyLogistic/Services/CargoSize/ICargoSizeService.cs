@@ -4,11 +4,10 @@
 
     public interface ICargoSizeService
     {
-
         public ICollection<CargoSizeServiceModel> AllCargoSizes();
 
-        public bool Exists(int cargoSizeId);
-
         public ICollection<string> AllCargoSizeNames();
+
+        public bool Exists(int cargoSizeId); 
     }
 }

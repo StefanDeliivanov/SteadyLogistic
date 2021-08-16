@@ -8,24 +8,24 @@
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc.RazorPages;
     using SteadyLogistic.Data.Models;
-   
-    using static SteadyLogistic.Data.DataConstants.Global;
+
+    using static SteadyLogistic.Areas.AreaGlobalConstants.Roles;
     using static SteadyLogistic.Data.DataConstants.Displays;
     using static SteadyLogistic.Data.DataConstants.ErrorMessages;
-    using static SteadyLogistic.Areas.AreaGlobalConstants.Roles;
+    using static SteadyLogistic.Data.DataConstants.Global; 
 
     [AllowAnonymous]
     public class RegisterModel : PageModel
     {
-        private readonly UserManager<User> userManager;
         private readonly SignInManager<User> signInManager;
+        private readonly UserManager<User> userManager;    
 
         public RegisterModel(
-            UserManager<User> userManager,
-            SignInManager<User> signInManager)
+            SignInManager<User> signInManager,
+            UserManager<User> userManager)
         {
-            this.userManager = userManager;
             this.signInManager = signInManager;
+            this.userManager = userManager;         
         }
 
         [BindProperty]
@@ -34,7 +34,7 @@
         public string ReturnUrl { get; set; }
 
         public class InputModel
-        {
+        {         
             [Required]
             [EmailAddress(ErrorMessage = emailErrorMessage)]
             [StringLength(emailMaxLength, MinimumLength = emailMinLength,
@@ -71,18 +71,18 @@
                     RegisteredOn = DateTime.UtcNow
                 };
 
-                var result = await userManager.CreateAsync(user, Input.Password);
+                var result = await this.userManager.CreateAsync(user, Input.Password);
 
                 if (result.Succeeded)
                 {
-                    await userManager.AddToRoleAsync(user, MemberRoleName);
+                    await this.userManager.AddToRoleAsync(user, MemberRoleName);
                     await this.signInManager.SignInAsync(user, isPersistent: false);
                     return LocalRedirect(returnUrl);
                 }
 
                 foreach (var error in result.Errors)
                 {
-                    ModelState.AddModelError(string.Empty, error.Description);
+                    this.ModelState.AddModelError(string.Empty, error.Description);
                 }
             }
 

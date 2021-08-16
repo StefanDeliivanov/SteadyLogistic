@@ -1,19 +1,18 @@
 ﻿namespace SteadyLogistic.Areas.Member.Models
 {
-    using System.ComponentModel.DataAnnotations;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     using SteadyLogistic.Services.Country;
 
-    using static SteadyLogistic.Data.DataConstants.Global;
-    using static SteadyLogistic.Data.DataConstants.Company;
     using static SteadyLogistic.Data.DataConstants.City;
-    using static SteadyLogistic.Data.DataConstants.User;
-    using static SteadyLogistic.Data.DataConstants.ErrorMessages;
+    using static SteadyLogistic.Data.DataConstants.Company;
     using static SteadyLogistic.Data.DataConstants.Displays;
+    using static SteadyLogistic.Data.DataConstants.ErrorMessages;
+    using static SteadyLogistic.Data.DataConstants.Global;    
+    using static SteadyLogistic.Data.DataConstants.User; 
 
     public class UpgradeToPremiumFormModel
     {
-
         #region User
         [Required(ErrorMessage = requiredErrorMessage)]
         [StringLength(nameMaxLength, MinimumLength = nameMinLength,

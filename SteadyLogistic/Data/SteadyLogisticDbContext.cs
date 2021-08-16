@@ -7,7 +7,6 @@
 
     public class SteadyLogisticDbContext : IdentityDbContext<User>
     {
-
         public SteadyLogisticDbContext(DbContextOptions<SteadyLogisticDbContext> options)
             : base(options)
         {
@@ -25,8 +24,6 @@
 
         public DbSet<Dimension> Dimensions { get; set; }
 
-        public DbSet<Fleet> Fleets { get; set; }
-
         public DbSet<Freight> Freights { get; set; }
 
         public DbSet<LoadUnloadInfo> LoadUnloadInfos { get; set; }
@@ -35,11 +32,7 @@
 
         public DbSet<PremiumUser> PremiumUsers { get; set; }
 
-        public DbSet<Trailer> Trailers { get; set; }
-
         public DbSet<TrailerType> TrailerTypes { get; set; }
-
-        public DbSet<Truck> Trucks { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -49,8 +42,6 @@
             modelBuilder.ApplyConfiguration(new FreightConfiguration());
             modelBuilder.ApplyConfiguration(new LoadUnloadInfoConfiguration());
             modelBuilder.ApplyConfiguration(new PremiumUserConfiguration());
-            modelBuilder.ApplyConfiguration(new TrailerConfiguration());
-            modelBuilder.ApplyConfiguration(new TruckConfiguration());
 
             base.OnModelCreating(modelBuilder);
         }

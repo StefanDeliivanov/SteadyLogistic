@@ -1,10 +1,10 @@
 ﻿namespace SteadyLogistic.Infrastructure.Extensions
 {
     using System;
+    using System.Collections.Generic;
     using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
-    using System.Collections.Generic;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.EntityFrameworkCore;
@@ -19,8 +19,7 @@
 
     public static class ApplicationBuilderExtensions
     {
-        public static IApplicationBuilder PrepareDatabase(
-            this IApplicationBuilder app)
+        public static IApplicationBuilder PrepareDatabase(this IApplicationBuilder app)
         {
             using var serviceScope = app.ApplicationServices.CreateScope();
             var services = serviceScope.ServiceProvider;
@@ -41,7 +40,6 @@
         private static void MigrateDatabase(IServiceProvider services)
         {
             var data = services.GetRequiredService<SteadyLogisticDbContext>();
-
             data.Database.Migrate();
         }
 
@@ -49,7 +47,6 @@
         {
             var userManager = services.GetRequiredService<UserManager<User>>();
             var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
-
             Task
                 .Run(async () =>
                 {
@@ -67,7 +64,6 @@
                     };
 
                     await userManager.CreateAsync(user, defaultAdminPassword);
-
                     await userManager.AddToRoleAsync(user, AdministratorRoleName);
                 })
                 .GetAwaiter()
@@ -77,7 +73,6 @@
         private static void SeedRole(IServiceProvider services, string roleName)
         {
             var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
-
             Task
                 .Run(async () =>
                 {
@@ -87,7 +82,6 @@
                     }
 
                     var role = new IdentityRole { Name = roleName };
-
                     await roleManager.CreateAsync(role);
                 })
                 .GetAwaiter()
@@ -97,7 +91,6 @@
         private static void SeedCargoSizes(IServiceProvider services)
         {
             var data = services.GetRequiredService<SteadyLogisticDbContext>();
-
             if (data.CargoSizes.Any())
             {
                 return;
@@ -115,14 +108,12 @@
         private static void SeedCountries(IServiceProvider services)
         {
             var data = services.GetRequiredService<SteadyLogisticDbContext>();
-
             if (data.Countries.Any())
             {
                 return;
             }
 
             var europeCountriesToAdd = new List<CountrySeedModel>();
-
             using (StreamReader reader = new("Data/Seeds/europeCountriesSLogistics.json"))
             {
                 string allCountries = reader.ReadToEnd();
@@ -140,7 +131,6 @@
         private static void SeedTrailerTypes(IServiceProvider services)
         {
             var data = services.GetRequiredService<SteadyLogisticDbContext>();
-
             if (data.TrailerTypes.Any())
             {
                 return;

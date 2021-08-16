@@ -2,13 +2,12 @@
 {
     using System.ComponentModel.DataAnnotations;
 
-    using static Data.DataConstants.Message;
     using static Data.DataConstants.Displays;
     using static Data.DataConstants.ErrorMessages;
+    using static Data.DataConstants.Message;
 
     public class ContactFormModel
     {
-
         [Required(ErrorMessage = requiredErrorMessage)]
         [StringLength(contactNameMaxLength, MinimumLength = contactNameMinLength,
             ErrorMessage = defaultErrorMessage)]

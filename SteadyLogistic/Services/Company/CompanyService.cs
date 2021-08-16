@@ -18,6 +18,16 @@
             this.data = data;
         }
 
+        public void AddManager(string userId, int companyId)
+        {
+            var company = this.data.Companies
+                .Where(a => a.Id == companyId)
+                .FirstOrDefault();
+
+            company.ManagerId = userId;
+            this.data.SaveChanges();
+        }
+
         public CompanyQueryServiceModel All(
             string searchTerm = null,
             CompanySearchType searchType = CompanySearchType.Name,
@@ -52,7 +62,6 @@
             };
 
             var totalCompanies = companiesQuery.Count();
-
             var companies = GetCompanies(companiesQuery
                 .Skip((currentPage - 1) * companiesPerPage)
                 .Take(companiesPerPage)).ToList();
@@ -66,55 +75,23 @@
             };
         }
 
-
         public bool CompanyExists(string vatNumber)
         {
-            return data.Companies
-                    .Any(a => a.VatNumber == vatNumber);
-        }
-
-        public Company GetCompanyByVatNumber(string vatNumber)
-        {
-            return data.Companies
-                    .Where(a => a.VatNumber == vatNumber)
-                    .FirstOrDefault();
-        }
-
-        public bool NameTaken(string name)
-        {
             return this.data.Companies
-                        .Any(a => a.Name == name);
-        }
-
-        public bool PhoneNumberTaken(string phoneNumber)
-        {
-            return this.data.Companies
-                         .Any(a => a.PhoneNumber == phoneNumber);
-        }
-
-        public bool EmailTaken(string email)
-        {
-            return this.data.Companies
-                        .Any(a => a.Email == email);
-        }
-
-        public bool VatNumberTaken(string vatNumber)
-        {
-            return this.data.Companies
-                        .Any(a => a.VatNumber == vatNumber);
+                .Any(a => a.VatNumber == vatNumber);
         }
 
         public Company Create(
-            string name,
-            string phoneNumber,
-            string vatNumber,
-            string email,
-            string address,
-            string description,
-            string firstName,
-            string lastName,
-            int cityId,
-            Country country)
+           string name,
+           string phoneNumber,
+           string vatNumber,
+           string email,
+           string address,
+           string description,
+           string firstName,
+           string lastName,
+           int cityId,
+           Country country)
         {
             var company = new Company()
             {
@@ -130,49 +107,10 @@
                 RegisteredOn = DateTime.UtcNow
             };
 
-            data.Companies.Add(company);
-
-            data.SaveChanges();
+            this.data.Companies.Add(company);
+            this.data.SaveChanges();
 
             return company;
-        }
-
-        public void AddManager(string userId, int companyId)
-        {
-            var company = data.Companies
-                            .Where(a => a.Id == companyId)
-                            .FirstOrDefault();
-            company.ManagerId = userId;
-
-            data.SaveChanges();
-        }
-
-        private static IEnumerable<CompanyServiceModel> GetCompanies(IQueryable<Company> query)
-        {
-            var companies = query
-                .Select(a => new CompanyServiceModel
-                {
-                    Id = a.Id,
-                    ManagerId = a.ManagerId,
-                    CompanyName = a.Name,
-                    ManagerName = a.ManagerFullName,
-                    RegisteredOn = a.RegisteredOn
-                })
-                .ToList();
-
-            return companies;
-        }
-
-        private static List<UserMiniDetailsModel> GetEmployees(Company company)
-        {
-            List<UserMiniDetailsModel> employees = new();
-
-            foreach (var employee in company.Employees)
-            {
-                employees.Add(new UserMiniDetailsModel { Id = employee.Id, Name = employee.FirstName + " " + employee.LastName });
-            }
-            
-            return employees;
         }
 
         public CompanyDetailsServiceModel Details(int id)
@@ -205,6 +143,65 @@
                 .FirstOrDefault();
 
             return companyDetails;
+        }
+
+        public bool EmailTaken(string email)
+        {
+            return this.data.Companies
+                .Any(a => a.Email == email);
+        }
+
+        public Company GetCompanyByVatNumber(string vatNumber)
+        {
+            return this.data.Companies
+                .Where(a => a.VatNumber == vatNumber)
+                .FirstOrDefault();
+        }
+
+        public bool NameTaken(string name)
+        {
+            return this.data.Companies
+                .Any(a => a.Name == name);
+        }
+
+        public bool PhoneNumberTaken(string phoneNumber)
+        {
+            return this.data.Companies
+                .Any(a => a.PhoneNumber == phoneNumber);
+        }
+
+        public bool VatNumberTaken(string vatNumber)
+        {
+            return this.data.Companies
+                .Any(a => a.VatNumber == vatNumber);
+        }
+
+        private static IEnumerable<CompanyServiceModel> GetCompanies(IQueryable<Company> query)
+        {
+            var companies = query
+                .Select(a => new CompanyServiceModel
+                {
+                    Id = a.Id,
+                    ManagerId = a.ManagerId,
+                    CompanyName = a.Name,
+                    ManagerName = a.ManagerFullName,
+                    RegisteredOn = a.RegisteredOn
+                })
+                .ToList();
+
+            return companies;
+        }
+
+        private static List<UserMiniDetailsModel> GetEmployees(Company company)
+        {
+            List<UserMiniDetailsModel> employees = new();
+
+            foreach (var employee in company.Employees)
+            {
+                employees.Add(new UserMiniDetailsModel { Id = employee.Id, Name = employee.FirstName + " " + employee.LastName });
+            }
+            
+            return employees;
         }
     }
 }

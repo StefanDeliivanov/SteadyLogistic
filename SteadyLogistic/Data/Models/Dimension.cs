@@ -8,7 +8,6 @@
         public Dimension()
         {
             Freights = new List<Freight>();
-            Trailers = new List<Trailer>();
         }
 
         public int Id { get; set; }
@@ -21,8 +20,6 @@
 
         [Required]
         public double Height { get; set; }
-
-        public virtual ICollection<Trailer> Trailers { get; set; }
 
         public virtual ICollection<Freight> Freights { get; set; }
     }

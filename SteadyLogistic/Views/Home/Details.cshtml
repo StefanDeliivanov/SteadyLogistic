@@ -1,5 +1,7 @@
 ﻿@model ArticleServiceModel
 
+@{ ViewBag.Title = "Article Details"; }
+
 <head>
     <link rel="stylesheet" href="~/css/global.css" />
 </head>
@@ -12,7 +14,6 @@
             <div>
                 <img class="image-fit" src="@Model.ImageUrl" />
             </div>
-
 
             <div class="blog-post">
                 <h2 class="blog-post-title">@Model.Title</h2>

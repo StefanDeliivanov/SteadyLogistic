@@ -1,5 +1,7 @@
 ﻿@model FreightDetailsServiceModel
 
+@{ ViewBag.Title = "Freight Details"; }
+
 <head>
     <link rel="stylesheet" href="~/css/global.css" />
     <link rel="stylesheet" href="~/css/messages.css" />
@@ -13,10 +15,12 @@
             <thead class="bg-primary text-warning freights-head">
                 <tr>
                     <th class="col-md-2"> </th>
-                    <th class="col-md-6"> Freight information: 
-                        <a href="https://google.com/maps/dir/@Model.LoadingCityName/@Model.UnloadingCityName" 
-                           class="float-right google-directions" target="_blank" rel="noopener noreferrer"> 
-                            <i class="fa fa-map-marker"> Google Directions</i></a>
+                    <th class="col-md-6">
+                        Freight information:
+                        <a href="https://google.com/maps/dir/@Model.LoadingCityName/@Model.UnloadingCityName"
+                           class="float-right google-directions" target="_blank" rel="noopener noreferrer">
+                            <i class="fa fa-map-marker"> Google Directions</i>
+                        </a>
                     </th>
                 </tr>
             </thead>
@@ -109,7 +113,7 @@
             <thead class="bg-primary text-warning freights-head">
                 <tr>
                     <th class="col-md-2"> </th>
-                    <th class="col-md-10"> User: </th>
+                    <th class="col-md-10">User: </th>
                 </tr>
             </thead>
             <tbody>
@@ -143,7 +147,7 @@
             <thead class="bg-primary text-warning freights-head">
                 <tr>
                     <th class="col-md-2"> </th>
-                    <th class="col-md-10"> Company: </th>
+                    <th class="col-md-10">Company: </th>
                 </tr>
             </thead>
             <tbody>
@@ -174,15 +178,18 @@
             </tbody>
         </table>
         <div class="row">
-                @{ if (User.GetUserId() == Model.UserId || User.IsAdmin())
-                   {
-                    <div class="col">
-                        <a asp-controller="FreightExchange" asp-action="Delete" asp-route-freightId="@Model.Id" asp-route-userId="@User.GetUserId()">
-                            <input type="button" class="btn delete-btn float-right" value="Delete" />
-                        </a>
-                    </div> 
-                   }
-                 }
+            @{ if (User.GetUserId() == Model.UserId || User.IsAdmin())
+               {
+                <div class="col">
+                    <a asp-controller="FreightExchange" 
+                       asp-action="Delete" 
+                       asp-route-freightId="@Model.Id" 
+                       asp-route-userId="@User.GetUserId()">
+                        <input type="button" class="btn delete-btn float-right" value="Delete" />
+                    </a>
+                </div> 
+               } 
+             }
         </div>
     </div>
 </div>

@@ -1,8 +1,6 @@
 ﻿@model NewsViewModel
 
-@{
-    ViewData["Title"] = "Index";
-}
+@{ ViewData["Title"] = "News"; }
 <link rel="stylesheet" href="~/css/global.css" />
 
 <div class="oleo-font" style="margin-bottom: 30px;">Latest News</div>
@@ -14,13 +12,12 @@
         {
             previousPage = 1;
         }
-
         var maxPage = Math.Ceiling((double)Model.TotalNews / NewsViewModel.ArticlesPerPage);
     }
 
     @if (!Model.News.Any())
     {
-        <div class="oleo-font" style="margin-bottom: 30px;">There are no News found</div>
+        <div class="oleo-font" style="margin-bottom: 30px;">There are no News found! </div>
     }
 
     <partial name="_NewsPartial" model="@Model.News" />
@@ -34,8 +31,7 @@
         </div>
 
         @{
-            var shouldButtonBeDisabled = Model.CurrentPage == maxPage ||
-                                         !Model.News.Any();
+            var shouldButtonBeDisabled = Model.CurrentPage == maxPage || !Model.News.Any();
         }
 
         <div class="col-md-6">

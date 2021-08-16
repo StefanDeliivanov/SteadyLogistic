@@ -1,6 +1,6 @@
 ﻿@model AllCompaniesQueryModel
 
-@{ ViewBag.Title = " Companies Catalogue "; }
+@{ ViewBag.Title = "Companies Catalogue"; }
 
 <head>
     <link rel="stylesheet" href="~/css/global.css" />
@@ -14,25 +14,25 @@
 </style>
 
 @{ var previousPage = Model.CurrentPage - 1;
-    if (previousPage < 1)
-    {
+   if (previousPage < 1)
+   {
         previousPage = 1;
-    }
-
-    var maxPage = Math.Ceiling((double)Model.TotalCompanies / AllCompaniesQueryModel.CompaniesPerPage); }
+   }
+   var maxPage = Math.Ceiling((double)Model.TotalCompanies / AllCompaniesQueryModel.CompaniesPerPage); 
+ }
 
 <div class="oleo-font" style="margin-bottom: 45px;"> All Companies ( @Model.TotalCompanies )</div>
 
 <form method="get" style="margin-bottom: 45px;">
     <div class="row">
         <div class="form-group col-md-4 mb-0">
-            <div class="label-form">Search text:</div>
+            <div class="label-form">Search text: </div>
             <input asp-for="SearchTerm" class="form-control" placeholder="Search text...">
         </div>
 
         <div class="form-group col-md-4">
             <div class="form-group mb-0">
-                <div class="label-form">Search Type:</div>
+                <div class="label-form">Search Type: </div>
                 <select asp-for="SearchType" class="form-control">
                     <option value="0" selected>Name </option>
                     <option value="1">VatNumber </option>
@@ -47,7 +47,7 @@
 
         <div class="form-group col-md-4">
             <div class="form-group mb-0">
-                <div class="label-form">Sort by:</div>
+                <div class="label-form">Sort by: </div>
                 <select asp-for="Sorting" class="form-control">
                     <option value="0" selected>Company Name &uarr; </option>
                     <option value="1">Company Name &darr; </option>
@@ -71,9 +71,9 @@
 <table class="table table-sm table-striped table-hover col-md-10 offset-md-1">
     <thead class="bg-primary text-warning freights-head">
         <tr>
-            <th class="col-md-5 ">Company name:</th>
-            <th class="col-md-5 text-right">Manager:</th>
-            <th class="col-md-2 text-right">Registered on:</th>
+            <th class="col-md-5 ">Company name: </th>
+            <th class="col-md-5 text-right">Manager: </th>
+            <th class="col-md-2 text-right">Registered on: </th>
         </tr>
     </thead>
     <tbody>
@@ -83,11 +83,12 @@
 
 @if (!Model.Companies.Any())
 {
-<tr>
-    <td>
-        <div class="oleo-font" style="margin-bottom: 30px;">There are no companies found</div>
-    </td>
-</tr>}
+    <tr>
+        <td>
+            <div class="oleo-font" style="margin-bottom: 30px;">There are no companies found! </div>
+        </td>
+    </tr>
+}
 
 <div class="row mb-12">
     <div class="col-md-4 offset-md-1">
@@ -100,8 +101,7 @@
            asp-route-sorting="@((int)Model.Sorting)">Previous Page</a>
     </div>
 
-    @{ var shouldButtonBeDisabled = Model.CurrentPage == maxPage ||
-                                                         !Model.Companies.Any(); }
+    @{ var shouldButtonBeDisabled = Model.CurrentPage == maxPage || !Model.Companies.Any(); }
 
     <div class="col-md-6">
         <a class="btn float-sm-right @(shouldButtonBeDisabled ? "disabled" : string.Empty) steady-btn"

@@ -15,11 +15,11 @@
 
         public bool CityExists(string postCode, string name, int countryId)
         {
-            var city = data.Cities
-                    .Where(a => a.PostCode == postCode)
-                    .Where(b => b.Name == name)
-                    .Where(c => c.CountryId == countryId)
-                    .FirstOrDefault();
+            var city = this.data.Cities
+                .Where(a => a.PostCode == postCode)
+                .Where(b => b.Name == name)
+                .Where(c => c.CountryId == countryId)
+                .FirstOrDefault();
 
             if(city == null)
             {
@@ -38,9 +38,8 @@
                 CountryId = countryId
             };
 
-            data.Cities.Add(city);
-
-            data.SaveChanges();
+            this.data.Cities.Add(city);
+            this.data.SaveChanges();
 
             return city;
         }
@@ -48,15 +47,16 @@
         public City GetCity(string postCode, string name, int countryId)
         {
             var city = this.data.Cities
-                    .Where(a => a.PostCode == postCode)
-                    .Where(b => b.Name == name)
-                    .Where(c => c.CountryId == countryId)
-                    .FirstOrDefault();
+                .Where(a => a.PostCode == postCode)
+                .Where(b => b.Name == name)
+                .Where(c => c.CountryId == countryId)
+                .FirstOrDefault();
 
             if (city == null)
             {
                 city = Create(postCode, name, countryId);
             }
+
             return city;
         }
     }

@@ -1,7 +1,7 @@
 ﻿namespace SteadyLogistic.Services.CargoSize
 {
-    using System.Linq;
     using System.Collections.Generic;
+    using System.Linq;
     using SteadyLogistic.Data;
 
     public class CargoSizeService : ICargoSizeService
@@ -16,30 +16,29 @@
         public ICollection<CargoSizeServiceModel> AllCargoSizes()
         {
             return this.data
-                        .CargoSizes
-                        .Select(x => new CargoSizeServiceModel
-                        {
-                            Id = x.Id,
-                            Name = x.Name
-                        })
-                        .ToList();
+                .CargoSizes
+                .Select(a => new CargoSizeServiceModel
+                {
+                    Id = a.Id,
+                    Name = a.Name
+                })
+                .ToList();
         }
 
         public ICollection<string> AllCargoSizeNames()
         {
             return this.data
-                        .CargoSizes
-                        .Select(a => a.Name)
-                        .OrderBy(b => b)
-                        .ToList();
+                .CargoSizes
+                .Select(a => a.Name)
+                .OrderBy(b => b)
+                .ToList();
         }
 
         public bool Exists(int cargoSizeId)
         {
             return this.data
-                        .CargoSizes
-                        .Any(a => a.Id == cargoSizeId);
+                .CargoSizes
+                .Any(a => a.Id == cargoSizeId);
         }
-
     }
 }

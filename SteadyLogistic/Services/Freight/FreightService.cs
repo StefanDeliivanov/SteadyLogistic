@@ -16,6 +16,81 @@
             this.data = data;
         }
 
+        public FreightQueryServiceModel All(
+         string loadingCountryCode = null,
+         string unloadingCountryCode = null,
+         string cargoSize = null,
+         string trailerType = null,
+         string searchTerm = null,
+         FreightSorting sorting = FreightSorting.PublishedOnDescending,
+         int currentPage = 1,
+         int freightsPerPage = int.MaxValue)
+        {
+            var freightsQuery = this.data.Freights.AsQueryable();
+
+            if (!string.IsNullOrWhiteSpace(loadingCountryCode))
+            {
+                freightsQuery = freightsQuery.Where(a => a.Loading.Country.Code == loadingCountryCode);
+            }
+
+            if (!string.IsNullOrWhiteSpace(unloadingCountryCode))
+            {
+                freightsQuery = freightsQuery.Where(a => a.Unloading.Country.Code == unloadingCountryCode);
+            }
+
+            if (!string.IsNullOrWhiteSpace(cargoSize))
+            {
+                freightsQuery = freightsQuery.Where(a => a.CargoSize.Name == cargoSize);
+            }
+
+            if (!string.IsNullOrWhiteSpace(trailerType))
+            {
+                freightsQuery = freightsQuery.Where(a => a.TrailerType.Name == trailerType);
+            }
+
+            if (!string.IsNullOrWhiteSpace(searchTerm))
+            {
+                freightsQuery = freightsQuery.Where(a =>
+                    a.Loading.City.Name.ToLower().Contains(searchTerm.ToLower())
+                 || a.Loading.City.PostCode.ToLower().Contains(searchTerm.ToLower())
+                 || a.Unloading.City.Name.ToLower().Contains(searchTerm.ToLower())
+                 || a.Unloading.City.PostCode.ToLower().Contains(searchTerm.ToLower()));
+            }
+
+            freightsQuery = sorting switch
+            {
+                FreightSorting.LoadingCountryCodeDescending => freightsQuery.OrderByDescending(a => a.Loading.Country.Code),
+                FreightSorting.LoadingCountryCodeAscending => freightsQuery.OrderBy(a => a.Loading.Country.Code),
+                FreightSorting.UnloadingCountryCodeDescending => freightsQuery.OrderByDescending(a => a.Unloading.Country.Code),
+                FreightSorting.UnloadingCountryCodeAscending => freightsQuery.OrderBy(a => a.Unloading.Country.Code),
+                FreightSorting.LoadingCityNameDescending => freightsQuery.OrderByDescending(a => a.Loading.City.Name),
+                FreightSorting.LoadingCityNameAscending => freightsQuery.OrderBy(a => a.Loading.City.Name),
+                FreightSorting.UnloadingCityNameDescending => freightsQuery.OrderByDescending(a => a.Unloading.City.Name),
+                FreightSorting.UnloadingCityNameAscending => freightsQuery.OrderBy(a => a.Unloading.City.Name),
+                FreightSorting.UserFullNameDescending => freightsQuery.OrderByDescending(a => a.User.FirstName).ThenBy(a => a.User.LastName),
+                FreightSorting.UserFullNameAscending => freightsQuery.OrderBy(a => a.User.FirstName).ThenBy(a => a.User.LastName),
+                FreightSorting.CompanyNameDescending => freightsQuery.OrderByDescending(a => a.User.Company.Name),
+                FreightSorting.CompanyNameAscending => freightsQuery.OrderBy(a => a.User.Company.Name),
+                FreightSorting.LoadingDateDescending => freightsQuery.OrderByDescending(a => a.Loading.Date),
+                FreightSorting.LoadingDateAscending => freightsQuery.OrderBy(a => a.Loading.Date),
+                FreightSorting.PublishedOnAscending => freightsQuery.OrderBy(a => a.PublishedOn),
+                FreightSorting.PublishedOnDescending or _ => freightsQuery.OrderByDescending(a => a.PublishedOn)
+            };
+
+            var totalFreights = freightsQuery.Count();
+            var freights = GetFreights(freightsQuery
+                .Skip((currentPage - 1) * freightsPerPage)
+                .Take(freightsPerPage)).ToList();
+
+            return new FreightQueryServiceModel
+            {
+                TotalFreights = totalFreights,
+                CurrentPage = currentPage,
+                FreightsPerPage = freightsPerPage,
+                AllFreights = freights
+            };
+        }
+
         public void Create(
             string description,
             double weight,
@@ -45,80 +120,24 @@
             this.data.SaveChanges();
         }
 
-        public FreightQueryServiceModel All(
-            string loadingCountryCode = null,
-            string unloadingCountryCode = null,
-            string cargoSize = null,
-            string trailerType = null,
-            string searchTerm = null,
-            FreightSorting sorting = FreightSorting.PublishedOnDescending, 
-            int currentPage = 1, 
-            int freightsPerPage = int.MaxValue)
+        public bool Delete(int id)
         {
-            var freightsQuery = this.data.Freights.AsQueryable();
+            var freight = this.data
+                .Freights
+                .Where(a => a.Id == id)
+                .FirstOrDefault();
 
-            if (!string.IsNullOrWhiteSpace(loadingCountryCode))
+            try
             {
-                freightsQuery = freightsQuery.Where(a => a.Loading.Country.Code == loadingCountryCode);
+                this.data.Freights.Remove(freight);
+                this.data.SaveChanges();
+            }
+            catch (Exception)
+            {
+                return false;
             }
 
-            if (!string.IsNullOrWhiteSpace(unloadingCountryCode))
-            {
-                freightsQuery = freightsQuery.Where(a => a.Unloading.Country.Code == unloadingCountryCode);
-            }
-
-            if (!string.IsNullOrWhiteSpace(cargoSize))
-            {
-                freightsQuery = freightsQuery.Where(a => a.CargoSize.Name == cargoSize);
-            }
-
-            if (!string.IsNullOrWhiteSpace(trailerType))
-            {
-                freightsQuery = freightsQuery.Where(a => a.TrailerType.Name == trailerType);
-            }
-
-            if (!string.IsNullOrWhiteSpace(searchTerm))
-            {
-                freightsQuery = freightsQuery.Where(a =>
-                       a.Loading.City.Name.ToLower().Contains(searchTerm.ToLower())
-                    || a.Loading.City.PostCode.ToLower().Contains(searchTerm.ToLower())
-                    || a.Unloading.City.Name.ToLower().Contains(searchTerm.ToLower())
-                    || a.Unloading.City.PostCode.ToLower().Contains(searchTerm.ToLower()));
-            }
-
-            freightsQuery = sorting switch
-            {
-                FreightSorting.LoadingCountryCodeDescending => freightsQuery.OrderByDescending(a => a.Loading.Country.Code),
-                FreightSorting.LoadingCountryCodeAscending => freightsQuery.OrderBy(a => a.Loading.Country.Code),
-                FreightSorting.UnloadingCountryCodeDescending => freightsQuery.OrderByDescending(a => a.Unloading.Country.Code),
-                FreightSorting.UnloadingCountryCodeAscending => freightsQuery.OrderBy(a => a.Unloading.Country.Code),
-                FreightSorting.LoadingCityNameDescending => freightsQuery.OrderByDescending(a => a.Loading.City.Name),
-                FreightSorting.LoadingCityNameAscending => freightsQuery.OrderBy(a => a.Loading.City.Name),
-                FreightSorting.UnloadingCityNameDescending => freightsQuery.OrderByDescending(a => a.Unloading.City.Name),
-                FreightSorting.UnloadingCityNameAscending => freightsQuery.OrderBy(a => a.Unloading.City.Name),
-                FreightSorting.UserFullNameDescending => freightsQuery.OrderByDescending(a => a.User.FirstName).ThenBy(a => a.User.LastName),
-                FreightSorting.UserFullNameAscending => freightsQuery.OrderBy(a => a.User.FirstName).ThenBy(a => a.User.LastName),
-                FreightSorting.CompanyNameDescending => freightsQuery.OrderByDescending(a => a.User.Company.Name),
-                FreightSorting.CompanyNameAscending => freightsQuery.OrderBy(a => a.User.Company.Name),
-                FreightSorting.LoadingDateDescending => freightsQuery.OrderByDescending(a => a.Loading.Date),
-                FreightSorting.LoadingDateAscending => freightsQuery.OrderBy(a => a.Loading.Date),          
-                FreightSorting.PublishedOnAscending => freightsQuery.OrderBy(a => a.PublishedOn),
-                FreightSorting.PublishedOnDescending or _ => freightsQuery.OrderByDescending(a => a.PublishedOn)          
-            };
-
-            var totalFreights = freightsQuery.Count();
-
-            var freights = GetFreights(freightsQuery
-                .Skip((currentPage - 1) * freightsPerPage)
-                .Take(freightsPerPage)).ToList();
-
-            return new FreightQueryServiceModel
-            {
-                TotalFreights = totalFreights,
-                CurrentPage = currentPage,
-                FreightsPerPage = freightsPerPage,
-                AllFreights = freights
-            };
+            return true;
         }
 
         public FreightDetailsServiceModel Details(int id)
@@ -161,26 +180,6 @@
             return freight;
         }
 
-        public bool Delete(int id)
-        {
-            var freight = this.data
-               .Freights
-               .Where(a => a.Id == id)
-               .FirstOrDefault();
-
-            try
-            {
-                this.data.Freights.Remove(freight);
-                this.data.SaveChanges();
-            }
-            catch (Exception)
-            {
-                return false;
-            }
-
-            return true;
-        }
-
         public bool Exists(int id)
         {
             var freight = this.data
@@ -196,18 +195,31 @@
             return true;
         }
 
-        public bool IsAuthorized(int freightId, string userId)
+        public FreightQueryServiceModel GetCompanyFreightsByUser(string userId, int currentPage = 1, int freightsPerPage = int.MaxValue)
         {
-            var freight = this.data.Freights
-                .Where(a => a.Id == freightId)
+            var company = this.data.Companies
+                .Where(a => a.ManagerId == userId
+                || a.Employees.Any(
+                    b => b.UserId == userId))
                 .FirstOrDefault();
 
-            if (freight.UserId == userId)
-            {
-                return true;
-            }
+            var freightsQuery = this.data.Freights
+                .Where(a => a.User.Company.Id == company.Id)
+                .OrderByDescending(a => a.PublishedOn);
 
-            return false;            
+            var totalFreights = freightsQuery.Count();
+
+            var freights = GetFreights(freightsQuery
+                .Skip((currentPage - 1) * freightsPerPage)
+                .Take(freightsPerPage)).ToList();
+
+            return new FreightQueryServiceModel
+            {
+                TotalFreights = totalFreights,
+                CurrentPage = currentPage,
+                FreightsPerPage = freightsPerPage,
+                AllFreights = freights
+            };
         }
 
         public FreightQueryServiceModel GetFreightsByUser(string userId, int currentPage = 1, int freightsPerPage = int.MaxValue)
@@ -231,31 +243,18 @@
             };
         }
 
-        public FreightQueryServiceModel GetCompanyFreightsByUser(string userId, int currentPage = 1, int freightsPerPage = int.MaxValue)
+        public bool IsAuthorized(int freightId, string userId)
         {
-            var company = this.data.Companies
-                .Where(a => a.ManagerId == userId
-                    || a.Employees.Any(
-                        b => b.UserId == userId))
+            var freight = this.data.Freights
+                .Where(a => a.Id == freightId)
                 .FirstOrDefault();
 
-            var freightsQuery = this.data.Freights
-                .Where(a => a.User.Company.Id == company.Id)
-                .OrderByDescending(a => a.PublishedOn);
-
-            var totalFreights = freightsQuery.Count();
-
-            var freights = GetFreights(freightsQuery
-                .Skip((currentPage - 1) * freightsPerPage)
-                .Take(freightsPerPage)).ToList();
-
-            return new FreightQueryServiceModel
+            if (freight.UserId == userId)
             {
-                TotalFreights = totalFreights,
-                CurrentPage = currentPage,
-                FreightsPerPage = freightsPerPage,
-                AllFreights = freights
-            };
+                return true;
+            }
+
+            return false;            
         }
 
         private static IEnumerable<FreightServiceModel> GetFreights (IQueryable<Freight> query)

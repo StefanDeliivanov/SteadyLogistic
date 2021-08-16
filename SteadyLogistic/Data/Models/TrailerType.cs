@@ -9,7 +9,6 @@
     {
         public TrailerType()
         {
-            Trailers = new List<Trailer>();
             Freights = new List<Freight>();
         }
 
@@ -18,8 +17,6 @@
         [Required]
         [MaxLength(trailerTypeNameMaxLength)]
         public string Name { get; set; }
-
-        public virtual ICollection<Trailer> Trailers { get; set; }
 
         public virtual ICollection<Freight> Freights { get; set; }
     }

@@ -4,8 +4,8 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
-    using static DataConstants.Global;
-    using static DataConstants.Company;  
+    using static DataConstants.Company;
+    using static DataConstants.Global;   
 
     public class Company
     {
@@ -50,11 +50,7 @@
         
         public virtual City City { get; set; }
 
-        public int CityId { get; set; }
-        
-        public virtual Fleet Fleet { get; set; }
-
-        public int FleetId { get; set; }
+        public int CityId { get; set; }     
 
         public DateTime RegisteredOn { get; set; }
 

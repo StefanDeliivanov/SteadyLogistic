@@ -5,13 +5,12 @@
 
     public interface ICountryService
     {
-
         public ICollection<CountryServiceModel> AllCountries();
+
+        public ICollection<string> AllCountryCodes();
 
         public bool Exists(int countryId);
 
-        public Country GetCountryById(int countryId);
-
-        public ICollection<string> AllCountryCodes();
+        public Country GetCountryById(int countryId); 
     }
 }

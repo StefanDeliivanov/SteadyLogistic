@@ -1,8 +1,8 @@
 ﻿namespace SteadyLogistic.Services.Article
 {
     using System;
-    using System.Linq;
     using System.Collections.Generic;
+    using System.Linq;
     using SteadyLogistic.Data;
     using SteadyLogistic.Data.Models;
 
@@ -13,23 +13,6 @@
         public ArticleService(SteadyLogisticDbContext data)
         {
             this.data = data;
-        }
-
-        public void Create(string author, string category, string title, string body, string imageUrl, DateTime publishedOn)
-        {
-            var article = new Article
-            {
-                Author = author,
-                Category = category,
-                Title = title,
-                Body = body,
-                ImageUrl = imageUrl,
-                PublishedOn = publishedOn
-            };
-
-            data.Articles.Add(article);
-
-            data.SaveChanges();
         }
 
         public ArticleQueryServiceModel All(int currentPage = 1, int articlesPerPage = int.MaxValue)
@@ -51,22 +34,56 @@
                 AllArticles = articles
             };
         }
-        private static IEnumerable<ArticleServiceModel> GetArticles (IQueryable<Article> query)
-        {
-            var articles = query
-                .Select(a => new ArticleServiceModel
-                {
-                    Id = a.Id,
-                    Author = a.Author,
-                    Title = a.Title,
-                    Body = a.Body,
-                    Category = a.Category,
-                    ImageUrl = a.ImageUrl,
-                    PublishedOn = a.PublishedOn
-                })
-                .ToList();
 
-            return articles;
+        public bool ArticleExists(int id)
+        {
+            var article = this.data
+                .Articles
+                .Where(a => a.Id == id)
+                .FirstOrDefault();
+
+            if (article == null)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        public void Create(string author, string category, string title, string body, string imageUrl, DateTime publishedOn)
+        {
+            var article = new Article
+            {
+                Author = author,
+                Category = category,
+                Title = title,
+                Body = body,
+                ImageUrl = imageUrl,
+                PublishedOn = publishedOn
+            };
+
+            this.data.Articles.Add(article);
+            this.data.SaveChanges();
+        }
+
+        public bool Delete(int id)
+        {
+            var article = this.data
+               .Articles
+               .Where(a => a.Id == id)
+               .FirstOrDefault();
+
+            try
+            {
+                this.data.Articles.Remove(article);
+                this.data.SaveChanges();
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+
+            return true;
         }
 
         public ArticleServiceModel Details(int id)
@@ -88,39 +105,22 @@
             return article;
         }
 
-        public bool Delete(int id)
+        private static IEnumerable<ArticleServiceModel> GetArticles(IQueryable<Article> query)
         {
-            var article = this.data
-               .Articles
-               .Where(a => a.Id == id)
-               .FirstOrDefault();
+            var articles = query
+                .Select(a => new ArticleServiceModel
+                {
+                    Id = a.Id,
+                    Author = a.Author,
+                    Title = a.Title,
+                    Body = a.Body,
+                    Category = a.Category,
+                    ImageUrl = a.ImageUrl,
+                    PublishedOn = a.PublishedOn
+                })
+                .ToList();
 
-            try
-            {
-                this.data.Articles.Remove(article);
-                this.data.SaveChanges();
-            }
-            catch (Exception)
-            {
-                return false;
-            }
-            
-            return true;
-        }
-
-        public bool ArticleExists(int id)
-        {
-            var article = this.data
-                .Articles
-                .Where(a => a.Id == id)
-                .FirstOrDefault();
-
-            if(article == null)
-            {
-                return false;
-            }
-
-            return true;
+            return articles;
         }
     }
 }

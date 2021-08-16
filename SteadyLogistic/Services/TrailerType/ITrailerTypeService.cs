@@ -4,10 +4,9 @@
 
     public interface ITrailerTypeService
     {
-
-        public ICollection<TrailerTypeServiceModel> AllTrailerTypes();
-
         public ICollection<string> AllTrailerTypeNames();
+
+        public ICollection<TrailerTypeServiceModel> AllTrailerTypes();  
 
         public bool Exists(int trailerTypeId);
     }

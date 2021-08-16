@@ -2,16 +2,17 @@
 
 @foreach (var user in Model)
 {
-<tr>
-    <td class="col-md-5">
-        <a asp-controller="Catalogue" asp-action="UserDetails" asp-route-id="@user.Id">
-            @user.UserName
-        </a>
-    </td>
-    <td class="col-md-5 text-right">
-        <a asp-controller="Catalogue" asp-action="CompanyDetails" asp-route-id="@user.CompanyId">
-            @user.CompanyName
-        </a>
-    </td>
-    <td class="col-md-2 text-right">@user.RegisteredOn.ToLocalTime().ToString("dd MMMM, yyyy") </td>
-</tr>}
+    <tr>
+        <td class="col-md-5">
+            <a asp-controller="Catalogue" asp-action="UserDetails" asp-route-id="@user.Id">
+                @user.UserName
+            </a>
+        </td>
+        <td class="col-md-5 text-right">
+            <a asp-controller="Catalogue" asp-action="CompanyDetails" asp-route-id="@user.CompanyId">
+                @user.CompanyName
+            </a>
+        </td>
+        <td class="col-md-2 text-right">@user.RegisteredOn.ToLocalTime().ToString("dd MMMM, yyyy") </td>
+    </tr>
+}

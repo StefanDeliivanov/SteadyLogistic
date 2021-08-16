@@ -3,8 +3,6 @@
     using System.Collections.Generic;
     using SteadyLogistic.Services.Freight;
 
-    using SteadyLogistic.Data.Models;
-
     public class AllFreightsQueryModel
     {
         public const int FreightsPerPage = 10;

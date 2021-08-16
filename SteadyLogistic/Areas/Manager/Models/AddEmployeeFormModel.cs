@@ -2,10 +2,10 @@
 {
     using System.ComponentModel.DataAnnotations;
 
-    using static SteadyLogistic.Data.DataConstants.User;
-    using static SteadyLogistic.Data.DataConstants.Global;
     using static SteadyLogistic.Data.DataConstants.Displays;
     using static SteadyLogistic.Data.DataConstants.ErrorMessages;
+    using static SteadyLogistic.Data.DataConstants.Global;
+    using static SteadyLogistic.Data.DataConstants.User;
 
     public class AddEmployeeFormModel
     {
