@@ -8,6 +8,7 @@
     using SteadyLogistic.Data;
     using SteadyLogistic.Data.Models;
     using SteadyLogistic.Models.Catalogue;
+    using SteadyLogistic.Services.Company;
 
     using static Areas.AreaGlobalConstants.Roles;
 
@@ -15,13 +16,16 @@
     {
         private readonly SteadyLogisticDbContext data;
         private readonly UserManager<User> userManager;
+        private readonly ICompanyService companies;
 
         public UserService(
             SteadyLogisticDbContext data,
-            UserManager<User> userManager)
+            UserManager<User> userManager, 
+            ICompanyService companies)
         {
             this.data = data;
             this.userManager = userManager;
+            this.companies = companies;
         }
 
         public void AddAsManager(PremiumUser premiumUser)
@@ -193,6 +197,24 @@
                 UsersPerPage = usersPerPage,
                 AllUsers = users
             };
+        }
+
+        public UserDetailsServiceModel Details(string id)
+        {
+            var user = this.data.PremiumUsers
+                .Where(a => a.Id == id)
+                .Select(b => new UserDetailsServiceModel
+                {
+                    Id = b.Id,
+                    FullName = b.FirstName + " " + b.LastName,
+                    PhoneNumber = b.PhoneNumber,
+                    Email = b.Email,
+                    RegisteredOn = b.RegisteredOn,
+                    Company = companies.Details(b.CompanyId)
+                })
+                .FirstOrDefault();
+
+            return user;
         }
 
         private static IEnumerable<UserServiceModel> GetUsers(IQueryable<PremiumUser> query)

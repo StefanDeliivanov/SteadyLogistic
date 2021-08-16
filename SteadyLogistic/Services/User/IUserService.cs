@@ -25,6 +25,8 @@
 
         public string GetUserNamesById(string id);
 
+        public UserDetailsServiceModel Details(string id);
+
         public UserQueryServiceModel All(
             string searchTerm = null,
             UserSearchType searchType = UserSearchType.Name,

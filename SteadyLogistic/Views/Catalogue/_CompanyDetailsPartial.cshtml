@@ -1,10 +1,5 @@
 ﻿@model CompanyDetailsServiceModel
 
-    @*<head>
-        <link rel="stylesheet" href="~/css/global.css" />
-        <link rel="stylesheet" href="~/css/messages.css" />
-    </head>*@
-
 <table class="table table-sm table-striped col-md-12">
     <thead class="bg-primary text-warning freights-head">
         <tr>
@@ -81,7 +76,7 @@
         </tr>
         <tr>
             <td class="col-md-2 freights-bold-right">
-                Registered date:
+                Registered on:
             </td>
             <td class="col-md-10">
                 @Model.RegisteredOn.ToLocalTime().ToString("dd MMMM, yyyy")

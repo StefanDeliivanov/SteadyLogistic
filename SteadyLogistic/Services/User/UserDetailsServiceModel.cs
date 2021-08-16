@@ -1,17 +1,20 @@
 ﻿namespace SteadyLogistic.Services.User
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;
     using SteadyLogistic.Services.Company;
 
     public class UserDetailsServiceModel
     {
+        public string Id { get; set; }
 
+        public string FullName { get; set; }
 
+        public string Email { get; set; }
 
+        public string PhoneNumber { get; set; }
 
-        CompanyDetailsServiceModel Company { get; set; }
+        public DateTime RegisteredOn { get; set; }
+
+        public CompanyDetailsServiceModel Company { get; set; }
     }
 }

@@ -1,19 +1,59 @@
-﻿@*@model UserDetailsServiceModel
+﻿@model UserDetailsServiceModel
 
 <head>
     <link rel="stylesheet" href="~/css/global.css" />
     <link rel="stylesheet" href="~/css/messages.css" />
 </head>
 
-<div class="oleo-font" style="margin-bottom: 15px;"> Company #@Model.Id</div>
-
 <div class="row">
     <div class="col-md-12">
-        <partial name="_CompanyDetailsPartial" model="@Model" />
+        <table class="table table-sm table-striped col-md-12">
+            <thead class="bg-primary text-warning freights-head">
+                <tr>
+                    <th class="col-md-2"> </th>
+                    <th class="col-md-10"> User information: </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="col-md-2 freights-bold-right">
+                        Name:
+                    </td>
+                    <td class="col-md-10">
+                        @Model.FullName
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-2 freights-bold-right">
+                        Phone Number:
+                    </td>
+                    <td class="col-md-10">
+                        @Model.PhoneNumber
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-2 freights-bold-right">
+                        Email:
+                    </td>
+                    <td class="col-md-10">
+                        @Model.Email
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-2 freights-bold-right">
+                        Registered on:
+                    </td>
+                    <td class="col-md-10">
+                        @Model.RegisteredOn.ToLocalTime().ToString("dd MMMM, yyyy")
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
-    <div class="row">
+
+    <div class="row mt-1">
         <div class="col-md-12">
-            @{ if (User.GetUserId() == Model.ManagerId || User.IsAdmin())
+            @{ if (User.GetUserId() == Model.Id || User.IsAdmin())
                 {
     <div class="col">
         <a asp-controller="Catalogue"
@@ -25,4 +65,10 @@
     </div> } }
         </div>
     </div>
-</div>*@
+</div>
+
+<div class="row mt-5">
+    <div class="col-md-12">
+        <partial name="_CompanyDetailsPartial" model="@Model.Company" />
+    </div>
+</div>

@@ -73,5 +73,20 @@
 
             return View(company);
         }
+
+        [Authorize(Roles = NotAMemberRoleName)]
+        public IActionResult UserDetails(string id)
+        {
+            var user = this.users.Details(id);
+
+            if (user == null)
+            {
+                TempData[GlobalErrorKey] = "This user does not exist!";
+
+                return RedirectToAction(nameof(AllUsers));
+            }
+
+            return View(user);
+        }
     }
 }
