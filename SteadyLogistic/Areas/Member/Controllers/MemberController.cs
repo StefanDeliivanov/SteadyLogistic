@@ -98,7 +98,8 @@
                 model.CompanyPhoneNumber, 
                 model.VatNumber, 
                 model.CompanyEmail, 
-                model.Address, 
+                model.Address,
+                model.Description,
                 model.FirstName, 
                 model.LastName, 
                 city.Id, 
@@ -114,7 +115,8 @@
             users.AddAsManager(premiumUser);
             companies.AddManager(premiumUser.Id, company.Id);
 
-            TempData[GlobalMessageKey] = "Your company was added successfully! Enjoy SteadyLogistics!";
+            TempData[GlobalMessageKey] = "Your company was added and your account was upgraded successfully! " +
+                                         "Please logout in order to refresh your account status! Enjoy SteadyLogistics!";
 
             return RedirectToAction("News", "Home", new { area = "" });
         }

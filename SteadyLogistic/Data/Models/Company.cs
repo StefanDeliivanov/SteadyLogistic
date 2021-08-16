@@ -36,6 +36,9 @@
         [MaxLength(emailMaxLength)]
         public string Email { get; set; }
 
+        [MaxLength(companyDescriptionMaxLength)]
+        public string Description { get; set; }
+
         [MaxLength(managerFullNameMaxLength)]
         public string ManagerFullName { get; set; }
 

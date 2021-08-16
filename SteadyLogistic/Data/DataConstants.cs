@@ -28,6 +28,8 @@ namespace SteadyLogistic.Data
 
         public static class Company
         {
+            public const int companyDescriptionMinLength = 0;
+            public const int companyDescriptionMaxLength = 500;
             public const int companyNameMinLength = 2;
             public const int companyNameMaxLength = 40;
             public const int vatNumberMinLength = 7;
@@ -110,6 +112,7 @@ namespace SteadyLogistic.Data
             public const string weightValueErrorMessage = "{0} must be between {1} and {2}kilograms!";
             public const string priceErrorMessage = "{0} must be between {1} and {2} euro!";
             public const string invalidDateErrorMessage = "Date Invalid! Cannot select past date";
+            public const string invalidUnloadingDateErrorMessage = "Unloading date cannot be before loading date";
         }
 
         public static class User

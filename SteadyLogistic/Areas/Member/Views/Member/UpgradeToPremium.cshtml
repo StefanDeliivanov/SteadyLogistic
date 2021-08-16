@@ -78,8 +78,7 @@
                 <select asp-for="@Model.CountryId" class="form-control">
                     @foreach (var country in Model.Countries)
                     {
-                        <option value="@country.Id">@country.Name</option>
-                    }
+        <option value="@country.Id">@country.Name</option>}
                 </select>
                 <span asp-validation-for="CountryId" class="small text-danger"></span>
             </div>
@@ -114,10 +113,24 @@
         </div>
     </div>
     <div class="row mt-0">
+        <div class="col">
+            <div class="form-group">
+                <textarea asp-for="@Model.Description" class="form-control" placeholder="Enter company description up to 500 characters..."></textarea>
+                <span asp-validation-for="@Model.Description" class="small text-danger"></span>
+            </div>
+        </div>
+        <div class="col">
+
+        </div>
+        <div class="col">
+
+        </div>
+    </div>
+    <div class="row mt-0">
         <div class="col text-center">
             <input type="submit" value="Confirm" class="btn contacts-btn" />
         </div>
-    </div> 
+    </div>
 </form>
 
 @section Scripts {

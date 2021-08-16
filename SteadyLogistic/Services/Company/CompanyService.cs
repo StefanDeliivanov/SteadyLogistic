@@ -1,7 +1,9 @@
 ﻿namespace SteadyLogistic.Services.Company
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
+    using Microsoft.EntityFrameworkCore;
     using SteadyLogistic.Data;
     using SteadyLogistic.Data.Models;
     using SteadyLogistic.Models.Catalogue;
@@ -10,14 +12,10 @@
     public class CompanyService : ICompanyService
     {
         private readonly SteadyLogisticDbContext data;
-        private readonly IUserService users;
 
-        public CompanyService(
-            SteadyLogisticDbContext data,
-            IUserService users)
+        public CompanyService(SteadyLogisticDbContext data)
         {
             this.data = data;
-            this.users = users;
         }
 
         public CompanyQueryServiceModel All(
@@ -41,7 +39,7 @@
                     CompanySearchType.CityName => companiesQuery.Where(a => a.City.Name.Contains(searchTerm)),
                     CompanySearchType.Name or _ => companiesQuery.Where(a => a.Name.Contains(searchTerm))
                 };
-            }  
+            }
 
             companiesQuery = sorting switch
             {
@@ -107,14 +105,15 @@
         }
 
         public Company Create(
-            string name, 
-            string phoneNumber, 
-            string vatNumber, 
-            string email, 
-            string address, 
+            string name,
+            string phoneNumber,
+            string vatNumber,
+            string email,
+            string address,
+            string description,
             string firstName,
             string lastName,
-            int cityId, 
+            int cityId,
             Country country)
         {
             var company = new Company()
@@ -124,9 +123,11 @@
                 VatNumber = vatNumber,
                 Email = email,
                 Address = address,
+                Description = description,
                 ManagerFullName = firstName + " " + lastName,
                 CityId = cityId,
                 Country = country,
+                RegisteredOn = DateTime.UtcNow
             };
 
             data.Companies.Add(company);
@@ -160,6 +161,50 @@
                 .ToList();
 
             return companies;
+        }
+
+        private static List<UserMiniDetailsModel> GetEmployees(Company company)
+        {
+            List<UserMiniDetailsModel> employees = new();
+
+            foreach (var employee in company.Employees)
+            {
+                employees.Add(new UserMiniDetailsModel { Id = employee.Id, Name = employee.FirstName + " " + employee.LastName });
+            }
+            
+            return employees;
+        }
+
+        public CompanyDetailsServiceModel Details(int id)
+        {
+            var company = this.data.Companies
+                .Include("Employees")
+                .Where(a => a.Id == id)
+                .FirstOrDefault();
+
+            var employees = GetEmployees(company);
+
+            var companyDetails = this.data.Companies
+                .Where(a => a.Id == id)
+                .Select(b => new CompanyDetailsServiceModel
+                {
+                    Id = b.Id,
+                    Name = b.Name,
+                    VatNumber = b.VatNumber,
+                    Address = b.Address,
+                    PhoneNumber = b.PhoneNumber,
+                    Email = b.Email,
+                    Description = b.Description,
+                    ManagerFullName = b.ManagerFullName,
+                    ManagerId = b.ManagerId,
+                    CountryName = b.Country.Name,
+                    CityName = b.City.Name,
+                    RegisteredOn = b.RegisteredOn,
+                    Employees = employees
+                })
+                .FirstOrDefault();
+
+            return companyDetails;
         }
     }
 }

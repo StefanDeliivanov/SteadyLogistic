@@ -1,7 +1,6 @@
 ﻿namespace SteadyLogistic.Services.Freight
 {
     using System;
-    using SteadyLogistic.Data.Models;
 
     public class FreightDetailsServiceModel
     {

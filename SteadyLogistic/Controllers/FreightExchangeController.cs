@@ -3,13 +3,13 @@
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using SteadyLogistic.Models.FreightExchange;
+    using SteadyLogistic.Services.Freight;
+    using SteadyLogistic.Services.Country;
     using SteadyLogistic.Services.CargoSize;
     using SteadyLogistic.Services.City;
-    using SteadyLogistic.Services.Country;
-    using SteadyLogistic.Services.TrailerType;
     using SteadyLogistic.Services.Dimension;
+    using SteadyLogistic.Services.TrailerType;
     using SteadyLogistic.Services.LoadUnloadInfo;
-    using SteadyLogistic.Services.Freight;
     using SteadyLogistic.Infrastructure.Extensions;
 
     using static Areas.AreaGlobalConstants.Roles;
@@ -19,32 +19,33 @@
     [Authorize]
     public class FreightExchangeController : Controller
     {
-        private readonly ICityService cities;
+        private readonly IFreightService freights;
         private readonly ICountryService countries;
         private readonly ICargoSizeService cargoSizes;
         private readonly ITrailerTypeService trailerTypes;
-        private readonly IDimensionService dimensions;
-        private readonly IFreightService freights;
         private readonly ILoadUnloadInfoService loadUnloadInfos;
+        private readonly ICityService cities;
+        private readonly IDimensionService dimensions;
 
         public FreightExchangeController(
-            ICityService cities,
-            ICountryService countries,
-            ICargoSizeService cargoSizes,
-            ITrailerTypeService trailerTypes,
-            IDimensionService dimensions,
-            IFreightService freights,
-            ILoadUnloadInfoService loadUnloadInfos)
+        IFreightService freights,
+        ICountryService countries,
+        ICargoSizeService cargoSizes,
+        ITrailerTypeService trailerTypes,
+        ILoadUnloadInfoService loadUnloadInfos, 
+        ICityService cities, 
+        IDimensionService dimensions)
         {
-            this.cities = cities;
+            this.freights = freights;
             this.countries = countries;
             this.cargoSizes = cargoSizes;
             this.trailerTypes = trailerTypes;
-            this.dimensions = dimensions;
-            this.freights = freights;
             this.loadUnloadInfos = loadUnloadInfos;
+            this.cities = cities;
+            this.dimensions = dimensions;
         }
 
+        [Authorize(Roles = NotAMemberRoleName)]
         public IActionResult All([FromQuery] AllFreightsQueryModel query)
         {
             var queryResult = this.freights.All(
@@ -141,6 +142,11 @@
                 this.ModelState.AddModelError(nameof(model.UnloadingDate), invalidDateErrorMessage);
             }
 
+            if (model.UnloadingDate < model.LoadingDate)
+            {
+                this.ModelState.AddModelError(nameof(model.UnloadingDate), invalidUnloadingDateErrorMessage);
+            }
+
             if (!ModelState.IsValid)
             {
                 model.Countries = this.countries.AllCountries();
@@ -174,6 +180,7 @@
         }
 
 
+        [Authorize(Roles = NotAMemberRoleName)]
         public IActionResult Delete([FromQuery]int freightId, string userId)
         {
             if (!this.freights.Exists(freightId))
@@ -202,6 +209,8 @@
             return RedirectToAction(nameof(Details), freightId);
         }
 
+
+        [Authorize(Roles = NotAMemberRoleName)]
         public IActionResult Details(int id)
         {
             var freight = this.freights.Details(id);

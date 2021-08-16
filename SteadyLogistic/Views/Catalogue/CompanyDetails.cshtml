@@ -1,0 +1,30 @@
+﻿@model CompanyDetailsServiceModel
+
+<head>
+    <link rel="stylesheet" href="~/css/global.css" />
+    <link rel="stylesheet" href="~/css/messages.css" />
+</head>
+
+<div class="oleo-font" style="margin-bottom: 15px;"> Company #@Model.Id</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <partial name="_CompanyDetailsPartial" model="@Model" />
+    </div>  
+    <div class="row">
+        <div class="col-md-12">
+            @{ if (User.GetUserId() == Model.ManagerId || User.IsAdmin())
+               {
+                    <div class="col">
+                        <a asp-controller="Catalogue" 
+                           asp-action="DeleteCompany" 
+                           asp-route-freightId="@Model.Id"
+                           asp-route-userId="@User.GetUserId()">
+                                <input type="button" class="btn delete-btn float-right" value="Delete" />
+                        </a>
+                    </div> 
+               } 
+             }
+        </div> 
+    </div>
+</div>

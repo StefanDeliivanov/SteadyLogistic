@@ -15,6 +15,7 @@
             string vatNumber,
             string email,
             string address,
+            string description,
             string firstName,
             string lastName,
             int cityId,
@@ -36,5 +37,7 @@
         public bool EmailTaken(string email);
 
         public void AddManager(string userId, int companyId);
+
+        public CompanyDetailsServiceModel Details(int id);
     }
 }

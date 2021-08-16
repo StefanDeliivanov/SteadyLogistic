@@ -72,6 +72,10 @@
             ErrorMessage = emailErrorMessage)]
         [Display(Name = emailDisplay)]
         public string CompanyEmail { get; set; }
+
+        [StringLength(companyDescriptionMaxLength, MinimumLength = companyDescriptionMinLength,
+            ErrorMessage = defaultErrorMessage)]
+        public string Description { get; set; }
         #endregion
 
         #region City
