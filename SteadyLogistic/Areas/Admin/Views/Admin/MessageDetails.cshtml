@@ -25,7 +25,7 @@
                 <div class="row">
                     <div class="col-md-8 col-sm-8 col-xs-7">
                         <div>From: <span class="text-space">@Model.FullName</span></div>
-                        <div>Email: <span class="text-space">@Model.Email</span></div>
+                        <div>Email: <span class="text-space"><a href="mailto:@{@Model.Email}">@Model.Email</a></span></div>
                     </div>
                     <div class="col-md-4 col-sm-4 col-xs-5">
                         <p class="pull-right">@Model.SendOn.ToLocalTime().ToString("HH:mm'h' '/' dd MMMM, yyyy") </p>
