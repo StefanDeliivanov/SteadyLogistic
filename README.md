@@ -55,15 +55,34 @@ The web project contains:
 
 
 ## **Screenshots**
+**SteadyLogistics - Login**
 ![SteadyLogistics - Login](https://imgur.com/O0aheqE.jpg)
+
+**SteadyLogistics - Register**
 ![SteadyLogistics - Register](https://imgur.com/MBSyyjG.jpg)
+
+**SteadyLogistics - Message Details**
 ![SteadyLogistics - Message Details](https://imgur.com/P6GeLTR.jpg)
+
+**SteadyLogistics - News**
 ![SteadyLogistics - News](https://imgur.com/mO0tdYc.jpg)
+
+**SteadyLogistics - Add an Article**
 ![SteadyLogistics - Add an Article](https://imgur.com/XtAuphu.jpg)
+
+**SteadyLogistics - Contacts**
 ![SteadyLogistics - Contacts](https://imgur.com/ER6iIWD.jpg)
+
+**SteadyLogistics - All Freights**
 ![SteadyLogistics - All Freights](https://imgur.com/8jiQ1l3.jpg)
+
+**SteadyLogistics - Freight Detail**
 ![SteadyLogistics - Freight Details](https://imgur.com/qyiGnQI.jpg)
+
+**SteadyLogistics - Add Freight**
 ![SteadyLogistics - Add Freight](https://imgur.com/2BanUGn.jpg)
+
+**SteadyLogistics - User Details**
 ![SteadyLogistics - User Details](https://imgur.com/TLfoyVP.jpg)
 
 
