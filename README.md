@@ -5,7 +5,7 @@ as my graduation project for the SoftUni ASP.NET Core Web Development course Aug
 
 
 ## &copy; SteadyLogistics&trade; Logo
-![](https://imgur.com/qsH3Lq1)
+![](https://i.imgur.com/qsH3Lq1.jpg)
 
 
 ## :hammer_and_pick: **Built With**
@@ -42,7 +42,7 @@ would happen once you run the application, including Test Account:
   - 46 Europe countries easily accessible by land for the needs of Road Transportation alongside their Alpha-2 code
 
 ## :floppy_disk: **Database Diagram**
-![](https://imgur.com/799QcIq)
+![](https://imgur.com/799QcIq.jpg)
 
 
 ## **Backend**
@@ -55,16 +55,16 @@ The web project contains:
 
 
 ## **Screenshots**
-![SteadyLogistics - Login](https://imgur.com/O0aheqE)
-![SteadyLogistics - Register](https://imgur.com/MBSyyjG)
-![SteadyLogistics - Message Details](https://imgur.com/P6GeLTR)
-![SteadyLogistics - News](https://imgur.com/mO0tdYc)
-![SteadyLogistics - Add an Article](https://imgur.com/XtAuphu)
-![SteadyLogistics - Contacts](https://imgur.com/ER6iIWD)
-![SteadyLogistics - All Freights](https://imgur.com/8jiQ1l3)
-![SteadyLogistics - Freight Details](https://imgur.com/qyiGnQI)
-![SteadyLogistics - Add Freight](https://imgur.com/2BanUGn)
-![SteadyLogistics - User Details](https://imgur.com/TLfoyVP)
+![SteadyLogistics - Login](https://imgur.com/O0aheqE.jpg)
+![SteadyLogistics - Register](https://imgur.com/MBSyyjG.jpg)
+![SteadyLogistics - Message Details](https://imgur.com/P6GeLTR.jpg)
+![SteadyLogistics - News](https://imgur.com/mO0tdYc.jpg)
+![SteadyLogistics - Add an Article](https://imgur.com/XtAuphu.jpg)
+![SteadyLogistics - Contacts](https://imgur.com/ER6iIWD.jpg)
+![SteadyLogistics - All Freights](https://imgur.com/8jiQ1l3.jpg)
+![SteadyLogistics - Freight Details](https://imgur.com/qyiGnQI.jpg)
+![SteadyLogistics - Add Freight](https://imgur.com/2BanUGn.jpg)
+![SteadyLogistics - User Details](https://imgur.com/TLfoyVP.jpg)
 
 
 ## :v: **Show your opinion**
