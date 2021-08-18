@@ -1,7 +1,10 @@
 ﻿namespace SteadyLogistic.Areas.Member.Controllers
 {
+    using System;
+    using System.Collections.Generic;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
+    using Microsoft.Extensions.Caching.Memory;
     using SteadyLogistic.Areas.Member.Models;
     using SteadyLogistic.Infrastructure.Extensions;
     using SteadyLogistic.Services.City;
@@ -19,18 +22,21 @@
     {
         private readonly ICityService cities;
         private readonly ICompanyService companies;
-        private readonly ICountryService countries;       
+        private readonly ICountryService countries;
+        private readonly IMemoryCache cache;
         private readonly IUserService users;
 
         public MemberController(
             ICityService cities,
             ICompanyService companies,
-            ICountryService countries,        
+            ICountryService countries,
+            IMemoryCache cache,
             IUserService users)
         {
             this.cities = cities;
             this.companies = companies;
-            this.countries = countries;           
+            this.countries = countries;
+            this.cache = cache;
             this.users = users;
         }
 
@@ -45,7 +51,19 @@
         [Authorize(Roles = MemberRoleName)]
         public IActionResult UpgradeToPremium()
         {
-            return View(new UpgradeToPremiumFormModel { Countries = countries.AllCountries() });
+            var countriesCache = this.cache.Get<ICollection<CountryServiceModel>>(countriesCacheKey);
+
+            if (countriesCache == null)
+            {
+                countriesCache = this.countries.AllCountries();
+
+                var cacheOptions = new MemoryCacheEntryOptions()
+                    .SetAbsoluteExpiration(TimeSpan.FromDays(30));
+
+                this.cache.Set(countriesCacheKey, countriesCache, cacheOptions);
+            }
+
+            return View(new UpgradeToPremiumFormModel { Countries = countriesCache });
         }
 
         [HttpPost]
@@ -86,7 +104,19 @@
 
             if (!this.ModelState.IsValid)
             {
-                model.Countries = this.countries.AllCountries();
+                var countriesCache = this.cache.Get<ICollection<CountryServiceModel>>(countriesCacheKey);
+
+                if (countriesCache == null)
+                {
+                    countriesCache = this.countries.AllCountries();
+
+                    var cacheOptions = new MemoryCacheEntryOptions()
+                        .SetAbsoluteExpiration(TimeSpan.FromDays(30));
+
+                    this.cache.Set(countriesCacheKey, countriesCache, cacheOptions);
+                }
+                model.Countries = countriesCache;
+
                 return View(model);
             }
 

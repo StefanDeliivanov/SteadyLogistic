@@ -54,6 +54,8 @@ namespace SteadyLogistic
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<SteadyLogisticDbContext>();
 
+            services.AddMemoryCache();
+
             services.AddControllersWithViews(options =>
             {
                 options.Filters.Add<AutoValidateAntiforgeryTokenAttribute>();

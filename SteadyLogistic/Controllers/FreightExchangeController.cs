@@ -1,7 +1,10 @@
 ﻿namespace SteadyLogistic.Controllers
 {
+    using System;
+    using System.Collections.Generic;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
+    using Microsoft.Extensions.Caching.Memory;
     using SteadyLogistic.Infrastructure.Extensions;
     using SteadyLogistic.Models.FreightExchange;
     using SteadyLogistic.Services.CargoSize;
@@ -25,6 +28,7 @@
         private readonly IDimensionService dimensions;
         private readonly IFreightService freights;
         private readonly ILoadUnloadInfoService loadUnloadInfos;
+        private readonly IMemoryCache cache;
         private readonly ITrailerTypeService trailerTypes;
 
         public FreightExchangeController(
@@ -34,6 +38,7 @@
         IDimensionService dimensions,
         IFreightService freights,
         ILoadUnloadInfoService loadUnloadInfos,
+        IMemoryCache cache,
         ITrailerTypeService trailerTypes)
         {
             this.cargoSizes = cargoSizes;
@@ -42,6 +47,7 @@
             this.dimensions = dimensions;
             this.freights = freights;
             this.loadUnloadInfos = loadUnloadInfos;
+            this.cache = cache;
             this.trailerTypes = trailerTypes;                
         }
 
@@ -49,11 +55,45 @@
         [Authorize(Roles = FreightBrokersRoleName)]
         public IActionResult Add()
         {
+            var countriesCache = this.cache.Get<ICollection<CountryServiceModel>>(countriesCacheKey);
+            var cargoSizesCache = this.cache.Get<ICollection<CargoSizeServiceModel>>(cargoSizesCacheKey);
+            var trailerTypesCache = this.cache.Get<ICollection<TrailerTypeServiceModel>>(trailerTypesCacheKey);
+
+            if (cargoSizesCache == null)
+            {
+                cargoSizesCache = this.cargoSizes.AllCargoSizes();
+
+                var cacheOptions = new MemoryCacheEntryOptions()
+                    .SetAbsoluteExpiration(TimeSpan.FromDays(30));
+
+                this.cache.Set(cargoSizesCacheKey, cargoSizesCache, cacheOptions);
+            }
+
+            if (countriesCache == null)
+            {
+                countriesCache = this.countries.AllCountries();
+
+                var cacheOptions = new MemoryCacheEntryOptions()
+                    .SetAbsoluteExpiration(TimeSpan.FromDays(30));
+
+                this.cache.Set(countriesCacheKey, countriesCache, cacheOptions);
+            }     
+
+            if (trailerTypesCache == null)
+            {
+                trailerTypesCache = this.trailerTypes.AllTrailerTypes();
+
+                var cacheOptions = new MemoryCacheEntryOptions()
+                    .SetAbsoluteExpiration(TimeSpan.FromDays(30));
+
+                this.cache.Set(trailerTypesCacheKey, trailerTypesCache, cacheOptions);
+            }
+
             return View(new AddFreightFormModel
             {
-                CargoSizes = this.cargoSizes.AllCargoSizes(),
-                Countries = this.countries.AllCountries(),
-                TrailerTypes = this.trailerTypes.AllTrailerTypes()
+                CargoSizes = cargoSizesCache,
+                Countries = countriesCache,
+                TrailerTypes = trailerTypesCache
             });
         }
 
@@ -98,9 +138,43 @@
 
             if (!this.ModelState.IsValid)
             {
-                model.Countries = this.countries.AllCountries();
-                model.CargoSizes = this.cargoSizes.AllCargoSizes();
-                model.TrailerTypes = this.trailerTypes.AllTrailerTypes();
+                var countriesCache = this.cache.Get<ICollection<CountryServiceModel>>(countriesCacheKey);
+                var cargoSizesCache = this.cache.Get<ICollection<CargoSizeServiceModel>>(cargoSizesCacheKey);
+                var trailerTypesCache = this.cache.Get<ICollection<TrailerTypeServiceModel>>(trailerTypesCacheKey);
+
+                if (cargoSizesCache == null)
+                {
+                    cargoSizesCache = this.cargoSizes.AllCargoSizes();
+
+                    var cacheOptions = new MemoryCacheEntryOptions()
+                        .SetAbsoluteExpiration(TimeSpan.FromDays(30));
+
+                    this.cache.Set(cargoSizesCacheKey, cargoSizesCache, cacheOptions);
+                }
+
+                if (countriesCache == null)
+                {
+                    countriesCache = this.countries.AllCountries();
+
+                    var cacheOptions = new MemoryCacheEntryOptions()
+                        .SetAbsoluteExpiration(TimeSpan.FromDays(30));
+
+                    this.cache.Set(countriesCacheKey, countriesCache, cacheOptions);
+                }
+
+                if (trailerTypesCache == null)
+                {
+                    trailerTypesCache = this.trailerTypes.AllTrailerTypes();
+
+                    var cacheOptions = new MemoryCacheEntryOptions()
+                        .SetAbsoluteExpiration(TimeSpan.FromDays(30));
+
+                    this.cache.Set(trailerTypesCacheKey, trailerTypesCache, cacheOptions);
+                }
+
+                model.CargoSizes = cargoSizesCache;
+                model.Countries = countriesCache;
+                model.TrailerTypes = trailerTypesCache;
 
                 return View(model);
             }
@@ -141,9 +215,43 @@
                 query.CurrentPage,
                 AllFreightsQueryModel.FreightsPerPage);
 
-            query.CountryCodes = this.countries.AllCountryCodes();
-            query.CargoSizes = this.cargoSizes.AllCargoSizeNames();
-            query.TrailerTypes = this.trailerTypes.AllTrailerTypeNames();
+            var cargoSizeNamesCache = this.cache.Get<IEnumerable<string>>(cargoSizeNamesCacheKey);
+            var countryCodesCache = this.cache.Get<IEnumerable<string>>(countryCodesCacheKey);         
+            var trailerTypeNamesCache = this.cache.Get<IEnumerable<string>>(trailerTypeNamesCacheKey);
+
+            if (cargoSizeNamesCache == null)
+            {
+                cargoSizeNamesCache = this.cargoSizes.AllCargoSizeNames();
+
+                var cacheOptions = new MemoryCacheEntryOptions()
+                    .SetAbsoluteExpiration(TimeSpan.FromDays(30));
+
+                this.cache.Set(cargoSizeNamesCacheKey, cargoSizeNamesCache, cacheOptions);
+            }
+
+            if (countryCodesCache == null)
+            {
+                countryCodesCache = this.countries.AllCountryCodes();
+
+                var cacheOptions = new MemoryCacheEntryOptions()
+                    .SetAbsoluteExpiration(TimeSpan.FromDays(30));
+
+                this.cache.Set(countryCodesCacheKey, countryCodesCache, cacheOptions);
+            }
+
+            if (trailerTypeNamesCache == null)
+            {
+                trailerTypeNamesCache = this.trailerTypes.AllTrailerTypeNames();
+
+                var cacheOptions = new MemoryCacheEntryOptions()
+                    .SetAbsoluteExpiration(TimeSpan.FromDays(30));
+
+                this.cache.Set(trailerTypeNamesCacheKey, trailerTypeNamesCache, cacheOptions);
+            }
+
+            query.CargoSizes = cargoSizeNamesCache;
+            query.CountryCodes = countryCodesCache;        
+            query.TrailerTypes = trailerTypeNamesCache;
             query.TotalFreights = queryResult.TotalFreights;
             query.Freights = queryResult.AllFreights;
 
