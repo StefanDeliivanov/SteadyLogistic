@@ -1,7 +1,7 @@
 # Steady Logistics
 
 A simple web application for freight brokerage :truck: made with educational purposes,
-as my graduation project for the SoftUni ASP.NET Core Web Development course August 2021) :dart:
+as my graduation project for the SoftUni ASP.NET Core Web Development course August 2021 :dart:
 
 
 ## &copy; SteadyLogistics&trade; Logo
